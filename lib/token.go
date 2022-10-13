@@ -2,13 +2,10 @@ package lib
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // TokenType is a enum type for Token
-//
-// stringer -type=TokenType
-//
-//go:generate stringer -type=TokenType
 type TokenType byte
 
 const (
@@ -73,46 +70,6 @@ type Token struct {
 	Value string
 }
 
-func (t TokenType) String() string {
-	tokenTypes := []string{
-		"STDFUNCTION",
-		"FUNCTION",
-		"VARIABLE",
-		"INTTYPE",
-		"FLOATTYPE",
-		"STRINGTYPE",
-		"BOOLEANTYPE",
-		"STRINGVALUE",
-		"NUMVALUE",
-		"BOOLEANVALUE",
-		"LEFTPAREN",
-		"RIGHTPAREN",
-		"LEFTBRACKET",
-		"RIGHTBRACKET",
-		"COMMA",
-		"NEWLINE",
-		"TAB",
-		"ADD",
-		"SUBTRACT",
-		"MULTIPLY",
-		"DIVIDE",
-		"MODULUS",
-		"ASSIGN",
-		"EQUAL",
-		"GREATER",
-		"LESS",
-		"GREATEREQ",
-		"LESSEQ",
-		"NOT",
-		"AND",
-		"OR",
-		"UNKNOWNVALUE",
-		"NONE",
-	}
-
-	return tokenTypes[t]
-}
-
 func (t Token) String() string {
 	return fmt.Sprintf("{Type: %s, Value: %s}", t.Type, t.Value)
 }
@@ -120,4 +77,54 @@ func (t Token) String() string {
 // NewToken returns a Token
 func NewToken(tokenType TokenType, value string) Token {
 	return Token{tokenType, value}
+}
+
+func _() {
+	// An "invalid array index" compiler error signifies that the constant values have changed.
+	// Re-run the stringer command to generate them again.
+	var x [1]struct{}
+	_ = x[STDFUNCTION-0]
+	_ = x[FUNCTION-1]
+	_ = x[VARIABLE-2]
+	_ = x[INTTYPE-3]
+	_ = x[FLOATTYPE-4]
+	_ = x[STRINGTYPE-5]
+	_ = x[BOOLEANTYPE-6]
+	_ = x[STRINGVALUE-7]
+	_ = x[NUMVALUE-8]
+	_ = x[BOOLEANVALUE-9]
+	_ = x[LEFTPAREN-10]
+	_ = x[RIGHTPAREN-11]
+	_ = x[LEFTBRACKET-12]
+	_ = x[RIGHTBRACKET-13]
+	_ = x[COMMA-14]
+	_ = x[NEWLINE-15]
+	_ = x[TAB-16]
+	_ = x[ADD-17]
+	_ = x[SUBTRACT-18]
+	_ = x[MULTIPLY-19]
+	_ = x[DIVIDE-20]
+	_ = x[MODULUS-21]
+	_ = x[ASSIGN-22]
+	_ = x[EQUAL-23]
+	_ = x[GREATER-24]
+	_ = x[LESS-25]
+	_ = x[GREATEREQ-26]
+	_ = x[LESSEQ-27]
+	_ = x[NOT-28]
+	_ = x[AND-29]
+	_ = x[OR-30]
+	_ = x[UNKNOWNVALUE-31]
+	_ = x[NONE-32]
+}
+
+const ttn = "STDFUNCTIONFUNCTIONVARIABLEINTTYPEFLOATTYPESTRINGTYPEBOOLEANTYPESTRINGVALUENUMVALUEBOOLEANVALUELEFTPARENRIGHTPARENLEFTBRACKETRIGHTBRACKETCOMMANEWLINETABADDSUBTRACTMULTIPLYDIVIDEMODULUSASSIGNEQUALGREATERLESSGREATEREQLESSEQNOTANDORUNKNOWNVALUENONE"
+
+var tti = [...]uint8{0, 11, 19, 27, 34, 43, 53, 64, 75, 83, 95, 104, 114, 125, 137, 142, 149, 152, 155, 163, 171, 177, 184, 190, 195, 202, 206, 215, 221, 224, 227, 229, 241, 245}
+
+func (i TokenType) String() string {
+	if i >= TokenType(len(tti)-1) {
+		return "TokenType(" + strconv.FormatInt(int64(i), 10) + ")"
+	}
+	return ttn[tti[i]:tti[i+1]]
 }
