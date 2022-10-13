@@ -74,7 +74,6 @@ func Parse(content string) ([]Token, error) {
 				} else if isAlpha(char) {
 					currType = UNKNOWNVALUE
 				} else {
-					fmt.Println(currType)
 					return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
 				}
 				currBlock += char
