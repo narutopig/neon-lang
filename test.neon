@@ -1,3 +1,5 @@
+int x = 69
+
 if (x > 5) {
     print(x)
 }

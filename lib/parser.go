@@ -22,15 +22,21 @@ func Parse(content string) ([]Token, error) {
 		sct := singleCharToken(char)
 
 		if char == "\n" {
-			tokens = append(tokens, NewToken(NEWLINE, ""))
+			// new line
 			if currType == STRINGVALUE {
 				// string not ended
 				fmt.Println(currType)
 
 				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
 			}
+
+			tokens = append(tokens, NewToken(currType, currBlock))
+			currType = NONE
+			currBlock = ""
+			tokens = append(tokens, NewToken(NEWLINE, ""))
 			line++
 		} else if sct.Type != NONE {
+			// the char is a single char token
 			tokens = append(tokens, NewToken(currType, currBlock))
 			tokens = append(tokens, sct)
 			currBlock = ""
@@ -38,30 +44,38 @@ func Parse(content string) ([]Token, error) {
 		} else if currType == STRINGVALUE {
 			// in string
 			if char == "\"" {
+				// end string
 				tokens = append(tokens, NewToken(STRINGVALUE, currBlock))
 				currBlock = ""
 				currType = NONE
 			} else {
+				// part of string
 				currBlock += char
 			}
 		} else if currType == NUMVALUE {
 			if !isNum(char) {
-				fmt.Println(currType)
-
+				// not digit in num
 				return tokens, fmt.Errorf("Unexpected character found while parsing number on line %d", line)
-			} else {
-				currBlock += char
 			}
+			currBlock += char
 		} else {
 			// not in string
 			if char == "\"" {
+				// beginning of string
 				currType = STRINGVALUE
 			} else if char == " " {
+				// space
 				if currType != NONE {
+					// could be bool or identifier
 					_, err := strconv.ParseBool(currBlock)
+					typeTok := typeToken(currBlock)
 					if err != nil {
 						// not bool
-						tokens = append(tokens, NewToken(VARIABLE, currBlock))
+						if typeTok.Type != NONE {
+							tokens = append(tokens, typeTok)
+						} else {
+							tokens = append(tokens, NewToken(IDENTIFIER, currBlock))
+						}
 					} else {
 						tokens = append(tokens, NewToken(BOOLEANVALUE, currBlock))
 					}
@@ -104,6 +118,12 @@ func typeToken(str string) Token {
 	switch str {
 	case "int":
 		return NewToken(INTTYPE, "")
+	case "string":
+		return NewToken(STRINGTYPE, "")
+	case "float":
+		return NewToken(FLOATTYPE, "")
+	case "bool":
+		return NewToken(BOOLEANTYPE, "")
 	}
 	return NewToken(NONE, "")
 }

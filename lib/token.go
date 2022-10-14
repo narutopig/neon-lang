@@ -10,18 +10,13 @@ import (
 type TokenType byte
 
 const (
-	// functions
-
-	STDFUNCTION TokenType = iota // print()
-	FUNCTION                     // count()
-
 	// variables
 
-	VARIABLE    // num
-	INTTYPE     // int
-	FLOATTYPE   // float
-	STRINGTYPE  // string
-	BOOLEANTYPE // boolean
+	IDENTIFIER  TokenType = iota // num
+	INTTYPE                      // int
+	FLOATTYPE                    // float
+	STRINGTYPE                   // string
+	BOOLEANTYPE                  // boolean
 
 	// values
 
