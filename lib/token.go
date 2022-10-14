@@ -35,6 +35,8 @@ const (
 	RIGHTPAREN   // )
 	LEFTBRACKET  // [
 	RIGHTBRACKET // ]
+	LEFTCURLY    // {
+	RIGHTCURLY   // }
 	COMMA        // ,
 	NEWLINE      // \n
 	TAB          // \t

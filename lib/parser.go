@@ -19,7 +19,7 @@ func Parse(content string) ([]Token, error) {
 	line := 1
 
 	for _, char := range chars {
-		singleCharToken := singleCharToken(char)
+		sct := singleCharToken(char)
 
 		if char == "\n" {
 			tokens = append(tokens, NewToken(NEWLINE, ""))
@@ -30,9 +30,9 @@ func Parse(content string) ([]Token, error) {
 				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
 			}
 			line++
-		} else if singleCharToken.Type != NONE {
+		} else if sct.Type != NONE {
 			tokens = append(tokens, NewToken(currType, currBlock))
-			tokens = append(tokens, singleCharToken)
+			tokens = append(tokens, sct)
 			currBlock = ""
 			currType = NONE
 		} else if currType == STRINGVALUE {
@@ -100,6 +100,14 @@ func isAlpha(str string) bool {
 	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", str)
 }
 
+func typeToken(str string) Token {
+	switch str {
+	case "int":
+		return NewToken(INTTYPE, "")
+	}
+	return NewToken(NONE, "")
+}
+
 func singleCharToken(str string) Token {
 	switch str {
 	case "(":
@@ -110,6 +118,10 @@ func singleCharToken(str string) Token {
 		return NewToken(LEFTBRACKET, "")
 	case "]":
 		return NewToken(RIGHTBRACKET, "")
+	case "{":
+		return NewToken(LEFTCURLY, "")
+	case "}":
+		return NewToken(RIGHTCURLY, "")
 	case ",":
 		return NewToken(COMMA, "")
 	case "+":
