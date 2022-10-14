@@ -37,7 +37,7 @@ func Parse(content string) ([]Token, error) {
 			}
 
 			line++
-		} else if sct.Type != NONE {
+		} else if sct.Type != NONE && currType != STRINGVALUE {
 			// the char is a single char token
 			if currType == UNKNOWNVALUE {
 				tokens = unknown(currBlock, tokens)
