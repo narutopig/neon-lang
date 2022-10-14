@@ -2,5 +2,5 @@
 cd lib
 go generate
 cd ..
-go build -o bin
-bin/neon-lang $1
+go build -o bin/neonc
+bin/neonc $1

@@ -25,19 +25,25 @@ func Parse(content string) ([]Token, error) {
 			// new line
 			if currType == STRINGVALUE {
 				// string not ended
-				fmt.Println(currType)
-
 				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
 			}
 
-			tokens = append(tokens, NewToken(currType, currBlock))
-			currType = NONE
-			currBlock = ""
-			tokens = append(tokens, NewToken(NEWLINE, ""))
+			if currType != NONE {
+				tokens = append(tokens, NewToken(currType, currBlock))
+				currType = NONE
+				currBlock = ""
+
+				tokens = append(tokens, NewToken(NEWLINE, ""))
+			}
+
 			line++
 		} else if sct.Type != NONE {
 			// the char is a single char token
-			tokens = append(tokens, NewToken(currType, currBlock))
+			if currType == UNKNOWNVALUE {
+				tokens = unknown(currBlock, tokens)
+			} else if currType != NONE {
+				tokens = append(tokens, NewToken(currType, currBlock))
+			}
 			tokens = append(tokens, sct)
 			currBlock = ""
 			currType = NONE
@@ -67,18 +73,7 @@ func Parse(content string) ([]Token, error) {
 				// space
 				if currType != NONE {
 					// could be bool or identifier
-					_, err := strconv.ParseBool(currBlock)
-					typeTok := typeToken(currBlock)
-					if err != nil {
-						// not bool
-						if typeTok.Type != NONE {
-							tokens = append(tokens, typeTok)
-						} else {
-							tokens = append(tokens, NewToken(IDENTIFIER, currBlock))
-						}
-					} else {
-						tokens = append(tokens, NewToken(BOOLEANVALUE, currBlock))
-					}
+					tokens = unknown(currBlock, tokens)
 					currBlock = ""
 					currType = NONE
 				}
@@ -112,6 +107,21 @@ func isNum(str string) bool {
 func isAlpha(str string) bool {
 	// could be optimized with binary search
 	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", str)
+}
+
+func unknown(currBlock string, tokens []Token) []Token {
+	_, err := strconv.ParseBool(currBlock)
+	typeTok := typeToken(currBlock)
+	if err != nil {
+		// not bool
+		if typeTok.Type != NONE {
+			return append(tokens, typeTok)
+		} else {
+			return append(tokens, NewToken(IDENTIFIER, currBlock))
+		}
+	} else {
+		return append(tokens, NewToken(BOOLEANVALUE, currBlock))
+	}
 }
 
 func typeToken(str string) Token {

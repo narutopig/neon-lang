@@ -69,7 +69,10 @@ type Token struct {
 }
 
 func (t Token) String() string {
-	return fmt.Sprintf("{Type: %s, Value: %s}", t.Type, t.Value)
+	if t.Value != "" {
+		return fmt.Sprintf("{Type: %s, Value: %s}", t.Type, t.Value)
+	}
+	return fmt.Sprintf("{Type: %s}", t.Type)
 }
 
 // NewToken returns a Token

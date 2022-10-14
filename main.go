@@ -31,5 +31,7 @@ func main() {
 		log.Panic(err)
 	}
 
-	fmt.Println(tokens)
+	for _, t := range tokens {
+		fmt.Println(t)
+	}
 }
