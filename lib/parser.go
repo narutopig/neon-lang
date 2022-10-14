@@ -116,12 +116,10 @@ func unknown(currBlock string, tokens []Token) []Token {
 		// not bool
 		if typeTok.Type != NONE {
 			return append(tokens, typeTok)
-		} else {
-			return append(tokens, NewToken(IDENTIFIER, currBlock))
 		}
-	} else {
-		return append(tokens, NewToken(BOOLEANVALUE, currBlock))
+		return append(tokens, NewToken(IDENTIFIER, currBlock))
 	}
+	return append(tokens, NewToken(BOOLEANVALUE, currBlock))
 }
 
 func typeToken(str string) Token {
