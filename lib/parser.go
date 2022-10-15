@@ -18,7 +18,8 @@ func Parse(content string) ([]Token, error) {
 	// start := 0 (used for debugging/error messages later)
 	line := 1
 
-	for _, char := range chars {
+	for i := 0; i < len(chars); i++ {
+		char := chars[i]
 		sct := singleCharToken(char)
 
 		if char == "\n" {
@@ -43,6 +44,19 @@ func Parse(content string) ([]Token, error) {
 				tokens = unknown(currBlock, tokens)
 			} else if currType != NONE {
 				tokens = append(tokens, NewToken(currType, currBlock))
+			}
+			if i+1 < len(chars) && chars[i+1] == "=" {
+				switch sct.Type {
+				case ASSIGN:
+					sct.Type = EQUAL
+					i++
+				case LESS:
+					sct.Type = LESSEQ
+					i++
+				case GREATER:
+					sct.Type = GREATEREQ
+					i++
+				}
 			}
 			tokens = append(tokens, sct)
 			currBlock = ""
