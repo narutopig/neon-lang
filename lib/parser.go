@@ -31,9 +31,9 @@ func Parse(content string) ([]Token, error) {
 				currType = NONE
 			} else if char == "\n" {
 				if i+1 >= len(chars) {
-					return tokens, fmt.Errorf("Reached end of file while parsing string on line %d", line)
+					return tokens, fmt.Errorf("reached end of file while parsing string on line %d", line)
 				}
-				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
+				return tokens, fmt.Errorf("reached end of line while parsing string on line %d", line)
 
 			} else {
 				// part of string
@@ -57,7 +57,7 @@ func Parse(content string) ([]Token, error) {
 			if sct.Type == PERIOD {
 				if currType == NUMVALUE {
 					if strings.Contains(currBlock, ".") {
-						return tokens, fmt.Errorf("Unexpected token . on line %d", line)
+						return tokens, fmt.Errorf("unexpected token . on line %d", line)
 					}
 					currBlock += "."
 					continue
@@ -88,7 +88,7 @@ func Parse(content string) ([]Token, error) {
 		} else if currType == NUMVALUE {
 			if !isNum(char) {
 				// not digit in num
-				return tokens, fmt.Errorf("Unexpected character found while parsing number on line %d", line)
+				return tokens, fmt.Errorf("unexpected character found while parsing number on line %d", line)
 			}
 			currBlock += char
 		} else {
@@ -110,7 +110,7 @@ func Parse(content string) ([]Token, error) {
 				} else if isAlpha(char) {
 					currType = UNKNOWNVALUE
 				} else {
-					return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
+					return tokens, fmt.Errorf("unexpected character %s on line %d", char, line)
 				}
 				currBlock += char
 			} else if currType == UNKNOWNVALUE {
@@ -118,7 +118,7 @@ func Parse(content string) ([]Token, error) {
 					currBlock += char
 				}
 			} else {
-				return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
+				return tokens, fmt.Errorf("unexpected character %s on line %d", char, line)
 			}
 		}
 	}
@@ -133,7 +133,7 @@ func isNum(str string) bool {
 
 func isAlpha(str string) bool {
 	// could be optimized with binary search
-	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", str)
+	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", strings.ToLower(str))
 }
 
 func unknown(currBlock string) Token {

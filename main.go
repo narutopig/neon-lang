@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -18,7 +17,7 @@ func main() {
 
 	var fileName string = os.Args[1]
 
-	c, err := ioutil.ReadFile(fileName)
+	c, err := os.ReadFile(fileName)
 	if err != nil {
 		log.Panic(err)
 		os.Exit(1)
@@ -29,6 +28,7 @@ func main() {
 	tokens, err := lib.Parse(content)
 	if err != nil {
 		log.Panic(err)
+		return
 	}
 
 	for _, t := range tokens {
