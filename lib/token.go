@@ -34,7 +34,8 @@ const (
 	RIGHTCURLY   // }
 	COMMA        // ,
 	NEWLINE      // \n
-	TAB          // \t
+	TAB          //
+	PERIOD       // .
 
 	// math
 

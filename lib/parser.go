@@ -39,23 +39,35 @@ func Parse(content string) ([]Token, error) {
 
 			line++
 		} else if sct.Type != NONE && currType != STRINGVALUE {
-			// the char is a single char token
-			if currType == UNKNOWNVALUE {
-				tokens = unknown(currBlock, tokens)
-			} else if currType != NONE {
-				tokens = append(tokens, NewToken(currType, currBlock))
-			}
-			if i+1 < len(chars) && chars[i+1] == "=" {
-				switch sct.Type {
-				case ASSIGN:
-					sct.Type = EQUAL
-					i++
-				case LESS:
-					sct.Type = LESSEQ
-					i++
-				case GREATER:
-					sct.Type = GREATEREQ
-					i++
+			if sct.Type == PERIOD {
+				if currType == NUMVALUE {
+					if strings.Contains(currBlock, ".") {
+						return tokens, fmt.Errorf("Unexpected token . on line %d", line)
+					}
+					currBlock += "."
+					continue
+				} else {
+					tokens = append(tokens, NewToken(IDENTIFIER, currBlock))
+				}
+			} else {
+				// the char is a single char token
+				if currType == UNKNOWNVALUE {
+					tokens = unknown(currBlock, tokens)
+				} else if currType != NONE {
+					tokens = append(tokens, NewToken(currType, currBlock))
+				}
+				if i+1 < len(chars) && chars[i+1] == "=" {
+					switch sct.Type {
+					case ASSIGN:
+						sct.Type = EQUAL
+						i++
+					case LESS:
+						sct.Type = LESSEQ
+						i++
+					case GREATER:
+						sct.Type = GREATEREQ
+						i++
+					}
 				}
 			}
 			tokens = append(tokens, sct)
@@ -166,6 +178,8 @@ func singleCharToken(str string) Token {
 		return NewToken(RIGHTCURLY, "")
 	case ",":
 		return NewToken(COMMA, "")
+	case ".":
+		return NewToken(PERIOD, "")
 	case "+":
 		return NewToken(ADD, "")
 	case "-":
