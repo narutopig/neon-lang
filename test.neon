@@ -11,3 +11,7 @@ if (y < 5) {
 }
 
 process.exit(0)
+
+int main() {
+    print("Hello World!")
+}

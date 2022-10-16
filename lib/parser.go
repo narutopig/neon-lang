@@ -33,7 +33,9 @@ func Parse(content string) ([]Token, error) {
 				tokens = append(tokens, NewToken(currType, currBlock))
 				currType = NONE
 				currBlock = ""
+			}
 
+			if tokens[len(tokens)-1].Type != NEWLINE {
 				tokens = append(tokens, NewToken(NEWLINE, ""))
 			}
 

@@ -23,6 +23,25 @@ func TestParse(t *testing.T) {
 			lib.NewToken(lib.STRINGVALUE, "Hello World!"),
 			lib.NewToken(lib.RIGHTPAREN, ""),
 		}, false},
+		{
+			"Main function",
+			args{"int main() {\nprint(\"Hello World!\")\n}"},
+			[]lib.Token{
+				lib.NewToken(lib.INTTYPE, ""),
+				lib.NewToken(lib.IDENTIFIER, "main"),
+				lib.NewToken(lib.LEFTPAREN, ""),
+				lib.NewToken(lib.RIGHTPAREN, ""),
+				lib.NewToken(lib.LEFTCURLY, ""),
+				lib.NewToken(lib.NEWLINE, ""),
+				lib.NewToken(lib.IDENTIFIER, "print"),
+				lib.NewToken(lib.LEFTPAREN, ""),
+				lib.NewToken(lib.STRINGVALUE, "Hello World!"),
+				lib.NewToken(lib.RIGHTPAREN, ""),
+				lib.NewToken(lib.NEWLINE, ""),
+				lib.NewToken(lib.RIGHTCURLY, ""),
+			},
+			false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
