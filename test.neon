@@ -1,17 +1,17 @@
-int x = 69
+int x = 69;
 
 if (x >= 5) {
-    print(x)
+    print(x);
 }
 
-float y = 3.
+float y = 3.;
 
 if (y < 5) {
-    print(y)
+    print(y);
 }
 
-process.exit(0)
+process.exit(0);
 
 int main() {
-    print("Hello World!")
+    print("Hello World!");
 }

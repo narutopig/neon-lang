@@ -36,6 +36,7 @@ const (
 	NEWLINE      // \n
 	TAB          //
 	PERIOD       // .
+	SEMI         // ;
 
 	// math
 

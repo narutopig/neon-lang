@@ -22,11 +22,14 @@ func Parse(content string) ([]Token, error) {
 		char := chars[i]
 		sct := singleCharToken(char)
 
-		if char == "\n" {
-			// new line
+		if char == ";" {
+			// semi
 			if currType == STRINGVALUE {
 				// string not ended
-				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
+				if i+1 >= len(chars) || chars[i+1] == "\n" {
+					return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
+				}
+				currBlock += ";"
 			}
 
 			if currType != NONE {
@@ -35,8 +38,8 @@ func Parse(content string) ([]Token, error) {
 				currBlock = ""
 			}
 
-			if tokens[len(tokens)-1].Type != NEWLINE {
-				tokens = append(tokens, NewToken(NEWLINE, ""))
+			if len(tokens) > 0 && tokens[len(tokens)-1].Type != SEMI {
+				tokens = append(tokens, NewToken(SEMI, ""))
 			}
 
 			line++
@@ -111,7 +114,9 @@ func Parse(content string) ([]Token, error) {
 				} else if isAlpha(char) {
 					currType = UNKNOWNVALUE
 				} else {
-					return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
+					if char != "\n" {
+						return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
+					}
 				}
 				currBlock += char
 			} else if currType == UNKNOWNVALUE {
