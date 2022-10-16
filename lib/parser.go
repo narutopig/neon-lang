@@ -22,28 +22,38 @@ func Parse(content string) ([]Token, error) {
 		char := chars[i]
 		sct := singleCharToken(char)
 
-		if char == ";" {
-			// semi
-			if currType == STRINGVALUE {
-				// string not ended
-				if i+1 >= len(chars) || chars[i+1] == "\n" {
-					return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
+		if currType == STRINGVALUE {
+			// in string
+			if char == "\"" {
+				// end string
+				tokens = append(tokens, NewToken(STRINGVALUE, currBlock))
+				currBlock = ""
+				currType = NONE
+			} else if char == "\n" {
+				if i+1 >= len(chars) {
+					return tokens, fmt.Errorf("Reached end of file while parsing string on line %d", line)
 				}
-				currBlock += ";"
+				return tokens, fmt.Errorf("Reached end of line while parsing string on line %d", line)
+
+			} else {
+				// part of string
+				currBlock += char
 			}
 
+			continue // avoid else if nesting even though theres still going to be a lot of them
+		}
+		if char == "\n" {
 			if currType != NONE {
 				tokens = append(tokens, NewToken(currType, currBlock))
 				currType = NONE
 				currBlock = ""
 			}
 
-			if len(tokens) > 0 && tokens[len(tokens)-1].Type != SEMI {
-				tokens = append(tokens, NewToken(SEMI, ""))
-			}
-
 			line++
-		} else if sct.Type != NONE && currType != STRINGVALUE {
+			continue // none of the other cases match
+		}
+		if sct.Type != NONE {
+			// the char is a single char token
 			if sct.Type == PERIOD {
 				if currType == NUMVALUE {
 					if strings.Contains(currBlock, ".") {
@@ -51,13 +61,10 @@ func Parse(content string) ([]Token, error) {
 					}
 					currBlock += "."
 					continue
-				} else {
-					tokens = append(tokens, NewToken(IDENTIFIER, currBlock))
 				}
 			} else {
-				// the char is a single char token
 				if currType == UNKNOWNVALUE {
-					tokens = unknown(currBlock, tokens)
+					tokens = append(tokens, unknown(currBlock))
 				} else if currType != NONE {
 					tokens = append(tokens, NewToken(currType, currBlock))
 				}
@@ -78,17 +85,6 @@ func Parse(content string) ([]Token, error) {
 			tokens = append(tokens, sct)
 			currBlock = ""
 			currType = NONE
-		} else if currType == STRINGVALUE {
-			// in string
-			if char == "\"" {
-				// end string
-				tokens = append(tokens, NewToken(STRINGVALUE, currBlock))
-				currBlock = ""
-				currType = NONE
-			} else {
-				// part of string
-				currBlock += char
-			}
 		} else if currType == NUMVALUE {
 			if !isNum(char) {
 				// not digit in num
@@ -104,7 +100,7 @@ func Parse(content string) ([]Token, error) {
 				// space
 				if currType != NONE {
 					// could be bool or identifier
-					tokens = unknown(currBlock, tokens)
+					tokens = append(tokens, unknown(currBlock))
 					currBlock = ""
 					currType = NONE
 				}
@@ -114,9 +110,7 @@ func Parse(content string) ([]Token, error) {
 				} else if isAlpha(char) {
 					currType = UNKNOWNVALUE
 				} else {
-					if char != "\n" {
-						return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
-					}
+					return tokens, fmt.Errorf("Unexpected character %s on line %d", char, line)
 				}
 				currBlock += char
 			} else if currType == UNKNOWNVALUE {
@@ -142,17 +136,17 @@ func isAlpha(str string) bool {
 	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", str)
 }
 
-func unknown(currBlock string, tokens []Token) []Token {
+func unknown(currBlock string) Token {
 	_, err := strconv.ParseBool(currBlock)
 	typeTok := typeToken(currBlock)
 	if err != nil {
 		// not bool
 		if typeTok.Type != NONE {
-			return append(tokens, typeTok)
+			return typeTok
 		}
-		return append(tokens, NewToken(IDENTIFIER, currBlock))
+		return NewToken(IDENTIFIER, currBlock)
 	}
-	return append(tokens, NewToken(BOOLEANVALUE, currBlock))
+	return NewToken(BOOLEANVALUE, currBlock)
 }
 
 func typeToken(str string) Token {
@@ -187,6 +181,8 @@ func singleCharToken(str string) Token {
 		return NewToken(COMMA, "")
 	case ".":
 		return NewToken(PERIOD, "")
+	case ";":
+		return NewToken(SEMI, "")
 	case "+":
 		return NewToken(ADD, "")
 	case "-":
