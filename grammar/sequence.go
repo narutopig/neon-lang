@@ -15,18 +15,6 @@ var (
 	COMPOPS  = []l.TokenType{l.EQUAL, l.GREATER, l.GREATEREQ, l.LESS, l.LESSEQ, l.AND, l.OR} // boolean operators
 )
 
-// grouping sequences of tokens into grammar? idk ngl
-var (
-	EXPRESSION Sequence = [][]l.TokenType{
-		append(T(l.IDENTIFIER), VALUES...),
-		append(ARITHOPS, COMPOPS...),
-		append(T(l.IDENTIFIER), VALUES...),
-	}
-	VALUE       Sequence = S(VALUES)
-	DECLARATION          = join(S(TYPES, T(l.IDENTIFIER), T(l.ASSIGN)), EXPRESSION, S(T(l.SEMI)))
-	ASSIGNMENT           = join(S(T(l.IDENTIFIER), T(l.ASSIGN)), EXPRESSION, S(T(l.SEMI)))
-)
-
 // T returns l.TokenType's in an array
 func T(types ...l.TokenType) []l.TokenType {
 	return types
