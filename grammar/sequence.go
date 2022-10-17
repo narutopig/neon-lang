@@ -7,7 +7,7 @@ import (
 // Sequence describes the valid tokens for each index defined in an expression
 type Sequence [][]l.TokenType
 
-// grouping of tokens
+// Categories of tokens
 var (
 	TYPES    = []l.TokenType{l.INTTYPE, l.FLOATTYPE, l.STRINGTYPE, l.BOOLEANTYPE}            // variable types
 	VALUES   = []l.TokenType{l.IDENTIFIER, l.NUMVALUE, l.STRINGVALUE, l.BOOLEANVALUE}        // value

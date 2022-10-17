@@ -1,5 +1,5 @@
 #!/bin/bash
-cd lib
+cd lexer
 go generate
 cd ..
 go build -o bin/neonc

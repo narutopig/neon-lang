@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/narutopig/go-utils"
 )
 
 // Lex returns list of tokens and syntax errors if found
@@ -133,7 +135,8 @@ func isNum(str string) bool {
 
 func isAlpha(str string) bool {
 	// could be optimized with binary search
-	return strings.Contains("qwertyuiopasdfghjklzxcvbnm", strings.ToLower(str))
+	letters := []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
+	return utils.BinarySearchS(strings.ToLower(str), letters) != -1
 }
 
 func unknown(currBlock string) Token {
