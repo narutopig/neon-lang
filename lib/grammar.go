@@ -1,5 +1,7 @@
 package lib
 
+import "fmt"
+
 type Sequence [][]TokenType
 
 // grouping of tokens
@@ -47,8 +49,13 @@ func join(sequences ...Sequence) Sequence {
 	return first
 }
 
-// IsThing finds if the array is a Sequence
+// IsSequence finds if the array is a Sequence
 func IsSequence(tokens []TokenType, sequence Sequence) bool {
+	fmt.Println(tokens)
+	fmt.Println(sequence)
+
+	fmt.Println(len(tokens))
+	fmt.Println(len(sequence))
 	length := len(tokens)
 	if length != len(sequence) {
 		return false

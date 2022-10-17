@@ -33,7 +33,9 @@ const (
 	LEFTCURLY    // {
 	RIGHTCURLY   // }
 	COMMA        // ,
+
 	// NEWLINE      // \n
+
 	TAB    //
 	PERIOD // .
 	SEMI   // ;
@@ -82,7 +84,7 @@ func NewToken(tokenType TokenType, value string) Token {
 	return Token{tokenType, value}
 }
 
-// Contains checks if a TokenType is within a TokenType[]
+// ContainsTT checks if a TokenType is within a TokenType[]
 func ContainsTT(tt TokenType, ttl []TokenType) bool {
 	for _, t := range ttl {
 		if tt == t {
