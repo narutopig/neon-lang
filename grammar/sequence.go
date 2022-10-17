@@ -1,7 +1,7 @@
 package grammar
 
 import (
-	l "github.com/narutopig/neon-lang/lib"
+	l "github.com/narutopig/neon-lang/lexer"
 )
 
 // Sequence describes the valid tokens for each index defined in an expression

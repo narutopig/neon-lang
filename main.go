@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/narutopig/neon-lang/lib"
+	l "github.com/narutopig/neon-lang/lexer"
 )
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 
 	content := string(c)
 
-	tokens, err := lib.Lex(content)
+	tokens, err := l.Lex(content)
 	if err != nil {
 		log.Panic(err)
 		return

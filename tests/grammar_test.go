@@ -3,58 +3,58 @@ package tests
 import (
 	"testing"
 
-	"github.com/narutopig/neon-lang/lib"
-	"github.com/narutopig/neon-lang/lib/grammar"
+	g "github.com/narutopig/neon-lang/grammar"
+	l "github.com/narutopig/neon-lang/lexer"
 )
 
 func TestIsSequence(t *testing.T) {
 	tests := []struct {
 		name     string
-		tokens   []lib.TokenType
-		sequence grammar.Sequence
+		tokens   []l.TokenType
+		sequence g.Sequence
 		want     bool
 	}{
 		{
 			"Arithmetic operation 1",
-			grammar.T(lib.NUMVALUE, lib.ADD, lib.NUMVALUE),
-			grammar.EXPRESSION, true,
+			g.T(l.NUMVALUE, l.ADD, l.NUMVALUE),
+			g.EXPRESSION, true,
 		},
 		{
 			"Arithmetic operation 2",
-			grammar.T(lib.IDENTIFIER, lib.SUBTRACT, lib.NUMVALUE),
-			grammar.EXPRESSION, true,
+			g.T(l.IDENTIFIER, l.SUBTRACT, l.NUMVALUE),
+			g.EXPRESSION, true,
 		},
 		{
 			"Arithmetic operation 3",
-			grammar.T(lib.NUMVALUE, lib.MULTIPLY, lib.IDENTIFIER),
-			grammar.EXPRESSION, true,
+			g.T(l.NUMVALUE, l.MULTIPLY, l.IDENTIFIER),
+			g.EXPRESSION, true,
 		},
 		{
 			"Arithmetic operation 4",
-			grammar.T(lib.IDENTIFIER, lib.DIVIDE, lib.IDENTIFIER),
-			grammar.EXPRESSION, true,
+			g.T(l.IDENTIFIER, l.DIVIDE, l.IDENTIFIER),
+			g.EXPRESSION, true,
 		},
 		{
 			"Arithmetic operation 5",
-			grammar.T(lib.IDENTIFIER, lib.MODULUS, lib.IDENTIFIER),
-			grammar.EXPRESSION, true,
+			g.T(l.IDENTIFIER, l.MODULUS, l.IDENTIFIER),
+			g.EXPRESSION, true,
 		},
 		{
 			"Assigning",
-			grammar.T(lib.INTTYPE, lib.IDENTIFIER, lib.ASSIGN, lib.NUMVALUE, lib.ADD, lib.NUMVALUE, lib.SEMI),
-			grammar.DECLARATION, true,
+			g.T(l.INTTYPE, l.IDENTIFIER, l.ASSIGN, l.NUMVALUE, l.ADD, l.NUMVALUE, l.SEMI),
+			g.DECLARATION, true,
 		},
 		/*
 			{
 				"Assigning to Expression",
-				grammar.T(lib.INTTYPE, lib.IDENTIFIER, lib.ASSIGN, lib.NUMVALUE),
-				grammar.DECLARATION, true,
+				g.T(lib.INTTYPE, lib.IDENTIFIER, lib.ASSIGN, lib.NUMVALUE),
+				g.DECLARATION, true,
 			},
 		*/
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := grammar.IsSequence(tt.tokens, tt.sequence); got != tt.want {
+			if got := g.IsSequence(tt.tokens, tt.sequence); got != tt.want {
 				t.Errorf("IsSequence() = %v, want %v", got, tt.want)
 			}
 		})

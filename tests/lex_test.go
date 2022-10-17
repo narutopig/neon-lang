@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/narutopig/neon-lang/lib"
+	l "github.com/narutopig/neon-lang/lexer"
 )
 
 func TestLex(t *testing.T) {
@@ -14,37 +14,37 @@ func TestLex(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    []lib.Token
+		want    []l.Token
 		wantErr bool
 	}{
-		{"Simple hello world", args{"print(\"Hello World!\")"}, []lib.Token{
-			lib.NewToken(lib.IDENTIFIER, "print"),
-			lib.NewToken(lib.LEFTPAREN, ""),
-			lib.NewToken(lib.STRINGVALUE, "Hello World!"),
-			lib.NewToken(lib.RIGHTPAREN, ""),
+		{"Simple hello world", args{"print(\"Hello World!\")"}, []l.Token{
+			l.NewToken(l.IDENTIFIER, "print"),
+			l.NewToken(l.LEFTPAREN, ""),
+			l.NewToken(l.STRINGVALUE, "Hello World!"),
+			l.NewToken(l.RIGHTPAREN, ""),
 		}, false},
 		{
 			"Main function",
 			args{"int main() {\nprint(\"Hello World!\");\n}"},
-			[]lib.Token{
-				lib.NewToken(lib.INTTYPE, ""),
-				lib.NewToken(lib.IDENTIFIER, "main"),
-				lib.NewToken(lib.LEFTPAREN, ""),
-				lib.NewToken(lib.RIGHTPAREN, ""),
-				lib.NewToken(lib.LEFTCURLY, ""),
-				lib.NewToken(lib.IDENTIFIER, "print"),
-				lib.NewToken(lib.LEFTPAREN, ""),
-				lib.NewToken(lib.STRINGVALUE, "Hello World!"),
-				lib.NewToken(lib.RIGHTPAREN, ""),
-				lib.NewToken(lib.SEMI, ""),
-				lib.NewToken(lib.RIGHTCURLY, ""),
+			[]l.Token{
+				l.NewToken(l.INTTYPE, ""),
+				l.NewToken(l.IDENTIFIER, "main"),
+				l.NewToken(l.LEFTPAREN, ""),
+				l.NewToken(l.RIGHTPAREN, ""),
+				l.NewToken(l.LEFTCURLY, ""),
+				l.NewToken(l.IDENTIFIER, "print"),
+				l.NewToken(l.LEFTPAREN, ""),
+				l.NewToken(l.STRINGVALUE, "Hello World!"),
+				l.NewToken(l.RIGHTPAREN, ""),
+				l.NewToken(l.SEMI, ""),
+				l.NewToken(l.RIGHTCURLY, ""),
 			},
 			false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := lib.Lex(tt.args.content)
+			got, err := l.Lex(tt.args.content)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Parse() error = %v, wantErr %v", err, tt.wantErr)
 				return
