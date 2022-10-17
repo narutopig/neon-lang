@@ -25,7 +25,7 @@ func main() {
 
 	content := string(c)
 
-	tokens, err := lib.Parse(content)
+	tokens, err := lib.Lex(content)
 	if err != nil {
 		log.Panic(err)
 		return

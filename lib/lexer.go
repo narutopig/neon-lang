@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// Parse returns list of tokens and syntax errors if found
-func Parse(content string) ([]Token, error) {
+// Lex returns list of tokens and syntax errors if found
+func Lex(content string) ([]Token, error) {
 	tokens := make([]Token, 0)
 
 	chars := strings.Split(content, "")
