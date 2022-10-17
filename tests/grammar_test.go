@@ -14,8 +14,24 @@ func TestIsSequence(t *testing.T) {
 		want     bool
 	}{
 		{
-			"Arithmetic operation",
+			"Arithmetic operation 1",
 			lib.T(lib.NUMVALUE, lib.ADD, lib.NUMVALUE),
+			lib.EXPRESSION, true,
+		}, {
+			"Arithmetic operation 2",
+			lib.T(lib.IDENTIFIER, lib.SUBTRACT, lib.NUMVALUE),
+			lib.EXPRESSION, true,
+		}, {
+			"Arithmetic operation 3",
+			lib.T(lib.NUMVALUE, lib.MULTIPLY, lib.IDENTIFIER),
+			lib.EXPRESSION, true,
+		}, {
+			"Arithmetic operation 4",
+			lib.T(lib.IDENTIFIER, lib.DIVIDE, lib.IDENTIFIER),
+			lib.EXPRESSION, true,
+		}, {
+			"Arithmetic operation 5",
+			lib.T(lib.IDENTIFIER, lib.MODULUS, lib.IDENTIFIER),
 			lib.EXPRESSION, true,
 		},
 	}
