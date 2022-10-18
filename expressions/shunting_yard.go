@@ -3,14 +3,14 @@ package expressions
 import (
 	ne "github.com/narutopig/neon-lang/error"
 	g "github.com/narutopig/neon-lang/grammar"
+	"github.com/narutopig/neon-lang/stack"
 	t "github.com/narutopig/neon-lang/token"
-	"github.com/narutopig/neon-lang/util"
 )
 
 // Shunt implements the shunting-yard algorithm from https://en.wikipedia.org/wiki/Shunting_yard_algorithm
-func Shunt(tokens []t.Token) (util.TokenStack, ne.Error) {
-	output := util.NewTStack()
-	operator := util.NewTStack()
+func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
+	output := stack.NewTStack()
+	operator := stack.NewTStack()
 
 	for i := 0; i < len(tokens); i++ {
 		token := tokens[i]
@@ -28,15 +28,31 @@ func Shunt(tokens []t.Token) (util.TokenStack, ne.Error) {
 		} else if token.Type == t.RIGHTPAREN {
 			for operator.Front().Type != t.LEFTPAREN {
 				if operator.Empty() {
-					// assertion
-					val := operator.Pop()
-					output.Push(val)
+					return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
 				}
+				val := operator.Pop()
+				output.Push(val)
 			}
 			if operator.Front().Type != t.LEFTPAREN {
-				// assertion
+				return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
+			}
+			operator.Pop()
+			front := operator.Front()
+			if front.Type == t.IDENTIFIER {
+				operator.Pop()
+				output.Push(front)
 			}
 		}
+	}
+
+	for !operator.Empty() {
+		front := operator.Front()
+		if front.Type == t.LEFTPAREN || front.Type == t.RIGHTPAREN {
+			return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
+		}
+
+		operator.Pop()
+		output.Push(front)
 	}
 
 	return output, ne.Null
