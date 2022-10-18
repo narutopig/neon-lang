@@ -1,8 +1,8 @@
-package neon_error
+package neonerror
 
 import "fmt"
 
-// Represents a basic error
+// Error represents a basic error
 type Error struct {
 	Line      int
 	ErrorType string
@@ -21,29 +21,35 @@ func (e Error) String() string {
 	return fmt.Sprintf("%s: %s on line %d", e.ErrorType, e.Details, e.Line)
 }
 
-func (e Error) IsNone() bool {
+// IsNull checks if the error is a "null" error
+func (e Error) IsNull() bool {
 	return e.ErrorType == none
 }
 
-func NewError(line int, errorType string, details string) Error {
+// New constructs a new Error
+func New(line int, errorType string, details string) Error {
 	return Error{Line: line, ErrorType: errorType, Details: details}
 }
 
-func NoError() Error {
-	return Error{Line: -1, ErrorType: none, Details: ""}
-}
+// Null is an nonexistent error
+var Null Error = New(-1, none, "")
 
+// SyntaxError is thrown when a error in the syntax, e.g. mismatched parentheses
 func SyntaxError(line int, details string) Error {
-	return Error{Line: line, ErrorType: syntax, Details: details}
+	return New(line, syntax, details)
 }
 
+// IllegalCharError is thrown when an illegal character is encountered
 func IllegalCharError(line int, details string) Error {
-	return Error{Line: line, ErrorType: illegalchar, Details: details}
+	return New(line, illegalchar, details)
 }
 
+// EndOfFileError is thrown when the EOF is reached while parsing a string
 func EndOfFileError(line int, details string) Error {
-	return Error{Line: line, ErrorType: eof, Details: details}
+	return New(line, eof, details)
 }
+
+// EndOfLineError is thrown when the EOL is reached while parsing a string
 func EndOfLineError(line int, details string) Error {
-	return Error{Line: line, ErrorType: eol, Details: details}
+	return New(line, eol, details)
 }

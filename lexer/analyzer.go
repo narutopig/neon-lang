@@ -9,20 +9,20 @@ import (
 func typeToken(str string) t.Token {
 	switch str {
 	case "int":
-		return t.NewToken(t.INTTYPE, "")
+		return t.New(t.INTTYPE, "")
 	case "string":
-		return t.NewToken(t.STRINGTYPE, "")
+		return t.New(t.STRINGTYPE, "")
 	case "float":
-		return t.NewToken(t.FLOATTYPE, "")
+		return t.New(t.FLOATTYPE, "")
 	case "bool":
-		return t.NewToken(t.BOOLEANTYPE, "")
+		return t.New(t.BOOLEANTYPE, "")
 	}
-	return t.NewToken(t.NONE, "")
+	return t.New(t.NONE, "")
 }
 
 func identifierMagic(token t.Token) t.Token {
 	if token.Value == "true" || token.Value == "false" {
-		return t.NewToken(t.BOOLEANVALUE, token.Value)
+		return t.New(t.BOOLEANVALUE, token.Value)
 	}
 	tt := typeToken(token.Value)
 
@@ -50,45 +50,45 @@ func isAlphaNumeric(str string) bool {
 func singleCharToken(str string) t.Token {
 	switch str {
 	case "(":
-		return t.NewToken(t.LEFTPAREN, "")
+		return t.New(t.LEFTPAREN, "")
 	case ")":
-		return t.NewToken(t.RIGHTPAREN, "")
+		return t.New(t.RIGHTPAREN, "")
 	case "[":
-		return t.NewToken(t.LEFTBRACKET, "")
+		return t.New(t.LEFTBRACKET, "")
 	case "]":
-		return t.NewToken(t.RIGHTBRACKET, "")
+		return t.New(t.RIGHTBRACKET, "")
 	case "{":
-		return t.NewToken(t.LEFTCURLY, "")
+		return t.New(t.LEFTCURLY, "")
 	case "}":
-		return t.NewToken(t.RIGHTCURLY, "")
+		return t.New(t.RIGHTCURLY, "")
 	case ",":
-		return t.NewToken(t.COMMA, "")
+		return t.New(t.COMMA, "")
 	case ".":
-		return t.NewToken(t.PERIOD, "")
+		return t.New(t.PERIOD, "")
 	case ";":
-		return t.NewToken(t.SEMI, "")
+		return t.New(t.SEMI, "")
 	case "+":
-		return t.NewToken(t.ADD, "")
+		return t.New(t.ADD, "")
 	case "-":
-		return t.NewToken(t.SUBTRACT, "")
+		return t.New(t.SUBTRACT, "")
 	case "*":
-		return t.NewToken(t.MULTIPLY, "")
+		return t.New(t.MULTIPLY, "")
 	case "/":
-		return t.NewToken(t.DIVIDE, "")
+		return t.New(t.DIVIDE, "")
 	case "%":
-		return t.NewToken(t.MODULUS, "")
+		return t.New(t.MODULUS, "")
 	case "=":
-		return t.NewToken(t.ASSIGN, "")
+		return t.New(t.ASSIGN, "")
 	case "<":
-		return t.NewToken(t.LESS, "")
+		return t.New(t.LESS, "")
 	case ">":
-		return t.NewToken(t.GREATER, "")
+		return t.New(t.GREATER, "")
 	case "!":
-		return t.NewToken(t.NOT, "")
+		return t.New(t.NOT, "")
 	case "&":
-		return t.NewToken(t.AND, "")
+		return t.New(t.AND, "")
 	case "|":
-		return t.NewToken(t.OR, "")
+		return t.New(t.OR, "")
 	}
-	return t.NewToken(t.NONE, "")
+	return t.New(t.NONE, "")
 }

@@ -77,10 +77,10 @@ type Token struct {
 }
 
 // NoneToken describes an empty/null token
-var NoneToken = NewToken(NONE, "")
+var NoneToken = New(NONE, "")
 
-// NewToken returns a Token
-func NewToken(tokenType TokenType, value string) Token {
+// New returns a Token
+func New(tokenType TokenType, value string) Token {
 	return Token{tokenType, value}
 }
 

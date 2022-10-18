@@ -40,10 +40,10 @@ func main() {
 
 	content := string(c)
 
-	l := lexer.NewLexer(content)
+	l := lexer.New(content)
 	tokens, ne := l.Tokenize()
 
-	if !ne.IsNone() {
+	if !ne.IsNull() {
 		fmt.Println(ne)
 	} else {
 		fmt.Println(len(tokens))

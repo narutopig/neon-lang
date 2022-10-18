@@ -14,8 +14,8 @@ type Lexer struct {
 	currentChar string
 }
 
-// NewLexer returns a new Lexer from the provided content
-func NewLexer(text string) Lexer {
+// New returns a new Lexer from the provided content
+func New(text string) Lexer {
 	return Lexer{Text: text, Position: NewPosition(-1, 0, -1), currentChar: ""}
 }
 
@@ -87,7 +87,7 @@ func (l *Lexer) Tokenize() ([]t.Token, ne.Error) {
 		}
 	}
 
-	return tokens, ne.NoError()
+	return tokens, ne.Null
 }
 
 func (l *Lexer) addNum() t.Token {
@@ -107,7 +107,7 @@ func (l *Lexer) addNum() t.Token {
 		l.advance()
 	}
 
-	return t.NewToken(t.NUMVALUE, res)
+	return t.New(t.NUMVALUE, res)
 }
 
 func (l *Lexer) addString() (t.Token, error) {
@@ -125,7 +125,7 @@ func (l *Lexer) addString() (t.Token, error) {
 		l.advance()
 	}
 
-	return t.NewToken(t.STRINGVALUE, res), nil
+	return t.New(t.STRINGVALUE, res), nil
 }
 
 func (l *Lexer) addIdentifier() t.Token {
@@ -139,5 +139,5 @@ func (l *Lexer) addIdentifier() t.Token {
 		l.advance()
 	}
 
-	return identifierMagic(t.NewToken(t.IDENTIFIER, res))
+	return identifierMagic(t.New(t.IDENTIFIER, res))
 }
