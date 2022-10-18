@@ -101,3 +101,13 @@ func ContainsTT(tt TokenType, ttl []TokenType) bool {
 
 	return false
 }
+
+// Precedence calculates precedence of the TokenType
+func Precedence(tt TokenType) int {
+	if tt == ADD || tt == SUBTRACT {
+		return 0
+	} else if tt == MULTIPLY || tt == DIVIDE || tt == MODULUS {
+		return 1
+	}
+	return -1
+}

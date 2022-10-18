@@ -23,18 +23,32 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 				output.Push(token)
 			}
 		} else if t.ContainsTT(token.Type, g.ARITHOPS) {
+			o1 := token
+			o2 := operator.Front()
+			// assumes all operators are left-associative
+			for o2.Type != t.LEFTPAREN && t.Precedence(o2.Type) >= t.Precedence(o1.Type) {
+				top := operator.Pop()
+				if top.Type == t.NONE {
+					return output, ne.SyntaxError(line, "missing expression on right hand side")
+				}
+
+				output.Push(top)
+
+				o2 = operator.Front()
+			}
+
 		} else if token.Type == t.LEFTPAREN {
 			operator.Push(token)
 		} else if token.Type == t.RIGHTPAREN {
 			for operator.Front().Type != t.LEFTPAREN {
 				if operator.Empty() {
-					return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
+					return output, ne.SyntaxError(line, "mismatched parentheses")
 				}
 				val := operator.Pop()
 				output.Push(val)
 			}
 			if operator.Front().Type != t.LEFTPAREN {
-				return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
+				return output, ne.SyntaxError(line, "mismatched parentheses")
 			}
 			operator.Pop()
 			front := operator.Front()
@@ -48,7 +62,7 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 	for !operator.Empty() {
 		front := operator.Front()
 		if front.Type == t.LEFTPAREN || front.Type == t.RIGHTPAREN {
-			return stack.NewTStack(), ne.SyntaxError(line, "mismatched parentheses")
+			return output, ne.SyntaxError(line, "mismatched parentheses")
 		}
 
 		operator.Pop()
