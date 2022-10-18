@@ -8,9 +8,9 @@ import (
 )
 
 // Shunt implements the shunting-yard algorithm from https://en.wikipedia.org/wiki/Shunting_yard_algorithm
-func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
-	output := stack.NewTStack()
-	operator := stack.NewTStack()
+func Shunt(tokens []t.Token, line int) (stack.Stack, ne.Error) {
+	output := stack.New()
+	operator := stack.New()
 
 	for i := 0; i < len(tokens); i++ {
 		token := tokens[i]
@@ -18,8 +18,10 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 			output.Push(token)
 		} else if token.Type == t.IDENTIFIER {
 			if i+1 < len(tokens) && tokens[i+1].Type == t.LEFTPAREN {
+				// next token is left paren, probably function
 				operator.Push(token)
 			} else {
+				// regular identifier
 				output.Push(token)
 			}
 		} else if t.ContainsTT(token.Type, g.ARITHOPS) {
@@ -36,7 +38,7 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 
 				o2 = operator.Front()
 			}
-
+			operator.Push(o1)
 		} else if token.Type == t.LEFTPAREN {
 			operator.Push(token)
 		} else if token.Type == t.RIGHTPAREN {
@@ -44,17 +46,14 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 				if operator.Empty() {
 					return output, ne.SyntaxError(line, "mismatched parentheses")
 				}
-				val := operator.Pop()
-				output.Push(val)
+				output.Push(operator.Pop())
 			}
 			if operator.Front().Type != t.LEFTPAREN {
 				return output, ne.SyntaxError(line, "mismatched parentheses")
 			}
 			operator.Pop()
-			front := operator.Front()
-			if front.Type == t.IDENTIFIER {
-				operator.Pop()
-				output.Push(front)
+			if operator.Front().Type == t.IDENTIFIER {
+				output.Push(operator.Pop())
 			}
 		}
 	}
@@ -65,8 +64,7 @@ func Shunt(tokens []t.Token, line int) (stack.TokenStack, ne.Error) {
 			return output, ne.SyntaxError(line, "mismatched parentheses")
 		}
 
-		operator.Pop()
-		output.Push(front)
+		output.Push(operator.Pop())
 	}
 
 	return output, ne.Null

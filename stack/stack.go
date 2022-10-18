@@ -2,27 +2,28 @@ package stack
 
 import (
 	"container/list"
+	"fmt"
 
 	tokens "github.com/narutopig/neon-lang/token"
 )
 
-// TokenStack is a stack of tokens, implemented with container/list
-type TokenStack struct {
+// Stack is a stack of tokens, implemented with container/list
+type Stack struct {
 	stack *list.List
 }
 
-// NewTStack returns a new TokenStack
-func NewTStack() TokenStack {
-	return TokenStack{stack: list.New()}
+// New returns a new TokenStack
+func New() Stack {
+	return Stack{stack: list.New()}
 }
 
 // Push adds a value to the front of the stack
-func (ts *TokenStack) Push(value tokens.Token) {
+func (ts *Stack) Push(value tokens.Token) {
 	ts.stack.PushFront(value)
 }
 
 // Pop removes the front of the stack and returns the removed item and an error if the stack length is 0
-func (ts *TokenStack) Pop() tokens.Token {
+func (ts *Stack) Pop() tokens.Token {
 	if ts.stack.Len() > 0 {
 		ele := ts.stack.Front()
 		ts.stack.Remove(ele)
@@ -33,7 +34,7 @@ func (ts *TokenStack) Pop() tokens.Token {
 }
 
 // Front returns the item at the front of the list
-func (ts *TokenStack) Front() tokens.Token {
+func (ts *Stack) Front() tokens.Token {
 	if ts.stack.Len() > 0 {
 		if val, ok := ts.stack.Front().Value.(tokens.Token); ok {
 			return val
@@ -44,11 +45,40 @@ func (ts *TokenStack) Front() tokens.Token {
 }
 
 // Size returns the size of the stack
-func (ts *TokenStack) Size() int {
+func (ts *Stack) Size() int {
 	return ts.stack.Len()
 }
 
 // Empty returns if the size of the stack is 0
-func (ts *TokenStack) Empty() bool {
+func (ts *Stack) Empty() bool {
 	return ts.stack.Len() == 0
+}
+
+// Copy returns a copy of the stack
+func Copy(ts Stack) Stack {
+	res := Stack{stack: list.New()}
+
+	res.stack.PushBackList(ts.stack)
+	return res
+}
+
+// Reversed returns a reversed copy of the stack
+func Reversed(ts Stack) Stack {
+	ts2 := Copy(ts)
+	res := Stack{stack: list.New()}
+
+	for !ts2.Empty() {
+		res.stack.PushFront(ts2.Pop())
+	}
+	return res
+}
+
+// Print outputs the elements of the stack
+func (ts Stack) Print() {
+	// TODO: Fix the stack clearing after print
+	ts2 := Copy(ts)
+
+	for !ts2.Empty() {
+		fmt.Println(ts2.Pop())
+	}
 }
