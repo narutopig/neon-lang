@@ -10,6 +10,8 @@ import (
 type TokenType byte
 
 const (
+	// identifier
+
 	IDENTIFIER TokenType = iota // num
 
 	// keywords
@@ -74,16 +76,19 @@ type Token struct {
 	Value string
 }
 
+// NoneToken describes an empty/null token
+var NoneToken = NewToken(NONE, "")
+
+// NewToken returns a Token
+func NewToken(tokenType TokenType, value string) Token {
+	return Token{tokenType, value}
+}
+
 func (t Token) String() string {
 	if t.Value != "" {
 		return fmt.Sprintf("{Type: %s, Value: %s}", t.Type, t.Value)
 	}
 	return fmt.Sprintf("{Type: %s}", t.Type)
-}
-
-// NewToken returns a Token
-func NewToken(tokenType TokenType, value string) Token {
-	return Token{tokenType, value}
 }
 
 // ContainsTT checks if a TokenType is within a TokenType[]
