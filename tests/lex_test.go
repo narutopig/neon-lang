@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"reflect"
+	"fmt"
 	"testing"
 
 	l "github.com/narutopig/neon-lang/lexer"
@@ -42,16 +42,6 @@ func TestLex(t *testing.T) {
 			false,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := l.Lex(tt.args.content)
-			if (!err.IsNone()) != tt.wantErr {
-				t.Errorf("Parse() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Parse() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	fmt.Println(tests)
 }

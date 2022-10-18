@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	l "github.com/narutopig/neon-lang/lexer"
+	"github.com/narutopig/neon-lang/lexer"
 )
 
 func main() {
@@ -25,13 +25,15 @@ func main() {
 
 	content := string(c)
 
-	tokens, some_err := l.Lex(content)
-	if !some_err.IsNone() {
-		fmt.Println(some_err)
-		return
-	}
+	l := lexer.NewLexer(content)
+	tokens, ne := l.Tokenize()
 
-	for _, t := range tokens {
-		fmt.Println(t)
+	if !ne.IsNone() {
+		fmt.Println(ne)
+	} else {
+		fmt.Println(len(tokens))
+		for _, t := range tokens {
+			fmt.Println(t)
+		}
 	}
 }

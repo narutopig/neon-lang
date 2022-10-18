@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"fmt"
-	"strings"
 
 	ne "github.com/narutopig/neon-lang/error"
 )
@@ -27,11 +26,16 @@ func (l *Lexer) Advance() {
 }
 
 func (l Lexer) Peek() string {
+	if l.Position.Pos+1 >= len(l.Text) {
+		return ""
+	}
 	return string(l.Text[l.Position.Pos+1])
 }
 
 func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 	tokens := []Token{}
+
+	l.Advance()
 
 	for l.currentChar != "" {
 		sct := singleCharToken(l.currentChar)
@@ -41,6 +45,7 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 		} else if l.currentChar == "\"" {
 			val, err := l.addString()
 
+			l.Advance()
 			if err != nil {
 				if err.Error() == "eof" {
 					return []Token{}, ne.EndOfLineError(l.Position.Line, "reached end of file while parsing string")
@@ -51,6 +56,10 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 			}
 
 			tokens = append(tokens, val)
+		} else if l.currentChar == "_" || isAlphaNumeric(l.currentChar) {
+			tokens = append(tokens, l.addIdentifier())
+		} else if l.currentChar == " " || l.currentChar == "\t" || l.currentChar == "\n" {
+			l.Advance()
 		} else if sct.Type != NONE {
 			if l.Peek() == "=" {
 				switch sct.Type {
@@ -70,9 +79,9 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 			}
 
 			tokens = append(tokens, sct)
-		}
 
-		l.Advance()
+			l.Advance()
+		}
 	}
 
 	return tokens, ne.NoError()
@@ -101,10 +110,10 @@ func (l *Lexer) addNum() Token {
 func (l *Lexer) addString() (Token, error) {
 	res := ""
 
+	l.Advance()
 	for l.currentChar != "\"" {
 		if l.currentChar == "\n" {
 			return NewToken(NONE, ""), fmt.Errorf("eol")
-
 		} else if l.currentChar == "" {
 			return NewToken(NONE, ""), fmt.Errorf("eof")
 		}
@@ -116,6 +125,16 @@ func (l *Lexer) addString() (Token, error) {
 	return NewToken(STRINGVALUE, res), nil
 }
 
-func isDigit(str string) bool {
-	return strings.Contains("123456780", str)
+func (l *Lexer) addIdentifier() Token {
+	res := l.currentChar
+
+	l.Advance()
+
+	for isAlphaNumeric(l.currentChar) {
+		res += l.currentChar
+
+		l.Advance()
+	}
+
+	return identifierMagic(NewToken(IDENTIFIER, res))
 }
