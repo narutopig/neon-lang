@@ -5,10 +5,24 @@ import (
 	"log"
 	"os"
 
+	"github.com/narutopig/neon-lang/grammar"
 	"github.com/narutopig/neon-lang/lexer"
 )
 
 func main() {
+	fmt.Println(
+		grammar.Match(
+			[]lexer.TokenType{
+				lexer.INTTYPE,
+				lexer.IDENTIFIER,
+				lexer.ASSIGN,
+				lexer.NUMVALUE,
+				lexer.SEMI,
+			},
+			grammar.ASSIGNMENTS,
+		),
+	)
+
 	// cli entry point
 	if len(os.Args) < 2 {
 		log.Panic("No input file found")
