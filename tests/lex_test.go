@@ -4,40 +4,40 @@ import (
 	"fmt"
 	"testing"
 
-	l "github.com/narutopig/neon-lang/lexer"
+	t "github.com/narutopig/neon-lang/token"
 )
 
-func TestLex(t *testing.T) {
+func TestLex(test *testing.T) {
 	type args struct {
 		content string
 	}
 	tests := []struct {
 		name    string
 		args    args
-		want    []l.Token
+		want    []t.Token
 		wantErr bool
 	}{
-		{"Simple hello world", args{"print(\"Hello World!\")"}, []l.Token{
-			l.NewToken(l.IDENTIFIER, "print"),
-			l.NewToken(l.LEFTPAREN, ""),
-			l.NewToken(l.STRINGVALUE, "Hello World!"),
-			l.NewToken(l.RIGHTPAREN, ""),
+		{"Simple hello world", args{"print(\"Hello World!\")"}, []t.Token{
+			t.NewToken(t.IDENTIFIER, "print"),
+			t.NewToken(t.LEFTPAREN, ""),
+			t.NewToken(t.STRINGVALUE, "Hello World!"),
+			t.NewToken(t.RIGHTPAREN, ""),
 		}, false},
 		{
 			"Main function",
 			args{"int main() {\nprint(\"Hello World!\");\n}"},
-			[]l.Token{
-				l.NewToken(l.INTTYPE, ""),
-				l.NewToken(l.IDENTIFIER, "main"),
-				l.NewToken(l.LEFTPAREN, ""),
-				l.NewToken(l.RIGHTPAREN, ""),
-				l.NewToken(l.LEFTCURLY, ""),
-				l.NewToken(l.IDENTIFIER, "print"),
-				l.NewToken(l.LEFTPAREN, ""),
-				l.NewToken(l.STRINGVALUE, "Hello World!"),
-				l.NewToken(l.RIGHTPAREN, ""),
-				l.NewToken(l.SEMI, ""),
-				l.NewToken(l.RIGHTCURLY, ""),
+			[]t.Token{
+				t.NewToken(t.INTTYPE, ""),
+				t.NewToken(t.IDENTIFIER, "main"),
+				t.NewToken(t.LEFTPAREN, ""),
+				t.NewToken(t.RIGHTPAREN, ""),
+				t.NewToken(t.LEFTCURLY, ""),
+				t.NewToken(t.IDENTIFIER, "print"),
+				t.NewToken(t.LEFTPAREN, ""),
+				t.NewToken(t.STRINGVALUE, "Hello World!"),
+				t.NewToken(t.RIGHTPAREN, ""),
+				t.NewToken(t.SEMI, ""),
+				t.NewToken(t.RIGHTCURLY, ""),
 			},
 			false,
 		},

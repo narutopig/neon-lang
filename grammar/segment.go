@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	l "github.com/narutopig/neon-lang/lexer"
+	t "github.com/narutopig/neon-lang/token"
 )
 
 // Segment represents parts of a statement
@@ -26,20 +26,20 @@ func NewSegmentS(sequence Sequence) Segment {
 // SegmentSeq returns stuff as the thing
 func SegmentSeq(args ...interface{}) []Segment {
 	stuffs := []Segment{}
-	currTokenTypeList := [][]l.TokenType{}
+	currTokenTypeList := [][]t.TokenType{}
 
 	for _, arg := range args {
 		switch reflect.TypeOf(arg).String() {
 		case "lexer.TokenType":
-			currTokenTypeList = append(currTokenTypeList, T(arg.(l.TokenType)))
+			currTokenTypeList = append(currTokenTypeList, T(arg.(t.TokenType)))
 		case "[]lexer.TokenType":
-			currTokenTypeList = append(currTokenTypeList, arg.([]l.TokenType))
+			currTokenTypeList = append(currTokenTypeList, arg.([]t.TokenType))
 		case "grammar.Sequence":
 			currTokenTypeList = append(currTokenTypeList, arg.(Sequence)...)
 		case "grammar.Segment":
 			stuffs = append(stuffs, NewSegmentS(currTokenTypeList))
 			stuffs = append(stuffs, arg.(Segment))
-			currTokenTypeList = [][]l.TokenType{}
+			currTokenTypeList = [][]t.TokenType{}
 		}
 	}
 
@@ -51,9 +51,9 @@ func SegmentSeq(args ...interface{}) []Segment {
 }
 
 // Validate checks if a series of tokens fits a []Segment
-func Validate(tokens []l.TokenType, segseq []Segment) {
+func Validate(tokens []t.TokenType, segseq []Segment) {
 	possible := []Sequence{}
-	recurse([][]l.TokenType{}, 0, &possible, segseq)
+	recurse([][]t.TokenType{}, 0, &possible, segseq)
 
 	for _, val := range possible {
 		fmt.Println(IsSequence(tokens, val))

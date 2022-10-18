@@ -1,6 +1,6 @@
 //go:generate stringer -type=TokenType -output token_string.go
 
-package lexer
+package tokens
 
 import (
 	"fmt"

@@ -7,17 +7,18 @@ import (
 
 	"github.com/narutopig/neon-lang/grammar"
 	"github.com/narutopig/neon-lang/lexer"
+	t "github.com/narutopig/neon-lang/token"
 )
 
 func main() {
 	fmt.Println(
 		grammar.Match(
-			[]lexer.TokenType{
-				lexer.INTTYPE,
-				lexer.IDENTIFIER,
-				lexer.ASSIGN,
-				lexer.NUMVALUE,
-				lexer.SEMI,
+			[]t.TokenType{
+				t.INTTYPE,
+				t.IDENTIFIER,
+				t.ASSIGN,
+				t.NUMVALUE,
+				t.SEMI,
 			},
 			grammar.ASSIGNMENTS,
 		),

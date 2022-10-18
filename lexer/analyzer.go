@@ -1,28 +1,32 @@
 package lexer
 
-import "strings"
+import (
+	"strings"
 
-func typeToken(str string) Token {
+	t "github.com/narutopig/neon-lang/token"
+)
+
+func typeToken(str string) t.Token {
 	switch str {
 	case "int":
-		return NewToken(INTTYPE, "")
+		return t.NewToken(t.INTTYPE, "")
 	case "string":
-		return NewToken(STRINGTYPE, "")
+		return t.NewToken(t.STRINGTYPE, "")
 	case "float":
-		return NewToken(FLOATTYPE, "")
+		return t.NewToken(t.FLOATTYPE, "")
 	case "bool":
-		return NewToken(BOOLEANTYPE, "")
+		return t.NewToken(t.BOOLEANTYPE, "")
 	}
-	return NewToken(NONE, "")
+	return t.NewToken(t.NONE, "")
 }
 
-func identifierMagic(token Token) Token {
+func identifierMagic(token t.Token) t.Token {
 	if token.Value == "true" || token.Value == "false" {
-		return NewToken(BOOLEANVALUE, token.Value)
+		return t.NewToken(t.BOOLEANVALUE, token.Value)
 	}
 	tt := typeToken(token.Value)
 
-	if tt.Type != NONE {
+	if tt.Type != t.NONE {
 		return tt
 	}
 
@@ -43,48 +47,48 @@ func isAlphaNumeric(str string) bool {
 	return isDigit(s) || isAlpha(s)
 }
 
-func singleCharToken(str string) Token {
+func singleCharToken(str string) t.Token {
 	switch str {
 	case "(":
-		return NewToken(LEFTPAREN, "")
+		return t.NewToken(t.LEFTPAREN, "")
 	case ")":
-		return NewToken(RIGHTPAREN, "")
+		return t.NewToken(t.RIGHTPAREN, "")
 	case "[":
-		return NewToken(LEFTBRACKET, "")
+		return t.NewToken(t.LEFTBRACKET, "")
 	case "]":
-		return NewToken(RIGHTBRACKET, "")
+		return t.NewToken(t.RIGHTBRACKET, "")
 	case "{":
-		return NewToken(LEFTCURLY, "")
+		return t.NewToken(t.LEFTCURLY, "")
 	case "}":
-		return NewToken(RIGHTCURLY, "")
+		return t.NewToken(t.RIGHTCURLY, "")
 	case ",":
-		return NewToken(COMMA, "")
+		return t.NewToken(t.COMMA, "")
 	case ".":
-		return NewToken(PERIOD, "")
+		return t.NewToken(t.PERIOD, "")
 	case ";":
-		return NewToken(SEMI, "")
+		return t.NewToken(t.SEMI, "")
 	case "+":
-		return NewToken(ADD, "")
+		return t.NewToken(t.ADD, "")
 	case "-":
-		return NewToken(SUBTRACT, "")
+		return t.NewToken(t.SUBTRACT, "")
 	case "*":
-		return NewToken(MULTIPLY, "")
+		return t.NewToken(t.MULTIPLY, "")
 	case "/":
-		return NewToken(DIVIDE, "")
+		return t.NewToken(t.DIVIDE, "")
 	case "%":
-		return NewToken(MODULUS, "")
+		return t.NewToken(t.MODULUS, "")
 	case "=":
-		return NewToken(ASSIGN, "")
+		return t.NewToken(t.ASSIGN, "")
 	case "<":
-		return NewToken(LESS, "")
+		return t.NewToken(t.LESS, "")
 	case ">":
-		return NewToken(GREATER, "")
+		return t.NewToken(t.GREATER, "")
 	case "!":
-		return NewToken(NOT, "")
+		return t.NewToken(t.NOT, "")
 	case "&":
-		return NewToken(AND, "")
+		return t.NewToken(t.AND, "")
 	case "|":
-		return NewToken(OR, "")
+		return t.NewToken(t.OR, "")
 	}
-	return NewToken(NONE, "")
+	return t.NewToken(t.NONE, "")
 }

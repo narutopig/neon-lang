@@ -1,36 +1,35 @@
 package grammar
 
 import (
-	"github.com/narutopig/neon-lang/lexer"
-	l "github.com/narutopig/neon-lang/lexer"
+	t "github.com/narutopig/neon-lang/token"
 )
 
 // Statements
 var (
 	ASSIGNMENT []Segment = []Segment{
-		NewSegmentS(S(TYPES, T(l.IDENTIFIER), T(l.ASSIGN))),
-		NewSegment(false, []Sequence{S(T(l.UNKNOWNVALUE))}),
-		NewSegmentS(S(T(l.SEMI))),
+		NewSegmentS(S(TYPES, T(t.IDENTIFIER), T(t.ASSIGN))),
+		NewSegment(false, []Sequence{S(T(t.UNKNOWNVALUE))}),
+		NewSegmentS(S(T(t.SEMI))),
 	}
 	DECLARATION []Segment = []Segment{
-		NewSegmentS(S(TYPES, T(l.IDENTIFIER), T(l.ASSIGN))),
-		NewSegment(false, []Sequence{S(T(l.UNKNOWNVALUE))}),
-		NewSegmentS(S(T(l.SEMI))),
+		NewSegmentS(S(TYPES, T(t.IDENTIFIER), T(t.ASSIGN))),
+		NewSegment(false, []Sequence{S(T(t.UNKNOWNVALUE))}),
+		NewSegmentS(S(T(t.SEMI))),
 	}
 	ASSIGNMENTS Sequence = S(
-		TYPES, T(l.IDENTIFIER), T(l.ASSIGN),
-		T(l.UNKNOWNVALUE),
-		T(l.SEMI),
+		TYPES, T(t.IDENTIFIER), T(t.ASSIGN),
+		T(t.UNKNOWNVALUE),
+		T(t.SEMI),
 	)
 )
 
 // Match checks if a []TokenType matches a Sequence
-func Match(tokens []l.TokenType, segment Sequence) bool {
+func Match(tokens []t.TokenType, segment Sequence) bool {
 	split := -1
 
 	// is it a two part
 	for i := 0; i < len(segment); i++ {
-		if segment[i][0] == l.UNKNOWNVALUE {
+		if segment[i][0] == t.UNKNOWNVALUE {
 			split = i
 			break
 		}
@@ -45,7 +44,7 @@ func Match(tokens []l.TokenType, segment Sequence) bool {
 		}
 
 		for i := 0; i < l; i++ {
-			if !lexer.ContainsTT(tokens[i], segment[i]) {
+			if !t.ContainsTT(tokens[i], segment[i]) {
 				return false
 			}
 		}
@@ -54,14 +53,14 @@ func Match(tokens []l.TokenType, segment Sequence) bool {
 	}
 
 	for i := 0; i < split; i++ {
-		if !lexer.ContainsTT(tokens[i], segment[i]) {
+		if !t.ContainsTT(tokens[i], segment[i]) {
 			return false
 		}
 	}
 
 	// painful backwards loop
 	for i := len(tokens) - 1; i > split; i-- {
-		if !lexer.ContainsTT(tokens[i], segment[i]) {
+		if !t.ContainsTT(tokens[i], segment[i]) {
 			return false
 		}
 	}

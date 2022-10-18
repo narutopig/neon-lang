@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	ne "github.com/narutopig/neon-lang/error"
+	t "github.com/narutopig/neon-lang/token"
 )
 
 type Lexer struct {
@@ -32,8 +33,8 @@ func (l Lexer) Peek() string {
 	return string(l.Text[l.Position.Pos+1])
 }
 
-func (l *Lexer) Tokenize() ([]Token, ne.Error) {
-	tokens := []Token{}
+func (l *Lexer) Tokenize() ([]t.Token, ne.Error) {
+	tokens := []t.Token{}
 
 	l.Advance()
 
@@ -48,10 +49,9 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 			l.Advance()
 			if err != nil {
 				if err.Error() == "eof" {
-					return []Token{}, ne.EndOfLineError(l.Position.Line, "reached end of file while parsing string")
-
+					return []t.Token{}, ne.EndOfLineError(l.Position.Line, "reached end of file while parsing string")
 				} else if err.Error() == "eol" {
-					return []Token{}, ne.EndOfLineError(l.Position.Line, "reached end of line while parsing string")
+					return []t.Token{}, ne.EndOfLineError(l.Position.Line, "reached end of line while parsing string")
 				}
 			}
 
@@ -60,20 +60,20 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 			tokens = append(tokens, l.addIdentifier())
 		} else if l.currentChar == " " || l.currentChar == "\t" || l.currentChar == "\n" {
 			l.Advance()
-		} else if sct.Type != NONE {
+		} else if sct.Type != t.NONE {
 			if l.Peek() == "=" {
 				switch sct.Type {
-				case ASSIGN:
-					sct.Type = EQUAL
+				case t.ASSIGN:
+					sct.Type = t.EQUAL
 					l.Advance()
-				case GREATER:
-					sct.Type = GREATER
+				case t.GREATER:
+					sct.Type = t.GREATER
 					l.Advance()
-				case LESS:
-					sct.Type = LESS
+				case t.LESS:
+					sct.Type = t.LESS
 					l.Advance()
-				case NOT:
-					sct.Type = NOTEQ
+				case t.NOT:
+					sct.Type = t.NOTEQ
 					l.Advance()
 				}
 			}
@@ -87,7 +87,7 @@ func (l *Lexer) Tokenize() ([]Token, ne.Error) {
 	return tokens, ne.NoError()
 }
 
-func (l *Lexer) addNum() Token {
+func (l *Lexer) addNum() t.Token {
 	res := ""
 	dotc := 0
 
@@ -104,28 +104,28 @@ func (l *Lexer) addNum() Token {
 		l.Advance()
 	}
 
-	return NewToken(NUMVALUE, res)
+	return t.NewToken(t.NUMVALUE, res)
 }
 
-func (l *Lexer) addString() (Token, error) {
+func (l *Lexer) addString() (t.Token, error) {
 	res := ""
 
 	l.Advance()
 	for l.currentChar != "\"" {
 		if l.currentChar == "\n" {
-			return NewToken(NONE, ""), fmt.Errorf("eol")
+			return t.NewToken(t.NONE, ""), fmt.Errorf("eol")
 		} else if l.currentChar == "" {
-			return NewToken(NONE, ""), fmt.Errorf("eof")
+			return t.NewToken(t.NONE, ""), fmt.Errorf("eof")
 		}
 
 		res += l.currentChar
 		l.Advance()
 	}
 
-	return NewToken(STRINGVALUE, res), nil
+	return t.NewToken(t.STRINGVALUE, res), nil
 }
 
-func (l *Lexer) addIdentifier() Token {
+func (l *Lexer) addIdentifier() t.Token {
 	res := l.currentChar
 
 	l.Advance()
@@ -136,5 +136,5 @@ func (l *Lexer) addIdentifier() Token {
 		l.Advance()
 	}
 
-	return identifierMagic(NewToken(IDENTIFIER, res))
+	return identifierMagic(t.NewToken(t.IDENTIFIER, res))
 }

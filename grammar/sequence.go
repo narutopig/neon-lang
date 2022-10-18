@@ -1,31 +1,31 @@
 package grammar
 
 import (
-	l "github.com/narutopig/neon-lang/lexer"
+	t "github.com/narutopig/neon-lang/token"
 )
 
 // Sequence describes the valid tokens for each index defined in an expression
-type Sequence [][]l.TokenType
+type Sequence [][]t.TokenType
 
 // Categories of tokens
 var (
-	TYPES    = []l.TokenType{l.INTTYPE, l.FLOATTYPE, l.STRINGTYPE, l.BOOLEANTYPE}            // variable types
-	VALUES   = []l.TokenType{l.IDENTIFIER, l.NUMVALUE, l.STRINGVALUE, l.BOOLEANVALUE}        // value
-	ARITHOPS = []l.TokenType{l.ADD, l.SUBTRACT, l.MULTIPLY, l.DIVIDE, l.MODULUS}             // arithmetic operators
-	COMPOPS  = []l.TokenType{l.EQUAL, l.GREATER, l.GREATEREQ, l.LESS, l.LESSEQ, l.AND, l.OR} // boolean operators
+	TYPES    = []t.TokenType{t.INTTYPE, t.FLOATTYPE, t.STRINGTYPE, t.BOOLEANTYPE}            // variable types
+	VALUES   = []t.TokenType{t.IDENTIFIER, t.NUMVALUE, t.STRINGVALUE, t.BOOLEANVALUE}        // value
+	ARITHOPS = []t.TokenType{t.ADD, t.SUBTRACT, t.MULTIPLY, t.DIVIDE, t.MODULUS}             // arithmetic operators
+	COMPOPS  = []t.TokenType{t.EQUAL, t.GREATER, t.GREATEREQ, t.LESS, t.LESSEQ, t.AND, t.OR} // boolean operators
 )
 
-// T returns l.TokenType's in an array
-func T(types ...l.TokenType) []l.TokenType {
+// T returns t.TokenType's in an array
+func T(types ...t.TokenType) []t.TokenType {
 	return types
 }
 
-// S returns []l.TokenType's in an array (Sequence)
-func S(t ...[]l.TokenType) Sequence {
-	first := [][]l.TokenType{}
+// S returns []t.TokenType's in an array (Sequence)
+func S(tokens ...[]t.TokenType) Sequence {
+	first := [][]t.TokenType{}
 
-	for i := 0; i < len(t); i++ {
-		first = append(first, t[i])
+	for i := 0; i < len(tokens); i++ {
+		first = append(first, tokens[i])
 	}
 
 	return first
@@ -42,14 +42,14 @@ func join(sequences ...Sequence) Sequence {
 }
 
 // IsSequence finds if the array is a Sequence
-func IsSequence(tokens []l.TokenType, sequence Sequence) bool {
+func IsSequence(tokens []t.TokenType, sequence Sequence) bool {
 	length := len(tokens)
 	if length != len(sequence) {
 		return false
 	}
 
 	for i := 0; i < length; i++ {
-		if !l.ContainsTT(tokens[i], sequence[i]) {
+		if !t.ContainsTT(tokens[i], sequence[i]) {
 			return false
 		}
 	}
