@@ -10,13 +10,14 @@ import (
 type TokenType byte
 
 const (
-	// variables
+	IDENTIFIER TokenType = iota // num
 
-	IDENTIFIER  TokenType = iota // num
-	INTTYPE                      // int
-	FLOATTYPE                    // float
-	STRINGTYPE                   // string
-	BOOLEANTYPE                  // boolean
+	// keywords
+
+	INTTYPE     // int
+	FLOATTYPE   // float
+	STRINGTYPE  // string
+	BOOLEANTYPE // boolean
 
 	// values
 
@@ -56,6 +57,7 @@ const (
 	LESS      // <
 	GREATEREQ // >=
 	LESSEQ    // <=
+	NOTEQ     // !=
 	NOT       // !
 	AND       // &
 	OR        // |

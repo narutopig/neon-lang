@@ -4,4 +4,6 @@ int main() {
     string name = "Joe";
 
     print("My name is " + name);
+
+    print^$*#
 }
