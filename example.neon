@@ -1,7 +1,3 @@
-int main() {
+number main {
     print("Hello World!");
-
-    string name = "Joe";
-
-    print("My name is " + name);
 }
