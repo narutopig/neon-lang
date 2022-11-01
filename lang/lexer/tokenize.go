@@ -15,17 +15,18 @@ func (l *Lexer) Tokenize(str string) {
 		return
 	}
 
-	for key, value := range token.Spec {
-		res := key.FindIndex(b)
-
-		if res == nil {
+	for _, key := range l.keys {
+		val := token.Spec[key]
+		if !val.Match(b) {
 			continue
 		}
+
+		res := val.FindIndex(b)
 
 		end := res[1]
 
 		l.cursor += end
-		l.tokens = append(l.tokens, token.New(value, str[0:end]))
+		l.tokens = append(l.tokens, token.New(key, str[0:end]))
 		return
 	}
 
