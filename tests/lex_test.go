@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	t "github.com/narutopig/neon-lang/token"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 func TestLex(test *testing.T) {

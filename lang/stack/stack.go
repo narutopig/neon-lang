@@ -4,7 +4,7 @@ import (
 	"container/list"
 	"fmt"
 
-	tokens "github.com/narutopig/neon-lang/token"
+	tokens "github.com/narutopig/neon-lang/lang/token"
 )
 
 // Stack is a stack of tokens, implemented with container/list

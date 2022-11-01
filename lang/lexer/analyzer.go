@@ -3,7 +3,7 @@ package lexer
 import (
 	"strings"
 
-	t "github.com/narutopig/neon-lang/token"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 func typeToken(str string) t.Token {

@@ -1,6 +1,6 @@
 package statement
 
-import tokens "github.com/narutopig/neon-lang/token"
+import tokens "github.com/narutopig/neon-lang/lang/token"
 
 // SType is used to determine what the type of the Statement is
 type SType int

@@ -1,10 +1,10 @@
 package expressions
 
 import (
-	ne "github.com/narutopig/neon-lang/error"
-	g "github.com/narutopig/neon-lang/grammar"
-	"github.com/narutopig/neon-lang/stack"
-	t "github.com/narutopig/neon-lang/token"
+	ne "github.com/narutopig/neon-lang/lang/error"
+	g "github.com/narutopig/neon-lang/lang/grammar"
+	"github.com/narutopig/neon-lang/lang/stack"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 // Shunt implements the shunting-yard algorithm from https://en.wikipedia.org/wiki/Shunting_yard_algorithm

@@ -3,8 +3,8 @@ package lexer
 import (
 	"fmt"
 
-	ne "github.com/narutopig/neon-lang/error"
-	t "github.com/narutopig/neon-lang/token"
+	ne "github.com/narutopig/neon-lang/lang/error"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 // Lexer encapsulates the lexing process into a class

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	t "github.com/narutopig/neon-lang/token"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 // Segment represents parts of a statement

@@ -1,6 +1,6 @@
 package runner
 
-import "github.com/narutopig/neon-lang/lexer"
+import "github.com/narutopig/neon-lang/lang/lexer"
 
 // Runner runs the program
 type Runner struct {
