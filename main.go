@@ -24,7 +24,5 @@ func main() {
 
 	content := string(c)
 
-	lexer := lexer.New(content)
-
-	lexer.Init()
+	lexer.New(content)
 }

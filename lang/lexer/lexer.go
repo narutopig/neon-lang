@@ -7,6 +7,7 @@ import (
 	"github.com/narutopig/neon-lang/lang/token"
 )
 
+// Lexer is the base class for parsing Neon code
 type Lexer struct {
 	content string
 	cursor  int
@@ -14,11 +15,14 @@ type Lexer struct {
 	tokens  []token.Token
 }
 
+// New returns a new Lexer
 func New(content string) Lexer {
-	return Lexer{content: content, cursor: 0, tokens: []token.Token{}}
+	l := Lexer{content: content, cursor: 0, tokens: []token.Token{}}
+	l.init()
+	return l
 }
 
-func (l *Lexer) Init() {
+func (l *Lexer) init() {
 	l.setupKeys()
 
 	for l.cursor < len(l.content) {
