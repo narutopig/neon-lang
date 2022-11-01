@@ -14,8 +14,17 @@ type neonListener interface {
 	// EnterStat is called when entering the stat production.
 	EnterStat(c *StatContext)
 
+	// EnterIf is called when entering the if production.
+	EnterIf(c *IfContext)
+
+	// EnterWhile is called when entering the while production.
+	EnterWhile(c *WhileContext)
+
 	// EnterFunc is called when entering the func production.
 	EnterFunc(c *FuncContext)
+
+	// EnterFunccall is called when entering the funccall production.
+	EnterFunccall(c *FunccallContext)
 
 	// EnterType is called when entering the type production.
 	EnterType(c *TypeContext)
@@ -38,6 +47,9 @@ type neonListener interface {
 	// EnterAssign is called when entering the assign production.
 	EnterAssign(c *AssignContext)
 
+	// EnterReturn is called when entering the return production.
+	EnterReturn(c *ReturnContext)
+
 	// EnterExpr is called when entering the expr production.
 	EnterExpr(c *ExprContext)
 
@@ -47,8 +59,17 @@ type neonListener interface {
 	// ExitStat is called when exiting the stat production.
 	ExitStat(c *StatContext)
 
+	// ExitIf is called when exiting the if production.
+	ExitIf(c *IfContext)
+
+	// ExitWhile is called when exiting the while production.
+	ExitWhile(c *WhileContext)
+
 	// ExitFunc is called when exiting the func production.
 	ExitFunc(c *FuncContext)
+
+	// ExitFunccall is called when exiting the funccall production.
+	ExitFunccall(c *FunccallContext)
 
 	// ExitType is called when exiting the type production.
 	ExitType(c *TypeContext)
@@ -70,6 +91,9 @@ type neonListener interface {
 
 	// ExitAssign is called when exiting the assign production.
 	ExitAssign(c *AssignContext)
+
+	// ExitReturn is called when exiting the return production.
+	ExitReturn(c *ReturnContext)
 
 	// ExitExpr is called when exiting the expr production.
 	ExitExpr(c *ExprContext)

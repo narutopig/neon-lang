@@ -33,11 +33,29 @@ func (s *BaseneonListener) EnterStat(ctx *StatContext) {}
 // ExitStat is called when production stat is exited.
 func (s *BaseneonListener) ExitStat(ctx *StatContext) {}
 
+// EnterIf is called when production if is entered.
+func (s *BaseneonListener) EnterIf(ctx *IfContext) {}
+
+// ExitIf is called when production if is exited.
+func (s *BaseneonListener) ExitIf(ctx *IfContext) {}
+
+// EnterWhile is called when production while is entered.
+func (s *BaseneonListener) EnterWhile(ctx *WhileContext) {}
+
+// ExitWhile is called when production while is exited.
+func (s *BaseneonListener) ExitWhile(ctx *WhileContext) {}
+
 // EnterFunc is called when production func is entered.
 func (s *BaseneonListener) EnterFunc(ctx *FuncContext) {}
 
 // ExitFunc is called when production func is exited.
 func (s *BaseneonListener) ExitFunc(ctx *FuncContext) {}
+
+// EnterFunccall is called when production funccall is entered.
+func (s *BaseneonListener) EnterFunccall(ctx *FunccallContext) {}
+
+// ExitFunccall is called when production funccall is exited.
+func (s *BaseneonListener) ExitFunccall(ctx *FunccallContext) {}
 
 // EnterType is called when production type is entered.
 func (s *BaseneonListener) EnterType(ctx *TypeContext) {}
@@ -80,6 +98,12 @@ func (s *BaseneonListener) EnterAssign(ctx *AssignContext) {}
 
 // ExitAssign is called when production assign is exited.
 func (s *BaseneonListener) ExitAssign(ctx *AssignContext) {}
+
+// EnterReturn is called when production return is entered.
+func (s *BaseneonListener) EnterReturn(ctx *ReturnContext) {}
+
+// ExitReturn is called when production return is exited.
+func (s *BaseneonListener) ExitReturn(ctx *ReturnContext) {}
 
 // EnterExpr is called when production expr is entered.
 func (s *BaseneonListener) EnterExpr(ctx *ExprContext) {}

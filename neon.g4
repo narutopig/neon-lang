@@ -6,25 +6,43 @@ program
     : ((stat | func))* EOF
     ;
 
+// complicated stuff
 stat : 
+    // function calls, assign, aka no curlies
     (
-    decl
-    | assign
+        (
+            decl
+            | assign
+            | funccall
+            | return
+        )
+        SEMI
     )
-    SEMI;
+    |
+    // stuff with curlies
+    (
+        if
+        | while
+    )
+    ;
 
-func : DEF ID '(' funcarg* ')' '{' stat* '}';
+if  : IF '(' expr ')' '{' stat* '}';
+while  : WHILE '(' expr ')' '{' stat* '}';
+func : DEF type ID '(' (funcarg (COMMA funcarg)*)? ')' '{' stat* '}';
+funccall : ID '(' (expr (COMMA expr)*)? ')';
 
 type    : NUMTYPE | STRTYPE | BOOLTYPE;
-arithop : ADD_SUB | MUL_DIV;
-compop  : LESS | GREATER | LESSEQ | GREATEREQ;
+arithop : ADD_SUB | MDM;
+compop  : EQUALITY | LESS | GREATER | LESSEQ | GREATEREQ;
 op      : arithop | compop;
 
 funcarg : type ID;
 decl : type ID EQUAL expr;
 assign: ID EQUAL expr;
+return: RETURN expr;
 
 expr : expr op expr
+     | funccall
      | INT
      | BOOL
      | STRING
@@ -36,8 +54,12 @@ NUMTYPE  : 'number';
 STRTYPE  : 'string';
 BOOLTYPE : 'bool';
 DEF      : 'def';
+RETURN   : 'return';
+IF       : 'if';
+WHILE    : 'while';
 
 // compound operators e.g. !=
+EQUALITY: '==';
 NOTEQUAL: '!=';
 SEMI   : ';';
 LESSEQ : '<=';
@@ -49,7 +71,7 @@ ID     : ('a'..'z'|'A'..'Z')+;
 INT    : '0'..'9'+;
 WS     : [ \t\n\r]+ -> skip ;
 ADD_SUB: '+' | '-';
-MUL_DIV: '*' | '/';
+MDM: '*' | '/' | '%'; // mul, div, mod
 COMMA  : ',';
 Lb     : '(';
 Rb     : ')';
