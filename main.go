@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/narutopig/neon-lang/expressions"
-	"github.com/narutopig/neon-lang/lexer"
-	t "github.com/narutopig/neon-lang/token"
+	"github.com/narutopig/neon-lang/lang/expressions"
+	"github.com/narutopig/neon-lang/lang/lexer"
+	t "github.com/narutopig/neon-lang/lang/token"
 )
 
 func main() {
