@@ -26,9 +26,11 @@ stat :
     )
     ;
 
-if  : IF '(' expr ')' '{' stat* '}';
+if  : IF '(' expr ')' '{' stat* '}' elif* else?;
+elif: ELIF '(' expr ')' '{' stat* '}';
+else: ELSE '{' stat* '}';
 while  : WHILE '(' expr ')' '{' stat* '}';
-func : DEF type ID '(' (funcarg (COMMA funcarg)*)? ')' '{' stat* '}';
+func : DEF type ID ('(' (funcarg (COMMA funcarg)*)? ')')? '{' stat* '}';
 funccall : ID '(' (expr (COMMA expr)*)? ')';
 
 type    : NUMTYPE | STRTYPE | BOOLTYPE;
@@ -56,6 +58,8 @@ BOOLTYPE : 'bool';
 DEF      : 'def';
 RETURN   : 'return';
 IF       : 'if';
+ELIF     : 'elif';
+ELSE     : 'else';
 WHILE    : 'while';
 
 // compound operators e.g. !=
