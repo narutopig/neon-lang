@@ -69,30 +69,6 @@ func (s *BaseneonListener) EnterFunccall(ctx *FunccallContext) {}
 // ExitFunccall is called when production funccall is exited.
 func (s *BaseneonListener) ExitFunccall(ctx *FunccallContext) {}
 
-// EnterType is called when production type is entered.
-func (s *BaseneonListener) EnterType(ctx *TypeContext) {}
-
-// ExitType is called when production type is exited.
-func (s *BaseneonListener) ExitType(ctx *TypeContext) {}
-
-// EnterArithop is called when production arithop is entered.
-func (s *BaseneonListener) EnterArithop(ctx *ArithopContext) {}
-
-// ExitArithop is called when production arithop is exited.
-func (s *BaseneonListener) ExitArithop(ctx *ArithopContext) {}
-
-// EnterCompop is called when production compop is entered.
-func (s *BaseneonListener) EnterCompop(ctx *CompopContext) {}
-
-// ExitCompop is called when production compop is exited.
-func (s *BaseneonListener) ExitCompop(ctx *CompopContext) {}
-
-// EnterOp is called when production op is entered.
-func (s *BaseneonListener) EnterOp(ctx *OpContext) {}
-
-// ExitOp is called when production op is exited.
-func (s *BaseneonListener) ExitOp(ctx *OpContext) {}
-
 // EnterFuncarg is called when production funcarg is entered.
 func (s *BaseneonListener) EnterFuncarg(ctx *FuncargContext) {}
 
@@ -122,3 +98,33 @@ func (s *BaseneonListener) EnterExpr(ctx *ExprContext) {}
 
 // ExitExpr is called when production expr is exited.
 func (s *BaseneonListener) ExitExpr(ctx *ExprContext) {}
+
+// EnterType is called when production type is entered.
+func (s *BaseneonListener) EnterType(ctx *TypeContext) {}
+
+// ExitType is called when production type is exited.
+func (s *BaseneonListener) ExitType(ctx *TypeContext) {}
+
+// EnterArithop is called when production arithop is entered.
+func (s *BaseneonListener) EnterArithop(ctx *ArithopContext) {}
+
+// ExitArithop is called when production arithop is exited.
+func (s *BaseneonListener) ExitArithop(ctx *ArithopContext) {}
+
+// EnterCompop is called when production compop is entered.
+func (s *BaseneonListener) EnterCompop(ctx *CompopContext) {}
+
+// ExitCompop is called when production compop is exited.
+func (s *BaseneonListener) ExitCompop(ctx *CompopContext) {}
+
+// EnterOp is called when production op is entered.
+func (s *BaseneonListener) EnterOp(ctx *OpContext) {}
+
+// ExitOp is called when production op is exited.
+func (s *BaseneonListener) ExitOp(ctx *OpContext) {}
+
+// EnterBool is called when production bool is entered.
+func (s *BaseneonListener) EnterBool(ctx *BoolContext) {}
+
+// ExitBool is called when production bool is exited.
+func (s *BaseneonListener) ExitBool(ctx *BoolContext) {}

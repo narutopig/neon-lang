@@ -33,11 +33,6 @@ while  : WHILE '(' expr ')' '{' stat* '}';
 func : DEF (type | VOID) ID ('(' (funcarg (COMMA funcarg)*)? ')')? '{' stat* '}';
 funccall : ID '(' (expr (COMMA expr)*)? ')';
 
-type    : NUMTYPE | STRTYPE | BOOLTYPE;
-arithop : ADD_SUB | MDM;
-compop  : EQUALITY | LESS | GREATER | LESSEQ | GREATEREQ;
-op      : arithop | compop;
-
 funcarg : type ID;
 decl : type ID EQUAL expr;
 assign: ID EQUAL expr;
@@ -52,10 +47,18 @@ expr : expr op expr
      | ID
      ;
 
+// grouping
+type    : NUMTYPE | STRTYPE | BOOLTYPE;
+arithop : ADD_SUB | MDM;
+compop  : EQUALITY | LESS | GREATER | LESSEQ | GREATEREQ;
+op      : arithop | compop;
+bool    : TRUE | FALSE;
 // place all special identifiers here
 NUMTYPE  : 'number';
 STRTYPE  : 'string';
 BOOLTYPE : 'bool';
+TRUE     : 'true';
+FALSE    : 'false';
 VOID     : 'void';
 DEF      : 'def';
 RETURN   : 'return';

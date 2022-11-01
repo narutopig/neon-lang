@@ -32,18 +32,6 @@ type neonListener interface {
 	// EnterFunccall is called when entering the funccall production.
 	EnterFunccall(c *FunccallContext)
 
-	// EnterType is called when entering the type production.
-	EnterType(c *TypeContext)
-
-	// EnterArithop is called when entering the arithop production.
-	EnterArithop(c *ArithopContext)
-
-	// EnterCompop is called when entering the compop production.
-	EnterCompop(c *CompopContext)
-
-	// EnterOp is called when entering the op production.
-	EnterOp(c *OpContext)
-
 	// EnterFuncarg is called when entering the funcarg production.
 	EnterFuncarg(c *FuncargContext)
 
@@ -58,6 +46,21 @@ type neonListener interface {
 
 	// EnterExpr is called when entering the expr production.
 	EnterExpr(c *ExprContext)
+
+	// EnterType is called when entering the type production.
+	EnterType(c *TypeContext)
+
+	// EnterArithop is called when entering the arithop production.
+	EnterArithop(c *ArithopContext)
+
+	// EnterCompop is called when entering the compop production.
+	EnterCompop(c *CompopContext)
+
+	// EnterOp is called when entering the op production.
+	EnterOp(c *OpContext)
+
+	// EnterBool is called when entering the bool production.
+	EnterBool(c *BoolContext)
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
@@ -83,18 +86,6 @@ type neonListener interface {
 	// ExitFunccall is called when exiting the funccall production.
 	ExitFunccall(c *FunccallContext)
 
-	// ExitType is called when exiting the type production.
-	ExitType(c *TypeContext)
-
-	// ExitArithop is called when exiting the arithop production.
-	ExitArithop(c *ArithopContext)
-
-	// ExitCompop is called when exiting the compop production.
-	ExitCompop(c *CompopContext)
-
-	// ExitOp is called when exiting the op production.
-	ExitOp(c *OpContext)
-
 	// ExitFuncarg is called when exiting the funcarg production.
 	ExitFuncarg(c *FuncargContext)
 
@@ -109,4 +100,19 @@ type neonListener interface {
 
 	// ExitExpr is called when exiting the expr production.
 	ExitExpr(c *ExprContext)
+
+	// ExitType is called when exiting the type production.
+	ExitType(c *TypeContext)
+
+	// ExitArithop is called when exiting the arithop production.
+	ExitArithop(c *ArithopContext)
+
+	// ExitCompop is called when exiting the compop production.
+	ExitCompop(c *CompopContext)
+
+	// ExitOp is called when exiting the op production.
+	ExitOp(c *OpContext)
+
+	// ExitBool is called when exiting the bool production.
+	ExitBool(c *BoolContext)
 }
