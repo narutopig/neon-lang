@@ -44,6 +44,7 @@ assign: ID EQUAL expr;
 return: RETURN expr;
 
 expr : expr op expr
+     | BANG expr
      | funccall
      | INT
      | BOOL
@@ -84,3 +85,4 @@ Rc     : '}';
 EQUAL  : '=';
 LESS   : '<';
 GREATER: '>';
+BANG   : '!';
