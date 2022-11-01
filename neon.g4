@@ -30,7 +30,7 @@ if  : IF '(' expr ')' '{' stat* '}' elif* else?;
 elif: ELIF '(' expr ')' '{' stat* '}';
 else: ELSE '{' stat* '}';
 while  : WHILE '(' expr ')' '{' stat* '}';
-func : DEF type ID ('(' (funcarg (COMMA funcarg)*)? ')')? '{' stat* '}';
+func : DEF (type | VOID) ID ('(' (funcarg (COMMA funcarg)*)? ')')? '{' stat* '}';
 funccall : ID '(' (expr (COMMA expr)*)? ')';
 
 type    : NUMTYPE | STRTYPE | BOOLTYPE;
@@ -56,6 +56,7 @@ expr : expr op expr
 NUMTYPE  : 'number';
 STRTYPE  : 'string';
 BOOLTYPE : 'bool';
+VOID     : 'void';
 DEF      : 'def';
 RETURN   : 'return';
 IF       : 'if';
