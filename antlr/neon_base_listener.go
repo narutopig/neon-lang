@@ -39,6 +39,18 @@ func (s *BaseneonListener) EnterIf(ctx *IfContext) {}
 // ExitIf is called when production if is exited.
 func (s *BaseneonListener) ExitIf(ctx *IfContext) {}
 
+// EnterElif is called when production elif is entered.
+func (s *BaseneonListener) EnterElif(ctx *ElifContext) {}
+
+// ExitElif is called when production elif is exited.
+func (s *BaseneonListener) ExitElif(ctx *ElifContext) {}
+
+// EnterElse is called when production else is entered.
+func (s *BaseneonListener) EnterElse(ctx *ElseContext) {}
+
+// ExitElse is called when production else is exited.
+func (s *BaseneonListener) ExitElse(ctx *ElseContext) {}
+
 // EnterWhile is called when production while is entered.
 func (s *BaseneonListener) EnterWhile(ctx *WhileContext) {}
 

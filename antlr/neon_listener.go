@@ -17,6 +17,12 @@ type neonListener interface {
 	// EnterIf is called when entering the if production.
 	EnterIf(c *IfContext)
 
+	// EnterElif is called when entering the elif production.
+	EnterElif(c *ElifContext)
+
+	// EnterElse is called when entering the else production.
+	EnterElse(c *ElseContext)
+
 	// EnterWhile is called when entering the while production.
 	EnterWhile(c *WhileContext)
 
@@ -61,6 +67,12 @@ type neonListener interface {
 
 	// ExitIf is called when exiting the if production.
 	ExitIf(c *IfContext)
+
+	// ExitElif is called when exiting the elif production.
+	ExitElif(c *ElifContext)
+
+	// ExitElse is called when exiting the else production.
+	ExitElse(c *ElseContext)
 
 	// ExitWhile is called when exiting the while production.
 	ExitWhile(c *WhileContext)
