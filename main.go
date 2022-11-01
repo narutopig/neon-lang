@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -25,15 +24,7 @@ func main() {
 
 	content := string(c)
 
-	l := lexer.New(content)
-	tokens, ne := l.Tokenize()
+	lexer := lexer.New(content)
 
-	if !ne.IsNull() {
-		fmt.Println(ne)
-	} else {
-		fmt.Println(len(tokens))
-		for _, t := range tokens {
-			fmt.Println(t)
-		}
-	}
+	lexer.Init()
 }

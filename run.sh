@@ -1,7 +1,7 @@
 #!/bin/bash
-cd lexer
+cd lang/token
 go generate
-cd ..
+cd ../..
 go build -o bin/neonc
-go test ./tests
+# go test ./tests
 bin/neonc $1
