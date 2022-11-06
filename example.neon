@@ -7,7 +7,7 @@ def number main {
 
     number n = 0;
 
-    while (isLarge(n) == false) {
+    while (isLarge(n)) {
         print(n + " is large");
         n = n + 1;
     }

@@ -1,11 +1,11 @@
 // Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
 
-package parser // neon
+package parser // Neon
 
 import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
-// neonListener is a complete listener for a parse tree produced by neonParser.
-type neonListener interface {
+// NeonListener is a complete listener for a parse tree produced by NeonParser.
+type NeonListener interface {
 	antlr.ParseTreeListener
 
 	// EnterProgram is called when entering the program production.
@@ -44,23 +44,38 @@ type neonListener interface {
 	// EnterReturn is called when entering the return production.
 	EnterReturn(c *ReturnContext)
 
-	// EnterExpr is called when entering the expr production.
-	EnterExpr(c *ExprContext)
+	// EnterFuncCall is called when entering the FuncCall production.
+	EnterFuncCall(c *FuncCallContext)
+
+	// EnterIdentifier is called when entering the Identifier production.
+	EnterIdentifier(c *IdentifierContext)
+
+	// EnterBool is called when entering the Bool production.
+	EnterBool(c *BoolContext)
+
+	// EnterAddSub is called when entering the AddSub production.
+	EnterAddSub(c *AddSubContext)
+
+	// EnterComparison is called when entering the Comparison production.
+	EnterComparison(c *ComparisonContext)
+
+	// EnterMDM is called when entering the MDM production.
+	EnterMDM(c *MDMContext)
+
+	// EnterNotExpr is called when entering the NotExpr production.
+	EnterNotExpr(c *NotExprContext)
+
+	// EnterString is called when entering the String production.
+	EnterString(c *StringContext)
+
+	// EnterNoClue is called when entering the NoClue production.
+	EnterNoClue(c *NoClueContext)
+
+	// EnterInt is called when entering the Int production.
+	EnterInt(c *IntContext)
 
 	// EnterType is called when entering the type production.
 	EnterType(c *TypeContext)
-
-	// EnterArithop is called when entering the arithop production.
-	EnterArithop(c *ArithopContext)
-
-	// EnterCompop is called when entering the compop production.
-	EnterCompop(c *CompopContext)
-
-	// EnterOp is called when entering the op production.
-	EnterOp(c *OpContext)
-
-	// EnterBool is called when entering the bool production.
-	EnterBool(c *BoolContext)
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
@@ -98,21 +113,36 @@ type neonListener interface {
 	// ExitReturn is called when exiting the return production.
 	ExitReturn(c *ReturnContext)
 
-	// ExitExpr is called when exiting the expr production.
-	ExitExpr(c *ExprContext)
+	// ExitFuncCall is called when exiting the FuncCall production.
+	ExitFuncCall(c *FuncCallContext)
+
+	// ExitIdentifier is called when exiting the Identifier production.
+	ExitIdentifier(c *IdentifierContext)
+
+	// ExitBool is called when exiting the Bool production.
+	ExitBool(c *BoolContext)
+
+	// ExitAddSub is called when exiting the AddSub production.
+	ExitAddSub(c *AddSubContext)
+
+	// ExitComparison is called when exiting the Comparison production.
+	ExitComparison(c *ComparisonContext)
+
+	// ExitMDM is called when exiting the MDM production.
+	ExitMDM(c *MDMContext)
+
+	// ExitNotExpr is called when exiting the NotExpr production.
+	ExitNotExpr(c *NotExprContext)
+
+	// ExitString is called when exiting the String production.
+	ExitString(c *StringContext)
+
+	// ExitNoClue is called when exiting the NoClue production.
+	ExitNoClue(c *NoClueContext)
+
+	// ExitInt is called when exiting the Int production.
+	ExitInt(c *IntContext)
 
 	// ExitType is called when exiting the type production.
 	ExitType(c *TypeContext)
-
-	// ExitArithop is called when exiting the arithop production.
-	ExitArithop(c *ArithopContext)
-
-	// ExitCompop is called when exiting the compop production.
-	ExitCompop(c *CompopContext)
-
-	// ExitOp is called when exiting the op production.
-	ExitOp(c *OpContext)
-
-	// ExitBool is called when exiting the bool production.
-	ExitBool(c *BoolContext)
 }

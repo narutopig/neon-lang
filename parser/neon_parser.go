@@ -1,6 +1,6 @@
 // Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
 
-package parser // neon
+package parser // Neon
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ var _ = fmt.Printf
 var _ = strconv.Itoa
 var _ = sync.Once{}
 
-type neonParser struct {
+type NeonParser struct {
 	*antlr.BaseParser
 }
 
@@ -33,114 +33,106 @@ var neonParserStaticData struct {
 func neonParserInit() {
 	staticData := &neonParserStaticData
 	staticData.literalNames = []string{
-		"", "'number'", "'string'", "'bool'", "'true'", "'false'", "'void'",
-		"'def'", "'return'", "'if'", "'elif'", "'else'", "'while'", "'=='",
-		"'!='", "';'", "'<='", "'>='", "", "", "", "", "", "", "','", "'('",
-		"')'", "'{'", "'}'", "'='", "'<'", "'>'", "'!'",
+		"", "';'", "'('", "')'", "'{'", "'}'", "','", "'='", "'!'", "", "",
+		"", "", "'number'", "'string'", "'bool'", "'void'", "'def'", "'return'",
+		"'if'", "'elif'", "'else'", "'while'",
 	}
 	staticData.symbolicNames = []string{
-		"", "NUMTYPE", "STRTYPE", "BOOLTYPE", "TRUE", "FALSE", "VOID", "DEF",
-		"RETURN", "IF", "ELIF", "ELSE", "WHILE", "EQUALITY", "NOTEQUAL", "SEMI",
-		"LESSEQ", "GREATEREQ", "STRING", "ID", "INT", "WS", "ADD_SUB", "MDM",
-		"COMMA", "Lb", "Rb", "Lc", "Rc", "EQUAL", "LESS", "GREATER", "BANG",
-		"BOOL",
+		"", "", "", "", "", "", "", "", "", "ADD_SUB", "MDM", "COMP", "BOOL",
+		"NUMTYPE", "STRTYPE", "BOOLTYPE", "VOID", "DEF", "RETURN", "IF", "ELIF",
+		"ELSE", "WHILE", "STRING", "ID", "INT", "WS",
 	}
 	staticData.ruleNames = []string{
 		"program", "stat", "if", "elif", "else", "while", "func", "funccall",
-		"funcarg", "decl", "assign", "return", "expr", "type", "arithop", "compop",
-		"op", "bool",
+		"funcarg", "decl", "assign", "return", "expr", "type",
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 33, 208, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 26, 197, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
-		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
-		2, 16, 7, 16, 2, 17, 7, 17, 1, 0, 1, 0, 3, 0, 39, 8, 0, 5, 0, 41, 8, 0,
-		10, 0, 12, 0, 44, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 52, 8,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 58, 8, 1, 3, 1, 60, 8, 1, 1, 2, 1, 2,
-		1, 2, 1, 2, 1, 2, 1, 2, 5, 2, 68, 8, 2, 10, 2, 12, 2, 71, 9, 2, 1, 2, 1,
-		2, 5, 2, 75, 8, 2, 10, 2, 12, 2, 78, 9, 2, 1, 2, 3, 2, 81, 8, 2, 1, 3,
-		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 3, 89, 8, 3, 10, 3, 12, 3, 92, 9, 3, 1,
-		3, 1, 3, 1, 4, 1, 4, 1, 4, 5, 4, 99, 8, 4, 10, 4, 12, 4, 102, 9, 4, 1,
-		4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 5, 112, 8, 5, 10, 5, 12,
-		5, 115, 9, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 3, 6, 122, 8, 6, 1, 6, 1, 6,
-		1, 6, 1, 6, 1, 6, 5, 6, 129, 8, 6, 10, 6, 12, 6, 132, 9, 6, 3, 6, 134,
-		8, 6, 1, 6, 3, 6, 137, 8, 6, 1, 6, 1, 6, 5, 6, 141, 8, 6, 10, 6, 12, 6,
-		144, 9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 153, 8, 7, 10,
-		7, 12, 7, 156, 9, 7, 3, 7, 158, 8, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1,
-		9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1,
-		11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 185,
-		8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 5, 12, 191, 8, 12, 10, 12, 12, 12, 194,
-		9, 12, 1, 13, 1, 13, 1, 14, 1, 14, 1, 15, 1, 15, 1, 16, 1, 16, 3, 16, 204,
-		8, 16, 1, 17, 1, 17, 1, 17, 0, 1, 24, 18, 0, 2, 4, 6, 8, 10, 12, 14, 16,
-		18, 20, 22, 24, 26, 28, 30, 32, 34, 0, 4, 1, 0, 1, 3, 1, 0, 22, 23, 3,
-		0, 13, 13, 16, 17, 30, 31, 1, 0, 4, 5, 216, 0, 42, 1, 0, 0, 0, 2, 59, 1,
-		0, 0, 0, 4, 61, 1, 0, 0, 0, 6, 82, 1, 0, 0, 0, 8, 95, 1, 0, 0, 0, 10, 105,
-		1, 0, 0, 0, 12, 118, 1, 0, 0, 0, 14, 147, 1, 0, 0, 0, 16, 161, 1, 0, 0,
-		0, 18, 164, 1, 0, 0, 0, 20, 169, 1, 0, 0, 0, 22, 173, 1, 0, 0, 0, 24, 184,
-		1, 0, 0, 0, 26, 195, 1, 0, 0, 0, 28, 197, 1, 0, 0, 0, 30, 199, 1, 0, 0,
-		0, 32, 203, 1, 0, 0, 0, 34, 205, 1, 0, 0, 0, 36, 39, 3, 2, 1, 0, 37, 39,
-		3, 12, 6, 0, 38, 36, 1, 0, 0, 0, 38, 37, 1, 0, 0, 0, 39, 41, 1, 0, 0, 0,
-		40, 38, 1, 0, 0, 0, 41, 44, 1, 0, 0, 0, 42, 40, 1, 0, 0, 0, 42, 43, 1,
-		0, 0, 0, 43, 45, 1, 0, 0, 0, 44, 42, 1, 0, 0, 0, 45, 46, 5, 0, 0, 1, 46,
-		1, 1, 0, 0, 0, 47, 52, 3, 18, 9, 0, 48, 52, 3, 20, 10, 0, 49, 52, 3, 14,
-		7, 0, 50, 52, 3, 22, 11, 0, 51, 47, 1, 0, 0, 0, 51, 48, 1, 0, 0, 0, 51,
-		49, 1, 0, 0, 0, 51, 50, 1, 0, 0, 0, 52, 53, 1, 0, 0, 0, 53, 54, 5, 15,
-		0, 0, 54, 60, 1, 0, 0, 0, 55, 58, 3, 4, 2, 0, 56, 58, 3, 10, 5, 0, 57,
-		55, 1, 0, 0, 0, 57, 56, 1, 0, 0, 0, 58, 60, 1, 0, 0, 0, 59, 51, 1, 0, 0,
-		0, 59, 57, 1, 0, 0, 0, 60, 3, 1, 0, 0, 0, 61, 62, 5, 9, 0, 0, 62, 63, 5,
-		25, 0, 0, 63, 64, 3, 24, 12, 0, 64, 65, 5, 26, 0, 0, 65, 69, 5, 27, 0,
-		0, 66, 68, 3, 2, 1, 0, 67, 66, 1, 0, 0, 0, 68, 71, 1, 0, 0, 0, 69, 67,
-		1, 0, 0, 0, 69, 70, 1, 0, 0, 0, 70, 72, 1, 0, 0, 0, 71, 69, 1, 0, 0, 0,
-		72, 76, 5, 28, 0, 0, 73, 75, 3, 6, 3, 0, 74, 73, 1, 0, 0, 0, 75, 78, 1,
-		0, 0, 0, 76, 74, 1, 0, 0, 0, 76, 77, 1, 0, 0, 0, 77, 80, 1, 0, 0, 0, 78,
-		76, 1, 0, 0, 0, 79, 81, 3, 8, 4, 0, 80, 79, 1, 0, 0, 0, 80, 81, 1, 0, 0,
-		0, 81, 5, 1, 0, 0, 0, 82, 83, 5, 10, 0, 0, 83, 84, 5, 25, 0, 0, 84, 85,
-		3, 24, 12, 0, 85, 86, 5, 26, 0, 0, 86, 90, 5, 27, 0, 0, 87, 89, 3, 2, 1,
-		0, 88, 87, 1, 0, 0, 0, 89, 92, 1, 0, 0, 0, 90, 88, 1, 0, 0, 0, 90, 91,
-		1, 0, 0, 0, 91, 93, 1, 0, 0, 0, 92, 90, 1, 0, 0, 0, 93, 94, 5, 28, 0, 0,
-		94, 7, 1, 0, 0, 0, 95, 96, 5, 11, 0, 0, 96, 100, 5, 27, 0, 0, 97, 99, 3,
-		2, 1, 0, 98, 97, 1, 0, 0, 0, 99, 102, 1, 0, 0, 0, 100, 98, 1, 0, 0, 0,
-		100, 101, 1, 0, 0, 0, 101, 103, 1, 0, 0, 0, 102, 100, 1, 0, 0, 0, 103,
-		104, 5, 28, 0, 0, 104, 9, 1, 0, 0, 0, 105, 106, 5, 12, 0, 0, 106, 107,
-		5, 25, 0, 0, 107, 108, 3, 24, 12, 0, 108, 109, 5, 26, 0, 0, 109, 113, 5,
-		27, 0, 0, 110, 112, 3, 2, 1, 0, 111, 110, 1, 0, 0, 0, 112, 115, 1, 0, 0,
-		0, 113, 111, 1, 0, 0, 0, 113, 114, 1, 0, 0, 0, 114, 116, 1, 0, 0, 0, 115,
-		113, 1, 0, 0, 0, 116, 117, 5, 28, 0, 0, 117, 11, 1, 0, 0, 0, 118, 121,
-		5, 7, 0, 0, 119, 122, 3, 26, 13, 0, 120, 122, 5, 6, 0, 0, 121, 119, 1,
-		0, 0, 0, 121, 120, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 136, 5, 19, 0,
-		0, 124, 133, 5, 25, 0, 0, 125, 130, 3, 16, 8, 0, 126, 127, 5, 24, 0, 0,
-		127, 129, 3, 16, 8, 0, 128, 126, 1, 0, 0, 0, 129, 132, 1, 0, 0, 0, 130,
-		128, 1, 0, 0, 0, 130, 131, 1, 0, 0, 0, 131, 134, 1, 0, 0, 0, 132, 130,
-		1, 0, 0, 0, 133, 125, 1, 0, 0, 0, 133, 134, 1, 0, 0, 0, 134, 135, 1, 0,
-		0, 0, 135, 137, 5, 26, 0, 0, 136, 124, 1, 0, 0, 0, 136, 137, 1, 0, 0, 0,
-		137, 138, 1, 0, 0, 0, 138, 142, 5, 27, 0, 0, 139, 141, 3, 2, 1, 0, 140,
-		139, 1, 0, 0, 0, 141, 144, 1, 0, 0, 0, 142, 140, 1, 0, 0, 0, 142, 143,
-		1, 0, 0, 0, 143, 145, 1, 0, 0, 0, 144, 142, 1, 0, 0, 0, 145, 146, 5, 28,
-		0, 0, 146, 13, 1, 0, 0, 0, 147, 148, 5, 19, 0, 0, 148, 157, 5, 25, 0, 0,
-		149, 154, 3, 24, 12, 0, 150, 151, 5, 24, 0, 0, 151, 153, 3, 24, 12, 0,
-		152, 150, 1, 0, 0, 0, 153, 156, 1, 0, 0, 0, 154, 152, 1, 0, 0, 0, 154,
-		155, 1, 0, 0, 0, 155, 158, 1, 0, 0, 0, 156, 154, 1, 0, 0, 0, 157, 149,
-		1, 0, 0, 0, 157, 158, 1, 0, 0, 0, 158, 159, 1, 0, 0, 0, 159, 160, 5, 26,
-		0, 0, 160, 15, 1, 0, 0, 0, 161, 162, 3, 26, 13, 0, 162, 163, 5, 19, 0,
-		0, 163, 17, 1, 0, 0, 0, 164, 165, 3, 26, 13, 0, 165, 166, 5, 19, 0, 0,
-		166, 167, 5, 29, 0, 0, 167, 168, 3, 24, 12, 0, 168, 19, 1, 0, 0, 0, 169,
-		170, 5, 19, 0, 0, 170, 171, 5, 29, 0, 0, 171, 172, 3, 24, 12, 0, 172, 21,
-		1, 0, 0, 0, 173, 174, 5, 8, 0, 0, 174, 175, 3, 24, 12, 0, 175, 23, 1, 0,
-		0, 0, 176, 177, 6, 12, -1, 0, 177, 178, 5, 32, 0, 0, 178, 185, 3, 24, 12,
-		6, 179, 185, 3, 14, 7, 0, 180, 185, 5, 20, 0, 0, 181, 185, 5, 33, 0, 0,
-		182, 185, 5, 18, 0, 0, 183, 185, 5, 19, 0, 0, 184, 176, 1, 0, 0, 0, 184,
-		179, 1, 0, 0, 0, 184, 180, 1, 0, 0, 0, 184, 181, 1, 0, 0, 0, 184, 182,
-		1, 0, 0, 0, 184, 183, 1, 0, 0, 0, 185, 192, 1, 0, 0, 0, 186, 187, 10, 7,
-		0, 0, 187, 188, 3, 32, 16, 0, 188, 189, 3, 24, 12, 8, 189, 191, 1, 0, 0,
-		0, 190, 186, 1, 0, 0, 0, 191, 194, 1, 0, 0, 0, 192, 190, 1, 0, 0, 0, 192,
-		193, 1, 0, 0, 0, 193, 25, 1, 0, 0, 0, 194, 192, 1, 0, 0, 0, 195, 196, 7,
-		0, 0, 0, 196, 27, 1, 0, 0, 0, 197, 198, 7, 1, 0, 0, 198, 29, 1, 0, 0, 0,
-		199, 200, 7, 2, 0, 0, 200, 31, 1, 0, 0, 0, 201, 204, 3, 28, 14, 0, 202,
-		204, 3, 30, 15, 0, 203, 201, 1, 0, 0, 0, 203, 202, 1, 0, 0, 0, 204, 33,
-		1, 0, 0, 0, 205, 206, 7, 3, 0, 0, 206, 35, 1, 0, 0, 0, 21, 38, 42, 51,
-		57, 59, 69, 76, 80, 90, 100, 113, 121, 130, 133, 136, 142, 154, 157, 184,
-		192, 203,
+		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 1, 0, 1, 0, 3, 0, 31, 8,
+		0, 5, 0, 33, 8, 0, 10, 0, 12, 0, 36, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
+		1, 1, 3, 1, 44, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 50, 8, 1, 3, 1, 52,
+		8, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 2, 60, 8, 2, 10, 2, 12, 2,
+		63, 9, 2, 1, 2, 1, 2, 5, 2, 67, 8, 2, 10, 2, 12, 2, 70, 9, 2, 1, 2, 3,
+		2, 73, 8, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 3, 81, 8, 3, 10, 3,
+		12, 3, 84, 9, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 5, 4, 91, 8, 4, 10, 4, 12,
+		4, 94, 9, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 5, 104,
+		8, 5, 10, 5, 12, 5, 107, 9, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 3, 6, 114,
+		8, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 5, 6, 121, 8, 6, 10, 6, 12, 6, 124,
+		9, 6, 3, 6, 126, 8, 6, 1, 6, 3, 6, 129, 8, 6, 1, 6, 1, 6, 5, 6, 133, 8,
+		6, 10, 6, 12, 6, 136, 9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5,
+		7, 145, 8, 7, 10, 7, 12, 7, 148, 9, 7, 3, 7, 150, 8, 7, 1, 7, 1, 7, 1,
+		8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1,
+		11, 1, 11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
+		1, 12, 1, 12, 1, 12, 3, 12, 179, 8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1,
+		12, 1, 12, 1, 12, 1, 12, 1, 12, 5, 12, 190, 8, 12, 10, 12, 12, 12, 193,
+		9, 12, 1, 13, 1, 13, 1, 13, 0, 1, 24, 14, 0, 2, 4, 6, 8, 10, 12, 14, 16,
+		18, 20, 22, 24, 26, 0, 1, 1, 0, 13, 15, 211, 0, 34, 1, 0, 0, 0, 2, 51,
+		1, 0, 0, 0, 4, 53, 1, 0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 87, 1, 0, 0, 0, 10,
+		97, 1, 0, 0, 0, 12, 110, 1, 0, 0, 0, 14, 139, 1, 0, 0, 0, 16, 153, 1, 0,
+		0, 0, 18, 156, 1, 0, 0, 0, 20, 159, 1, 0, 0, 0, 22, 163, 1, 0, 0, 0, 24,
+		178, 1, 0, 0, 0, 26, 194, 1, 0, 0, 0, 28, 31, 3, 2, 1, 0, 29, 31, 3, 12,
+		6, 0, 30, 28, 1, 0, 0, 0, 30, 29, 1, 0, 0, 0, 31, 33, 1, 0, 0, 0, 32, 30,
+		1, 0, 0, 0, 33, 36, 1, 0, 0, 0, 34, 32, 1, 0, 0, 0, 34, 35, 1, 0, 0, 0,
+		35, 37, 1, 0, 0, 0, 36, 34, 1, 0, 0, 0, 37, 38, 5, 0, 0, 1, 38, 1, 1, 0,
+		0, 0, 39, 44, 3, 18, 9, 0, 40, 44, 3, 20, 10, 0, 41, 44, 3, 14, 7, 0, 42,
+		44, 3, 22, 11, 0, 43, 39, 1, 0, 0, 0, 43, 40, 1, 0, 0, 0, 43, 41, 1, 0,
+		0, 0, 43, 42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 46, 5, 1, 0, 0, 46, 52,
+		1, 0, 0, 0, 47, 50, 3, 4, 2, 0, 48, 50, 3, 10, 5, 0, 49, 47, 1, 0, 0, 0,
+		49, 48, 1, 0, 0, 0, 50, 52, 1, 0, 0, 0, 51, 43, 1, 0, 0, 0, 51, 49, 1,
+		0, 0, 0, 52, 3, 1, 0, 0, 0, 53, 54, 5, 19, 0, 0, 54, 55, 5, 2, 0, 0, 55,
+		56, 3, 24, 12, 0, 56, 57, 5, 3, 0, 0, 57, 61, 5, 4, 0, 0, 58, 60, 3, 2,
+		1, 0, 59, 58, 1, 0, 0, 0, 60, 63, 1, 0, 0, 0, 61, 59, 1, 0, 0, 0, 61, 62,
+		1, 0, 0, 0, 62, 64, 1, 0, 0, 0, 63, 61, 1, 0, 0, 0, 64, 68, 5, 5, 0, 0,
+		65, 67, 3, 6, 3, 0, 66, 65, 1, 0, 0, 0, 67, 70, 1, 0, 0, 0, 68, 66, 1,
+		0, 0, 0, 68, 69, 1, 0, 0, 0, 69, 72, 1, 0, 0, 0, 70, 68, 1, 0, 0, 0, 71,
+		73, 3, 8, 4, 0, 72, 71, 1, 0, 0, 0, 72, 73, 1, 0, 0, 0, 73, 5, 1, 0, 0,
+		0, 74, 75, 5, 20, 0, 0, 75, 76, 5, 2, 0, 0, 76, 77, 3, 24, 12, 0, 77, 78,
+		5, 3, 0, 0, 78, 82, 5, 4, 0, 0, 79, 81, 3, 2, 1, 0, 80, 79, 1, 0, 0, 0,
+		81, 84, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 82, 83, 1, 0, 0, 0, 83, 85, 1,
+		0, 0, 0, 84, 82, 1, 0, 0, 0, 85, 86, 5, 5, 0, 0, 86, 7, 1, 0, 0, 0, 87,
+		88, 5, 21, 0, 0, 88, 92, 5, 4, 0, 0, 89, 91, 3, 2, 1, 0, 90, 89, 1, 0,
+		0, 0, 91, 94, 1, 0, 0, 0, 92, 90, 1, 0, 0, 0, 92, 93, 1, 0, 0, 0, 93, 95,
+		1, 0, 0, 0, 94, 92, 1, 0, 0, 0, 95, 96, 5, 5, 0, 0, 96, 9, 1, 0, 0, 0,
+		97, 98, 5, 22, 0, 0, 98, 99, 5, 2, 0, 0, 99, 100, 3, 24, 12, 0, 100, 101,
+		5, 3, 0, 0, 101, 105, 5, 4, 0, 0, 102, 104, 3, 2, 1, 0, 103, 102, 1, 0,
+		0, 0, 104, 107, 1, 0, 0, 0, 105, 103, 1, 0, 0, 0, 105, 106, 1, 0, 0, 0,
+		106, 108, 1, 0, 0, 0, 107, 105, 1, 0, 0, 0, 108, 109, 5, 5, 0, 0, 109,
+		11, 1, 0, 0, 0, 110, 113, 5, 17, 0, 0, 111, 114, 3, 26, 13, 0, 112, 114,
+		5, 16, 0, 0, 113, 111, 1, 0, 0, 0, 113, 112, 1, 0, 0, 0, 114, 115, 1, 0,
+		0, 0, 115, 128, 5, 24, 0, 0, 116, 125, 5, 2, 0, 0, 117, 122, 3, 16, 8,
+		0, 118, 119, 5, 6, 0, 0, 119, 121, 3, 16, 8, 0, 120, 118, 1, 0, 0, 0, 121,
+		124, 1, 0, 0, 0, 122, 120, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 126,
+		1, 0, 0, 0, 124, 122, 1, 0, 0, 0, 125, 117, 1, 0, 0, 0, 125, 126, 1, 0,
+		0, 0, 126, 127, 1, 0, 0, 0, 127, 129, 5, 3, 0, 0, 128, 116, 1, 0, 0, 0,
+		128, 129, 1, 0, 0, 0, 129, 130, 1, 0, 0, 0, 130, 134, 5, 4, 0, 0, 131,
+		133, 3, 2, 1, 0, 132, 131, 1, 0, 0, 0, 133, 136, 1, 0, 0, 0, 134, 132,
+		1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135, 137, 1, 0, 0, 0, 136, 134, 1, 0,
+		0, 0, 137, 138, 5, 5, 0, 0, 138, 13, 1, 0, 0, 0, 139, 140, 5, 24, 0, 0,
+		140, 149, 5, 2, 0, 0, 141, 146, 3, 24, 12, 0, 142, 143, 5, 6, 0, 0, 143,
+		145, 3, 24, 12, 0, 144, 142, 1, 0, 0, 0, 145, 148, 1, 0, 0, 0, 146, 144,
+		1, 0, 0, 0, 146, 147, 1, 0, 0, 0, 147, 150, 1, 0, 0, 0, 148, 146, 1, 0,
+		0, 0, 149, 141, 1, 0, 0, 0, 149, 150, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0,
+		151, 152, 5, 3, 0, 0, 152, 15, 1, 0, 0, 0, 153, 154, 3, 26, 13, 0, 154,
+		155, 5, 24, 0, 0, 155, 17, 1, 0, 0, 0, 156, 157, 3, 26, 13, 0, 157, 158,
+		3, 20, 10, 0, 158, 19, 1, 0, 0, 0, 159, 160, 5, 24, 0, 0, 160, 161, 5,
+		7, 0, 0, 161, 162, 3, 24, 12, 0, 162, 21, 1, 0, 0, 0, 163, 164, 5, 18,
+		0, 0, 164, 165, 3, 24, 12, 0, 165, 23, 1, 0, 0, 0, 166, 167, 6, 12, -1,
+		0, 167, 168, 5, 8, 0, 0, 168, 179, 3, 24, 12, 7, 169, 179, 3, 14, 7, 0,
+		170, 179, 5, 25, 0, 0, 171, 179, 5, 12, 0, 0, 172, 179, 5, 23, 0, 0, 173,
+		179, 5, 24, 0, 0, 174, 175, 5, 2, 0, 0, 175, 176, 3, 24, 12, 0, 176, 177,
+		5, 3, 0, 0, 177, 179, 1, 0, 0, 0, 178, 166, 1, 0, 0, 0, 178, 169, 1, 0,
+		0, 0, 178, 170, 1, 0, 0, 0, 178, 171, 1, 0, 0, 0, 178, 172, 1, 0, 0, 0,
+		178, 173, 1, 0, 0, 0, 178, 174, 1, 0, 0, 0, 179, 191, 1, 0, 0, 0, 180,
+		181, 10, 10, 0, 0, 181, 182, 5, 10, 0, 0, 182, 190, 3, 24, 12, 11, 183,
+		184, 10, 9, 0, 0, 184, 185, 5, 9, 0, 0, 185, 190, 3, 24, 12, 10, 186, 187,
+		10, 8, 0, 0, 187, 188, 5, 11, 0, 0, 188, 190, 3, 24, 12, 9, 189, 180, 1,
+		0, 0, 0, 189, 183, 1, 0, 0, 0, 189, 186, 1, 0, 0, 0, 190, 193, 1, 0, 0,
+		0, 191, 189, 1, 0, 0, 0, 191, 192, 1, 0, 0, 0, 192, 25, 1, 0, 0, 0, 193,
+		191, 1, 0, 0, 0, 194, 195, 7, 0, 0, 0, 195, 27, 1, 0, 0, 0, 21, 30, 34,
+		43, 49, 51, 61, 68, 72, 82, 92, 105, 113, 122, 125, 128, 134, 146, 149,
+		178, 189, 191,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -152,19 +144,19 @@ func neonParserInit() {
 	}
 }
 
-// neonParserInit initializes any static state used to implement neonParser. By default the
+// NeonParserInit initializes any static state used to implement NeonParser. By default the
 // static state used to implement the parser is lazily initialized during the first call to
-// NewneonParser(). You can call this function if you wish to initialize the static state ahead
+// NewNeonParser(). You can call this function if you wish to initialize the static state ahead
 // of time.
 func NeonParserInit() {
 	staticData := &neonParserStaticData
 	staticData.once.Do(neonParserInit)
 }
 
-// NewneonParser produces a new parser instance for the optional input antlr.TokenStream.
-func NewneonParser(input antlr.TokenStream) *neonParser {
+// NewNeonParser produces a new parser instance for the optional input antlr.TokenStream.
+func NewNeonParser(input antlr.TokenStream) *NeonParser {
 	NeonParserInit()
-	this := new(neonParser)
+	this := new(NeonParser)
 	this.BaseParser = antlr.NewBaseParser(input)
 	staticData := &neonParserStaticData
 	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
@@ -176,64 +168,53 @@ func NewneonParser(input antlr.TokenStream) *neonParser {
 	return this
 }
 
-// neonParser tokens.
+// NeonParser tokens.
 const (
-	neonParserEOF       = antlr.TokenEOF
-	neonParserNUMTYPE   = 1
-	neonParserSTRTYPE   = 2
-	neonParserBOOLTYPE  = 3
-	neonParserTRUE      = 4
-	neonParserFALSE     = 5
-	neonParserVOID      = 6
-	neonParserDEF       = 7
-	neonParserRETURN    = 8
-	neonParserIF        = 9
-	neonParserELIF      = 10
-	neonParserELSE      = 11
-	neonParserWHILE     = 12
-	neonParserEQUALITY  = 13
-	neonParserNOTEQUAL  = 14
-	neonParserSEMI      = 15
-	neonParserLESSEQ    = 16
-	neonParserGREATEREQ = 17
-	neonParserSTRING    = 18
-	neonParserID        = 19
-	neonParserINT       = 20
-	neonParserWS        = 21
-	neonParserADD_SUB   = 22
-	neonParserMDM       = 23
-	neonParserCOMMA     = 24
-	neonParserLb        = 25
-	neonParserRb        = 26
-	neonParserLc        = 27
-	neonParserRc        = 28
-	neonParserEQUAL     = 29
-	neonParserLESS      = 30
-	neonParserGREATER   = 31
-	neonParserBANG      = 32
-	neonParserBOOL      = 33
+	NeonParserEOF      = antlr.TokenEOF
+	NeonParserT__0     = 1
+	NeonParserT__1     = 2
+	NeonParserT__2     = 3
+	NeonParserT__3     = 4
+	NeonParserT__4     = 5
+	NeonParserT__5     = 6
+	NeonParserT__6     = 7
+	NeonParserT__7     = 8
+	NeonParserADD_SUB  = 9
+	NeonParserMDM      = 10
+	NeonParserCOMP     = 11
+	NeonParserBOOL     = 12
+	NeonParserNUMTYPE  = 13
+	NeonParserSTRTYPE  = 14
+	NeonParserBOOLTYPE = 15
+	NeonParserVOID     = 16
+	NeonParserDEF      = 17
+	NeonParserRETURN   = 18
+	NeonParserIF       = 19
+	NeonParserELIF     = 20
+	NeonParserELSE     = 21
+	NeonParserWHILE    = 22
+	NeonParserSTRING   = 23
+	NeonParserID       = 24
+	NeonParserINT      = 25
+	NeonParserWS       = 26
 )
 
-// neonParser rules.
+// NeonParser rules.
 const (
-	neonParserRULE_program  = 0
-	neonParserRULE_stat     = 1
-	neonParserRULE_if       = 2
-	neonParserRULE_elif     = 3
-	neonParserRULE_else     = 4
-	neonParserRULE_while    = 5
-	neonParserRULE_func     = 6
-	neonParserRULE_funccall = 7
-	neonParserRULE_funcarg  = 8
-	neonParserRULE_decl     = 9
-	neonParserRULE_assign   = 10
-	neonParserRULE_return   = 11
-	neonParserRULE_expr     = 12
-	neonParserRULE_type     = 13
-	neonParserRULE_arithop  = 14
-	neonParserRULE_compop   = 15
-	neonParserRULE_op       = 16
-	neonParserRULE_bool     = 17
+	NeonParserRULE_program  = 0
+	NeonParserRULE_stat     = 1
+	NeonParserRULE_if       = 2
+	NeonParserRULE_elif     = 3
+	NeonParserRULE_else     = 4
+	NeonParserRULE_while    = 5
+	NeonParserRULE_func     = 6
+	NeonParserRULE_funccall = 7
+	NeonParserRULE_funcarg  = 8
+	NeonParserRULE_decl     = 9
+	NeonParserRULE_assign   = 10
+	NeonParserRULE_return   = 11
+	NeonParserRULE_expr     = 12
+	NeonParserRULE_type     = 13
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -255,7 +236,7 @@ type ProgramContext struct {
 func NewEmptyProgramContext() *ProgramContext {
 	var p = new(ProgramContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_program
+	p.RuleIndex = NeonParserRULE_program
 	return p
 }
 
@@ -267,7 +248,7 @@ func NewProgramContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_program
+	p.RuleIndex = NeonParserRULE_program
 
 	return p
 }
@@ -275,7 +256,7 @@ func NewProgramContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 func (s *ProgramContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ProgramContext) EOF() antlr.TerminalNode {
-	return s.GetToken(neonParserEOF, 0)
+	return s.GetToken(NeonParserEOF, 0)
 }
 
 func (s *ProgramContext) AllStat() []IStatContext {
@@ -369,23 +350,23 @@ func (s *ProgramContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *ProgramContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterProgram(s)
 	}
 }
 
 func (s *ProgramContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitProgram(s)
 	}
 }
 
-func (p *neonParser) Program() (localctx IProgramContext) {
+func (p *NeonParser) Program() (localctx IProgramContext) {
 	this := p
 	_ = this
 
 	localctx = NewProgramContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 0, neonParserRULE_program)
+	p.EnterRule(localctx, 0, NeonParserRULE_program)
 	var _la int
 
 	defer func() {
@@ -405,24 +386,24 @@ func (p *neonParser) Program() (localctx IProgramContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(42)
+	p.SetState(34)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529294) != 0 {
-		p.SetState(38)
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21946368) != 0 {
+		p.SetState(30)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
-		case neonParserNUMTYPE, neonParserSTRTYPE, neonParserBOOLTYPE, neonParserRETURN, neonParserIF, neonParserWHILE, neonParserID:
+		case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE, NeonParserRETURN, NeonParserIF, NeonParserWHILE, NeonParserID:
 			{
-				p.SetState(36)
+				p.SetState(28)
 				p.Stat()
 			}
 
-		case neonParserDEF:
+		case NeonParserDEF:
 			{
-				p.SetState(37)
+				p.SetState(29)
 				p.Func_()
 			}
 
@@ -430,13 +411,13 @@ func (p *neonParser) Program() (localctx IProgramContext) {
 			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		}
 
-		p.SetState(44)
+		p.SetState(36)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(45)
-		p.Match(neonParserEOF)
+		p.SetState(37)
+		p.Match(NeonParserEOF)
 	}
 
 	return localctx
@@ -461,7 +442,7 @@ type StatContext struct {
 func NewEmptyStatContext() *StatContext {
 	var p = new(StatContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_stat
+	p.RuleIndex = NeonParserRULE_stat
 	return p
 }
 
@@ -473,16 +454,12 @@ func NewStatContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_stat
+	p.RuleIndex = NeonParserRULE_stat
 
 	return p
 }
 
 func (s *StatContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *StatContext) SEMI() antlr.TerminalNode {
-	return s.GetToken(neonParserSEMI, 0)
-}
 
 func (s *StatContext) Decl() IDeclContext {
 	var t antlr.RuleContext
@@ -589,23 +566,23 @@ func (s *StatContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *StatContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterStat(s)
 	}
 }
 
 func (s *StatContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitStat(s)
 	}
 }
 
-func (p *neonParser) Stat() (localctx IStatContext) {
+func (p *NeonParser) Stat() (localctx IStatContext) {
 	this := p
 	_ = this
 
 	localctx = NewStatContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 2, neonParserRULE_stat)
+	p.EnterRule(localctx, 2, NeonParserRULE_stat)
 
 	defer func() {
 		p.ExitRule()
@@ -623,60 +600,60 @@ func (p *neonParser) Stat() (localctx IStatContext) {
 		}
 	}()
 
-	p.SetState(59)
+	p.SetState(51)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case neonParserNUMTYPE, neonParserSTRTYPE, neonParserBOOLTYPE, neonParserRETURN, neonParserID:
+	case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE, NeonParserRETURN, NeonParserID:
 		p.EnterOuterAlt(localctx, 1)
-		p.SetState(51)
+		p.SetState(43)
 		p.GetErrorHandler().Sync(p)
 		switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext()) {
 		case 1:
 			{
-				p.SetState(47)
+				p.SetState(39)
 				p.Decl()
 			}
 
 		case 2:
 			{
-				p.SetState(48)
+				p.SetState(40)
 				p.Assign()
 			}
 
 		case 3:
 			{
-				p.SetState(49)
+				p.SetState(41)
 				p.Funccall()
 			}
 
 		case 4:
 			{
-				p.SetState(50)
+				p.SetState(42)
 				p.Return_()
 			}
 
 		}
 		{
-			p.SetState(53)
-			p.Match(neonParserSEMI)
+			p.SetState(45)
+			p.Match(NeonParserT__0)
 		}
 
-	case neonParserIF, neonParserWHILE:
+	case NeonParserIF, NeonParserWHILE:
 		p.EnterOuterAlt(localctx, 2)
-		p.SetState(57)
+		p.SetState(49)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
-		case neonParserIF:
+		case NeonParserIF:
 			{
-				p.SetState(55)
+				p.SetState(47)
 				p.If_()
 			}
 
-		case neonParserWHILE:
+		case NeonParserWHILE:
 			{
-				p.SetState(56)
+				p.SetState(48)
 				p.While()
 			}
 
@@ -710,7 +687,7 @@ type IfContext struct {
 func NewEmptyIfContext() *IfContext {
 	var p = new(IfContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_if
+	p.RuleIndex = NeonParserRULE_if
 	return p
 }
 
@@ -722,7 +699,7 @@ func NewIfContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingS
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_if
+	p.RuleIndex = NeonParserRULE_if
 
 	return p
 }
@@ -730,11 +707,7 @@ func NewIfContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingS
 func (s *IfContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IfContext) IF() antlr.TerminalNode {
-	return s.GetToken(neonParserIF, 0)
-}
-
-func (s *IfContext) Lb() antlr.TerminalNode {
-	return s.GetToken(neonParserLb, 0)
+	return s.GetToken(NeonParserIF, 0)
 }
 
 func (s *IfContext) Expr() IExprContext {
@@ -751,18 +724,6 @@ func (s *IfContext) Expr() IExprContext {
 	}
 
 	return t.(IExprContext)
-}
-
-func (s *IfContext) Rb() antlr.TerminalNode {
-	return s.GetToken(neonParserRb, 0)
-}
-
-func (s *IfContext) Lc() antlr.TerminalNode {
-	return s.GetToken(neonParserLc, 0)
-}
-
-func (s *IfContext) Rc() antlr.TerminalNode {
-	return s.GetToken(neonParserRc, 0)
 }
 
 func (s *IfContext) AllStat() []IStatContext {
@@ -872,23 +833,23 @@ func (s *IfContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) str
 }
 
 func (s *IfContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterIf(s)
 	}
 }
 
 func (s *IfContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitIf(s)
 	}
 }
 
-func (p *neonParser) If_() (localctx IIfContext) {
+func (p *NeonParser) If_() (localctx IIfContext) {
 	this := p
 	_ = this
 
 	localctx = NewIfContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 4, neonParserRULE_if)
+	p.EnterRule(localctx, 4, NeonParserRULE_if)
 	var _la int
 
 	defer func() {
@@ -909,64 +870,64 @@ func (p *neonParser) If_() (localctx IIfContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(61)
-		p.Match(neonParserIF)
+		p.SetState(53)
+		p.Match(NeonParserIF)
 	}
 	{
-		p.SetState(62)
-		p.Match(neonParserLb)
+		p.SetState(54)
+		p.Match(NeonParserT__1)
 	}
 	{
-		p.SetState(63)
+		p.SetState(55)
 		p.expr(0)
 	}
 	{
-		p.SetState(64)
-		p.Match(neonParserRb)
+		p.SetState(56)
+		p.Match(NeonParserT__2)
 	}
 	{
-		p.SetState(65)
-		p.Match(neonParserLc)
+		p.SetState(57)
+		p.Match(NeonParserT__3)
 	}
-	p.SetState(69)
+	p.SetState(61)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529166) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
 		{
-			p.SetState(66)
+			p.SetState(58)
 			p.Stat()
 		}
 
-		p.SetState(71)
+		p.SetState(63)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(72)
-		p.Match(neonParserRc)
+		p.SetState(64)
+		p.Match(NeonParserT__4)
 	}
-	p.SetState(76)
+	p.SetState(68)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for _la == neonParserELIF {
+	for _la == NeonParserELIF {
 		{
-			p.SetState(73)
+			p.SetState(65)
 			p.Elif()
 		}
 
-		p.SetState(78)
+		p.SetState(70)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(80)
+	p.SetState(72)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == neonParserELSE {
+	if _la == NeonParserELSE {
 		{
-			p.SetState(79)
+			p.SetState(71)
 			p.Else_()
 		}
 
@@ -994,7 +955,7 @@ type ElifContext struct {
 func NewEmptyElifContext() *ElifContext {
 	var p = new(ElifContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_elif
+	p.RuleIndex = NeonParserRULE_elif
 	return p
 }
 
@@ -1006,7 +967,7 @@ func NewElifContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_elif
+	p.RuleIndex = NeonParserRULE_elif
 
 	return p
 }
@@ -1014,11 +975,7 @@ func NewElifContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *ElifContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ElifContext) ELIF() antlr.TerminalNode {
-	return s.GetToken(neonParserELIF, 0)
-}
-
-func (s *ElifContext) Lb() antlr.TerminalNode {
-	return s.GetToken(neonParserLb, 0)
+	return s.GetToken(NeonParserELIF, 0)
 }
 
 func (s *ElifContext) Expr() IExprContext {
@@ -1035,18 +992,6 @@ func (s *ElifContext) Expr() IExprContext {
 	}
 
 	return t.(IExprContext)
-}
-
-func (s *ElifContext) Rb() antlr.TerminalNode {
-	return s.GetToken(neonParserRb, 0)
-}
-
-func (s *ElifContext) Lc() antlr.TerminalNode {
-	return s.GetToken(neonParserLc, 0)
-}
-
-func (s *ElifContext) Rc() antlr.TerminalNode {
-	return s.GetToken(neonParserRc, 0)
 }
 
 func (s *ElifContext) AllStat() []IStatContext {
@@ -1099,23 +1044,23 @@ func (s *ElifContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *ElifContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterElif(s)
 	}
 }
 
 func (s *ElifContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitElif(s)
 	}
 }
 
-func (p *neonParser) Elif() (localctx IElifContext) {
+func (p *NeonParser) Elif() (localctx IElifContext) {
 	this := p
 	_ = this
 
 	localctx = NewElifContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, neonParserRULE_elif)
+	p.EnterRule(localctx, 6, NeonParserRULE_elif)
 	var _la int
 
 	defer func() {
@@ -1136,42 +1081,42 @@ func (p *neonParser) Elif() (localctx IElifContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(82)
-		p.Match(neonParserELIF)
+		p.SetState(74)
+		p.Match(NeonParserELIF)
 	}
 	{
-		p.SetState(83)
-		p.Match(neonParserLb)
+		p.SetState(75)
+		p.Match(NeonParserT__1)
 	}
 	{
-		p.SetState(84)
+		p.SetState(76)
 		p.expr(0)
 	}
 	{
-		p.SetState(85)
-		p.Match(neonParserRb)
+		p.SetState(77)
+		p.Match(NeonParserT__2)
 	}
 	{
-		p.SetState(86)
-		p.Match(neonParserLc)
+		p.SetState(78)
+		p.Match(NeonParserT__3)
 	}
-	p.SetState(90)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529166) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
 		{
-			p.SetState(87)
+			p.SetState(79)
 			p.Stat()
 		}
 
-		p.SetState(92)
+		p.SetState(84)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(93)
-		p.Match(neonParserRc)
+		p.SetState(85)
+		p.Match(NeonParserT__4)
 	}
 
 	return localctx
@@ -1196,7 +1141,7 @@ type ElseContext struct {
 func NewEmptyElseContext() *ElseContext {
 	var p = new(ElseContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_else
+	p.RuleIndex = NeonParserRULE_else
 	return p
 }
 
@@ -1208,7 +1153,7 @@ func NewElseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_else
+	p.RuleIndex = NeonParserRULE_else
 
 	return p
 }
@@ -1216,15 +1161,7 @@ func NewElseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *ElseContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ElseContext) ELSE() antlr.TerminalNode {
-	return s.GetToken(neonParserELSE, 0)
-}
-
-func (s *ElseContext) Lc() antlr.TerminalNode {
-	return s.GetToken(neonParserLc, 0)
-}
-
-func (s *ElseContext) Rc() antlr.TerminalNode {
-	return s.GetToken(neonParserRc, 0)
+	return s.GetToken(NeonParserELSE, 0)
 }
 
 func (s *ElseContext) AllStat() []IStatContext {
@@ -1277,23 +1214,23 @@ func (s *ElseContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *ElseContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterElse(s)
 	}
 }
 
 func (s *ElseContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitElse(s)
 	}
 }
 
-func (p *neonParser) Else_() (localctx IElseContext) {
+func (p *NeonParser) Else_() (localctx IElseContext) {
 	this := p
 	_ = this
 
 	localctx = NewElseContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, neonParserRULE_else)
+	p.EnterRule(localctx, 8, NeonParserRULE_else)
 	var _la int
 
 	defer func() {
@@ -1314,30 +1251,30 @@ func (p *neonParser) Else_() (localctx IElseContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(95)
-		p.Match(neonParserELSE)
+		p.SetState(87)
+		p.Match(NeonParserELSE)
 	}
 	{
-		p.SetState(96)
-		p.Match(neonParserLc)
+		p.SetState(88)
+		p.Match(NeonParserT__3)
 	}
-	p.SetState(100)
+	p.SetState(92)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529166) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
 		{
-			p.SetState(97)
+			p.SetState(89)
 			p.Stat()
 		}
 
-		p.SetState(102)
+		p.SetState(94)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(103)
-		p.Match(neonParserRc)
+		p.SetState(95)
+		p.Match(NeonParserT__4)
 	}
 
 	return localctx
@@ -1362,7 +1299,7 @@ type WhileContext struct {
 func NewEmptyWhileContext() *WhileContext {
 	var p = new(WhileContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_while
+	p.RuleIndex = NeonParserRULE_while
 	return p
 }
 
@@ -1374,7 +1311,7 @@ func NewWhileContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_while
+	p.RuleIndex = NeonParserRULE_while
 
 	return p
 }
@@ -1382,11 +1319,7 @@ func NewWhileContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 func (s *WhileContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *WhileContext) WHILE() antlr.TerminalNode {
-	return s.GetToken(neonParserWHILE, 0)
-}
-
-func (s *WhileContext) Lb() antlr.TerminalNode {
-	return s.GetToken(neonParserLb, 0)
+	return s.GetToken(NeonParserWHILE, 0)
 }
 
 func (s *WhileContext) Expr() IExprContext {
@@ -1403,18 +1336,6 @@ func (s *WhileContext) Expr() IExprContext {
 	}
 
 	return t.(IExprContext)
-}
-
-func (s *WhileContext) Rb() antlr.TerminalNode {
-	return s.GetToken(neonParserRb, 0)
-}
-
-func (s *WhileContext) Lc() antlr.TerminalNode {
-	return s.GetToken(neonParserLc, 0)
-}
-
-func (s *WhileContext) Rc() antlr.TerminalNode {
-	return s.GetToken(neonParserRc, 0)
 }
 
 func (s *WhileContext) AllStat() []IStatContext {
@@ -1467,23 +1388,23 @@ func (s *WhileContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) 
 }
 
 func (s *WhileContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterWhile(s)
 	}
 }
 
 func (s *WhileContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitWhile(s)
 	}
 }
 
-func (p *neonParser) While() (localctx IWhileContext) {
+func (p *NeonParser) While() (localctx IWhileContext) {
 	this := p
 	_ = this
 
 	localctx = NewWhileContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, neonParserRULE_while)
+	p.EnterRule(localctx, 10, NeonParserRULE_while)
 	var _la int
 
 	defer func() {
@@ -1504,42 +1425,42 @@ func (p *neonParser) While() (localctx IWhileContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(105)
-		p.Match(neonParserWHILE)
+		p.SetState(97)
+		p.Match(NeonParserWHILE)
 	}
 	{
-		p.SetState(106)
-		p.Match(neonParserLb)
+		p.SetState(98)
+		p.Match(NeonParserT__1)
 	}
 	{
-		p.SetState(107)
+		p.SetState(99)
 		p.expr(0)
 	}
 	{
-		p.SetState(108)
-		p.Match(neonParserRb)
+		p.SetState(100)
+		p.Match(NeonParserT__2)
 	}
 	{
-		p.SetState(109)
-		p.Match(neonParserLc)
+		p.SetState(101)
+		p.Match(NeonParserT__3)
 	}
-	p.SetState(113)
+	p.SetState(105)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529166) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
 		{
-			p.SetState(110)
+			p.SetState(102)
 			p.Stat()
 		}
 
-		p.SetState(115)
+		p.SetState(107)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(116)
-		p.Match(neonParserRc)
+		p.SetState(108)
+		p.Match(NeonParserT__4)
 	}
 
 	return localctx
@@ -1564,7 +1485,7 @@ type FuncContext struct {
 func NewEmptyFuncContext() *FuncContext {
 	var p = new(FuncContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_func
+	p.RuleIndex = NeonParserRULE_func
 	return p
 }
 
@@ -1576,7 +1497,7 @@ func NewFuncContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_func
+	p.RuleIndex = NeonParserRULE_func
 
 	return p
 }
@@ -1584,19 +1505,11 @@ func NewFuncContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *FuncContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *FuncContext) DEF() antlr.TerminalNode {
-	return s.GetToken(neonParserDEF, 0)
+	return s.GetToken(NeonParserDEF, 0)
 }
 
 func (s *FuncContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
-}
-
-func (s *FuncContext) Lc() antlr.TerminalNode {
-	return s.GetToken(neonParserLc, 0)
-}
-
-func (s *FuncContext) Rc() antlr.TerminalNode {
-	return s.GetToken(neonParserRc, 0)
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *FuncContext) Type_() ITypeContext {
@@ -1616,15 +1529,7 @@ func (s *FuncContext) Type_() ITypeContext {
 }
 
 func (s *FuncContext) VOID() antlr.TerminalNode {
-	return s.GetToken(neonParserVOID, 0)
-}
-
-func (s *FuncContext) Lb() antlr.TerminalNode {
-	return s.GetToken(neonParserLb, 0)
-}
-
-func (s *FuncContext) Rb() antlr.TerminalNode {
-	return s.GetToken(neonParserRb, 0)
+	return s.GetToken(NeonParserVOID, 0)
 }
 
 func (s *FuncContext) AllStat() []IStatContext {
@@ -1709,14 +1614,6 @@ func (s *FuncContext) Funcarg(i int) IFuncargContext {
 	return t.(IFuncargContext)
 }
 
-func (s *FuncContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(neonParserCOMMA)
-}
-
-func (s *FuncContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(neonParserCOMMA, i)
-}
-
 func (s *FuncContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1726,23 +1623,23 @@ func (s *FuncContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *FuncContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterFunc(s)
 	}
 }
 
 func (s *FuncContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitFunc(s)
 	}
 }
 
-func (p *neonParser) Func_() (localctx IFuncContext) {
+func (p *NeonParser) Func_() (localctx IFuncContext) {
 	this := p
 	_ = this
 
 	localctx = NewFuncContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, neonParserRULE_func)
+	p.EnterRule(localctx, 12, NeonParserRULE_func)
 	var _la int
 
 	defer func() {
@@ -1763,97 +1660,97 @@ func (p *neonParser) Func_() (localctx IFuncContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(118)
-		p.Match(neonParserDEF)
+		p.SetState(110)
+		p.Match(NeonParserDEF)
 	}
-	p.SetState(121)
+	p.SetState(113)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case neonParserNUMTYPE, neonParserSTRTYPE, neonParserBOOLTYPE:
+	case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE:
 		{
-			p.SetState(119)
+			p.SetState(111)
 			p.Type_()
 		}
 
-	case neonParserVOID:
+	case NeonParserVOID:
 		{
-			p.SetState(120)
-			p.Match(neonParserVOID)
+			p.SetState(112)
+			p.Match(NeonParserVOID)
 		}
 
 	default:
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(123)
-		p.Match(neonParserID)
+		p.SetState(115)
+		p.Match(NeonParserID)
 	}
-	p.SetState(136)
+	p.SetState(128)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == neonParserLb {
+	if _la == NeonParserT__1 {
 		{
-			p.SetState(124)
-			p.Match(neonParserLb)
+			p.SetState(116)
+			p.Match(NeonParserT__1)
 		}
-		p.SetState(133)
+		p.SetState(125)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&14) != 0 {
+		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&57344) != 0 {
 			{
-				p.SetState(125)
+				p.SetState(117)
 				p.Funcarg()
 			}
-			p.SetState(130)
+			p.SetState(122)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 
-			for _la == neonParserCOMMA {
+			for _la == NeonParserT__5 {
 				{
-					p.SetState(126)
-					p.Match(neonParserCOMMA)
+					p.SetState(118)
+					p.Match(NeonParserT__5)
 				}
 				{
-					p.SetState(127)
+					p.SetState(119)
 					p.Funcarg()
 				}
 
-				p.SetState(132)
+				p.SetState(124)
 				p.GetErrorHandler().Sync(p)
 				_la = p.GetTokenStream().LA(1)
 			}
 
 		}
 		{
-			p.SetState(135)
-			p.Match(neonParserRb)
+			p.SetState(127)
+			p.Match(NeonParserT__2)
 		}
 
 	}
 	{
-		p.SetState(138)
-		p.Match(neonParserLc)
+		p.SetState(130)
+		p.Match(NeonParserT__3)
 	}
-	p.SetState(142)
+	p.SetState(134)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&529166) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
 		{
-			p.SetState(139)
+			p.SetState(131)
 			p.Stat()
 		}
 
-		p.SetState(144)
+		p.SetState(136)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(145)
-		p.Match(neonParserRc)
+		p.SetState(137)
+		p.Match(NeonParserT__4)
 	}
 
 	return localctx
@@ -1878,7 +1775,7 @@ type FunccallContext struct {
 func NewEmptyFunccallContext() *FunccallContext {
 	var p = new(FunccallContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_funccall
+	p.RuleIndex = NeonParserRULE_funccall
 	return p
 }
 
@@ -1890,7 +1787,7 @@ func NewFunccallContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_funccall
+	p.RuleIndex = NeonParserRULE_funccall
 
 	return p
 }
@@ -1898,15 +1795,7 @@ func NewFunccallContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 func (s *FunccallContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *FunccallContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
-}
-
-func (s *FunccallContext) Lb() antlr.TerminalNode {
-	return s.GetToken(neonParserLb, 0)
-}
-
-func (s *FunccallContext) Rb() antlr.TerminalNode {
-	return s.GetToken(neonParserRb, 0)
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *FunccallContext) AllExpr() []IExprContext {
@@ -1950,14 +1839,6 @@ func (s *FunccallContext) Expr(i int) IExprContext {
 	return t.(IExprContext)
 }
 
-func (s *FunccallContext) AllCOMMA() []antlr.TerminalNode {
-	return s.GetTokens(neonParserCOMMA)
-}
-
-func (s *FunccallContext) COMMA(i int) antlr.TerminalNode {
-	return s.GetToken(neonParserCOMMA, i)
-}
-
 func (s *FunccallContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1967,23 +1848,23 @@ func (s *FunccallContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 }
 
 func (s *FunccallContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterFunccall(s)
 	}
 }
 
 func (s *FunccallContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitFunccall(s)
 	}
 }
 
-func (p *neonParser) Funccall() (localctx IFunccallContext) {
+func (p *NeonParser) Funccall() (localctx IFunccallContext) {
 	this := p
 	_ = this
 
 	localctx = NewFunccallContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, neonParserRULE_funccall)
+	p.EnterRule(localctx, 14, NeonParserRULE_funccall)
 	var _la int
 
 	defer func() {
@@ -2004,45 +1885,45 @@ func (p *neonParser) Funccall() (localctx IFunccallContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(147)
-		p.Match(neonParserID)
+		p.SetState(139)
+		p.Match(NeonParserID)
 	}
 	{
-		p.SetState(148)
-		p.Match(neonParserLb)
+		p.SetState(140)
+		p.Match(NeonParserT__1)
 	}
-	p.SetState(157)
+	p.SetState(149)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&12886736896) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&58724612) != 0 {
 		{
-			p.SetState(149)
+			p.SetState(141)
 			p.expr(0)
 		}
-		p.SetState(154)
+		p.SetState(146)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == neonParserCOMMA {
+		for _la == NeonParserT__5 {
 			{
-				p.SetState(150)
-				p.Match(neonParserCOMMA)
+				p.SetState(142)
+				p.Match(NeonParserT__5)
 			}
 			{
-				p.SetState(151)
+				p.SetState(143)
 				p.expr(0)
 			}
 
-			p.SetState(156)
+			p.SetState(148)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
 
 	}
 	{
-		p.SetState(159)
-		p.Match(neonParserRb)
+		p.SetState(151)
+		p.Match(NeonParserT__2)
 	}
 
 	return localctx
@@ -2067,7 +1948,7 @@ type FuncargContext struct {
 func NewEmptyFuncargContext() *FuncargContext {
 	var p = new(FuncargContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_funcarg
+	p.RuleIndex = NeonParserRULE_funcarg
 	return p
 }
 
@@ -2079,7 +1960,7 @@ func NewFuncargContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_funcarg
+	p.RuleIndex = NeonParserRULE_funcarg
 
 	return p
 }
@@ -2103,7 +1984,7 @@ func (s *FuncargContext) Type_() ITypeContext {
 }
 
 func (s *FuncargContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *FuncargContext) GetRuleContext() antlr.RuleContext {
@@ -2115,23 +1996,23 @@ func (s *FuncargContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 }
 
 func (s *FuncargContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterFuncarg(s)
 	}
 }
 
 func (s *FuncargContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitFuncarg(s)
 	}
 }
 
-func (p *neonParser) Funcarg() (localctx IFuncargContext) {
+func (p *NeonParser) Funcarg() (localctx IFuncargContext) {
 	this := p
 	_ = this
 
 	localctx = NewFuncargContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, neonParserRULE_funcarg)
+	p.EnterRule(localctx, 16, NeonParserRULE_funcarg)
 
 	defer func() {
 		p.ExitRule()
@@ -2151,12 +2032,12 @@ func (p *neonParser) Funcarg() (localctx IFuncargContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(161)
+		p.SetState(153)
 		p.Type_()
 	}
 	{
-		p.SetState(162)
-		p.Match(neonParserID)
+		p.SetState(154)
+		p.Match(NeonParserID)
 	}
 
 	return localctx
@@ -2181,7 +2062,7 @@ type DeclContext struct {
 func NewEmptyDeclContext() *DeclContext {
 	var p = new(DeclContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_decl
+	p.RuleIndex = NeonParserRULE_decl
 	return p
 }
 
@@ -2193,7 +2074,7 @@ func NewDeclContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_decl
+	p.RuleIndex = NeonParserRULE_decl
 
 	return p
 }
@@ -2216,18 +2097,10 @@ func (s *DeclContext) Type_() ITypeContext {
 	return t.(ITypeContext)
 }
 
-func (s *DeclContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
-}
-
-func (s *DeclContext) EQUAL() antlr.TerminalNode {
-	return s.GetToken(neonParserEQUAL, 0)
-}
-
-func (s *DeclContext) Expr() IExprContext {
+func (s *DeclContext) Assign() IAssignContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IExprContext); ok {
+		if _, ok := ctx.(IAssignContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -2237,7 +2110,7 @@ func (s *DeclContext) Expr() IExprContext {
 		return nil
 	}
 
-	return t.(IExprContext)
+	return t.(IAssignContext)
 }
 
 func (s *DeclContext) GetRuleContext() antlr.RuleContext {
@@ -2249,23 +2122,23 @@ func (s *DeclContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *DeclContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterDecl(s)
 	}
 }
 
 func (s *DeclContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitDecl(s)
 	}
 }
 
-func (p *neonParser) Decl() (localctx IDeclContext) {
+func (p *NeonParser) Decl() (localctx IDeclContext) {
 	this := p
 	_ = this
 
 	localctx = NewDeclContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, neonParserRULE_decl)
+	p.EnterRule(localctx, 18, NeonParserRULE_decl)
 
 	defer func() {
 		p.ExitRule()
@@ -2285,20 +2158,12 @@ func (p *neonParser) Decl() (localctx IDeclContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(164)
+		p.SetState(156)
 		p.Type_()
 	}
 	{
-		p.SetState(165)
-		p.Match(neonParserID)
-	}
-	{
-		p.SetState(166)
-		p.Match(neonParserEQUAL)
-	}
-	{
-		p.SetState(167)
-		p.expr(0)
+		p.SetState(157)
+		p.Assign()
 	}
 
 	return localctx
@@ -2323,7 +2188,7 @@ type AssignContext struct {
 func NewEmptyAssignContext() *AssignContext {
 	var p = new(AssignContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_assign
+	p.RuleIndex = NeonParserRULE_assign
 	return p
 }
 
@@ -2335,7 +2200,7 @@ func NewAssignContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_assign
+	p.RuleIndex = NeonParserRULE_assign
 
 	return p
 }
@@ -2343,11 +2208,7 @@ func NewAssignContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 func (s *AssignContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *AssignContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
-}
-
-func (s *AssignContext) EQUAL() antlr.TerminalNode {
-	return s.GetToken(neonParserEQUAL, 0)
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *AssignContext) Expr() IExprContext {
@@ -2375,23 +2236,23 @@ func (s *AssignContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *AssignContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterAssign(s)
 	}
 }
 
 func (s *AssignContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitAssign(s)
 	}
 }
 
-func (p *neonParser) Assign() (localctx IAssignContext) {
+func (p *NeonParser) Assign() (localctx IAssignContext) {
 	this := p
 	_ = this
 
 	localctx = NewAssignContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, neonParserRULE_assign)
+	p.EnterRule(localctx, 20, NeonParserRULE_assign)
 
 	defer func() {
 		p.ExitRule()
@@ -2411,15 +2272,15 @@ func (p *neonParser) Assign() (localctx IAssignContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(169)
-		p.Match(neonParserID)
+		p.SetState(159)
+		p.Match(NeonParserID)
 	}
 	{
-		p.SetState(170)
-		p.Match(neonParserEQUAL)
+		p.SetState(160)
+		p.Match(NeonParserT__6)
 	}
 	{
-		p.SetState(171)
+		p.SetState(161)
 		p.expr(0)
 	}
 
@@ -2445,7 +2306,7 @@ type ReturnContext struct {
 func NewEmptyReturnContext() *ReturnContext {
 	var p = new(ReturnContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_return
+	p.RuleIndex = NeonParserRULE_return
 	return p
 }
 
@@ -2457,7 +2318,7 @@ func NewReturnContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_return
+	p.RuleIndex = NeonParserRULE_return
 
 	return p
 }
@@ -2465,7 +2326,7 @@ func NewReturnContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 func (s *ReturnContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ReturnContext) RETURN() antlr.TerminalNode {
-	return s.GetToken(neonParserRETURN, 0)
+	return s.GetToken(NeonParserRETURN, 0)
 }
 
 func (s *ReturnContext) Expr() IExprContext {
@@ -2493,23 +2354,23 @@ func (s *ReturnContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 }
 
 func (s *ReturnContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterReturn(s)
 	}
 }
 
 func (s *ReturnContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitReturn(s)
 	}
 }
 
-func (p *neonParser) Return_() (localctx IReturnContext) {
+func (p *NeonParser) Return_() (localctx IReturnContext) {
 	this := p
 	_ = this
 
 	localctx = NewReturnContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, neonParserRULE_return)
+	p.EnterRule(localctx, 22, NeonParserRULE_return)
 
 	defer func() {
 		p.ExitRule()
@@ -2529,11 +2390,11 @@ func (p *neonParser) Return_() (localctx IReturnContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(173)
-		p.Match(neonParserRETURN)
+		p.SetState(163)
+		p.Match(NeonParserRETURN)
 	}
 	{
-		p.SetState(174)
+		p.SetState(164)
 		p.expr(0)
 	}
 
@@ -2559,7 +2420,7 @@ type ExprContext struct {
 func NewEmptyExprContext() *ExprContext {
 	var p = new(ExprContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_expr
+	p.RuleIndex = NeonParserRULE_expr
 	return p
 }
 
@@ -2571,18 +2432,163 @@ func NewExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_expr
+	p.RuleIndex = NeonParserRULE_expr
 
 	return p
 }
 
 func (s *ExprContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ExprContext) BANG() antlr.TerminalNode {
-	return s.GetToken(neonParserBANG, 0)
+func (s *ExprContext) CopyFrom(ctx *ExprContext) {
+	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
 }
 
-func (s *ExprContext) AllExpr() []IExprContext {
+func (s *ExprContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ExprContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type FuncCallContext struct {
+	*ExprContext
+}
+
+func NewFuncCallContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *FuncCallContext {
+	var p = new(FuncCallContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *FuncCallContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *FuncCallContext) Funccall() IFunccallContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFunccallContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IFunccallContext)
+}
+
+func (s *FuncCallContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterFuncCall(s)
+	}
+}
+
+func (s *FuncCallContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitFuncCall(s)
+	}
+}
+
+type IdentifierContext struct {
+	*ExprContext
+}
+
+func NewIdentifierContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IdentifierContext {
+	var p = new(IdentifierContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *IdentifierContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *IdentifierContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
+}
+
+func (s *IdentifierContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterIdentifier(s)
+	}
+}
+
+func (s *IdentifierContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitIdentifier(s)
+	}
+}
+
+type BoolContext struct {
+	*ExprContext
+}
+
+func NewBoolContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolContext {
+	var p = new(BoolContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *BoolContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BoolContext) BOOL() antlr.TerminalNode {
+	return s.GetToken(NeonParserBOOL, 0)
+}
+
+func (s *BoolContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterBool(s)
+	}
+}
+
+func (s *BoolContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitBool(s)
+	}
+}
+
+type AddSubContext struct {
+	*ExprContext
+	op antlr.Token
+}
+
+func NewAddSubContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AddSubContext {
+	var p = new(AddSubContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *AddSubContext) GetOp() antlr.Token { return s.op }
+
+func (s *AddSubContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *AddSubContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *AddSubContext) AllExpr() []IExprContext {
 	children := s.GetChildren()
 	len := 0
 	for _, ctx := range children {
@@ -2603,7 +2609,7 @@ func (s *ExprContext) AllExpr() []IExprContext {
 	return tst
 }
 
-func (s *ExprContext) Expr(i int) IExprContext {
+func (s *AddSubContext) Expr(i int) IExprContext {
 	var t antlr.RuleContext
 	j := 0
 	for _, ctx := range s.GetChildren() {
@@ -2623,79 +2629,347 @@ func (s *ExprContext) Expr(i int) IExprContext {
 	return t.(IExprContext)
 }
 
-func (s *ExprContext) Funccall() IFunccallContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IFunccallContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
+func (s *AddSubContext) ADD_SUB() antlr.TerminalNode {
+	return s.GetToken(NeonParserADD_SUB, 0)
+}
+
+func (s *AddSubContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterAddSub(s)
 	}
+}
 
-	if t == nil {
-		return nil
+func (s *AddSubContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitAddSub(s)
 	}
-
-	return t.(IFunccallContext)
 }
 
-func (s *ExprContext) INT() antlr.TerminalNode {
-	return s.GetToken(neonParserINT, 0)
+type ComparisonContext struct {
+	*ExprContext
+	op antlr.Token
 }
 
-func (s *ExprContext) BOOL() antlr.TerminalNode {
-	return s.GetToken(neonParserBOOL, 0)
+func NewComparisonContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ComparisonContext {
+	var p = new(ComparisonContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
 }
 
-func (s *ExprContext) STRING() antlr.TerminalNode {
-	return s.GetToken(neonParserSTRING, 0)
-}
+func (s *ComparisonContext) GetOp() antlr.Token { return s.op }
 
-func (s *ExprContext) ID() antlr.TerminalNode {
-	return s.GetToken(neonParserID, 0)
-}
+func (s *ComparisonContext) SetOp(v antlr.Token) { s.op = v }
 
-func (s *ExprContext) Op() IOpContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IOpContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IOpContext)
-}
-
-func (s *ExprContext) GetRuleContext() antlr.RuleContext {
+func (s *ComparisonContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *ExprContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+func (s *ComparisonContext) AllExpr() []IExprContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IExprContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IExprContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IExprContext); ok {
+			tst[i] = t.(IExprContext)
+			i++
+		}
+	}
+
+	return tst
 }
 
-func (s *ExprContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.EnterExpr(s)
+func (s *ComparisonContext) Expr(i int) IExprContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExprContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExprContext)
+}
+
+func (s *ComparisonContext) COMP() antlr.TerminalNode {
+	return s.GetToken(NeonParserCOMP, 0)
+}
+
+func (s *ComparisonContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterComparison(s)
 	}
 }
 
-func (s *ExprContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.ExitExpr(s)
+func (s *ComparisonContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitComparison(s)
 	}
 }
 
-func (p *neonParser) Expr() (localctx IExprContext) {
+type MDMContext struct {
+	*ExprContext
+	op antlr.Token
+}
+
+func NewMDMContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *MDMContext {
+	var p = new(MDMContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *MDMContext) GetOp() antlr.Token { return s.op }
+
+func (s *MDMContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *MDMContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *MDMContext) AllExpr() []IExprContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IExprContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IExprContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IExprContext); ok {
+			tst[i] = t.(IExprContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *MDMContext) Expr(i int) IExprContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExprContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExprContext)
+}
+
+func (s *MDMContext) MDM() antlr.TerminalNode {
+	return s.GetToken(NeonParserMDM, 0)
+}
+
+func (s *MDMContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterMDM(s)
+	}
+}
+
+func (s *MDMContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitMDM(s)
+	}
+}
+
+type NotExprContext struct {
+	*ExprContext
+}
+
+func NewNotExprContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NotExprContext {
+	var p = new(NotExprContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *NotExprContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NotExprContext) Expr() IExprContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExprContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExprContext)
+}
+
+func (s *NotExprContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterNotExpr(s)
+	}
+}
+
+func (s *NotExprContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitNotExpr(s)
+	}
+}
+
+type StringContext struct {
+	*ExprContext
+}
+
+func NewStringContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StringContext {
+	var p = new(StringContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *StringContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *StringContext) STRING() antlr.TerminalNode {
+	return s.GetToken(NeonParserSTRING, 0)
+}
+
+func (s *StringContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterString(s)
+	}
+}
+
+func (s *StringContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitString(s)
+	}
+}
+
+type NoClueContext struct {
+	*ExprContext
+}
+
+func NewNoClueContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NoClueContext {
+	var p = new(NoClueContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *NoClueContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NoClueContext) Expr() IExprContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExprContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExprContext)
+}
+
+func (s *NoClueContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterNoClue(s)
+	}
+}
+
+func (s *NoClueContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitNoClue(s)
+	}
+}
+
+type IntContext struct {
+	*ExprContext
+}
+
+func NewIntContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IntContext {
+	var p = new(IntContext)
+
+	p.ExprContext = NewEmptyExprContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*ExprContext))
+
+	return p
+}
+
+func (s *IntContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *IntContext) INT() antlr.TerminalNode {
+	return s.GetToken(NeonParserINT, 0)
+}
+
+func (s *IntContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterInt(s)
+	}
+}
+
+func (s *IntContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitInt(s)
+	}
+}
+
+func (p *NeonParser) Expr() (localctx IExprContext) {
 	return p.expr(0)
 }
 
-func (p *neonParser) expr(_p int) (localctx IExprContext) {
+func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 	this := p
 	_ = this
 
@@ -2705,7 +2979,7 @@ func (p *neonParser) expr(_p int) (localctx IExprContext) {
 	var _prevctx IExprContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
 	_startState := 24
-	p.EnterRecursionRule(localctx, 24, neonParserRULE_expr, _p)
+	p.EnterRecursionRule(localctx, 24, NeonParserRULE_expr, _p)
 
 	defer func() {
 		p.UnrollRecursionContexts(_parentctx)
@@ -2726,54 +3000,90 @@ func (p *neonParser) expr(_p int) (localctx IExprContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(184)
+	p.SetState(178)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
 	case 1:
+		localctx = NewNotExprContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+
 		{
-			p.SetState(177)
-			p.Match(neonParserBANG)
+			p.SetState(167)
+			p.Match(NeonParserT__7)
 		}
 		{
-			p.SetState(178)
-			p.expr(6)
+			p.SetState(168)
+			p.expr(7)
 		}
 
 	case 2:
+		localctx = NewFuncCallContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
-			p.SetState(179)
+			p.SetState(169)
 			p.Funccall()
 		}
 
 	case 3:
+		localctx = NewIntContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
-			p.SetState(180)
-			p.Match(neonParserINT)
+			p.SetState(170)
+			p.Match(NeonParserINT)
 		}
 
 	case 4:
+		localctx = NewBoolContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
-			p.SetState(181)
-			p.Match(neonParserBOOL)
+			p.SetState(171)
+			p.Match(NeonParserBOOL)
 		}
 
 	case 5:
+		localctx = NewStringContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
-			p.SetState(182)
-			p.Match(neonParserSTRING)
+			p.SetState(172)
+			p.Match(NeonParserSTRING)
 		}
 
 	case 6:
+		localctx = NewIdentifierContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
 		{
-			p.SetState(183)
-			p.Match(neonParserID)
+			p.SetState(173)
+			p.Match(NeonParserID)
+		}
+
+	case 7:
+		localctx = NewNoClueContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(174)
+			p.Match(NeonParserT__1)
+		}
+		{
+			p.SetState(175)
+			p.expr(0)
+		}
+		{
+			p.SetState(176)
+			p.Match(NeonParserT__2)
 		}
 
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(192)
+	p.SetState(191)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
@@ -2781,26 +3091,75 @@ func (p *neonParser) expr(_p int) (localctx IExprContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			localctx = NewExprContext(p, _parentctx, _parentState)
-			p.PushNewRecursionContext(localctx, _startState, neonParserRULE_expr)
-			p.SetState(186)
+			p.SetState(189)
+			p.GetErrorHandler().Sync(p)
+			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext()) {
+			case 1:
+				localctx = NewMDMContext(p, NewExprContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
+				p.SetState(180)
 
-			if !(p.Precpred(p.GetParserRuleContext(), 7)) {
-				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
-			}
-			{
-				p.SetState(187)
-				p.Op()
-			}
-			{
-				p.SetState(188)
-				p.expr(8)
+				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
+				}
+				{
+					p.SetState(181)
+
+					var _m = p.Match(NeonParserMDM)
+
+					localctx.(*MDMContext).op = _m
+				}
+				{
+					p.SetState(182)
+					p.expr(11)
+				}
+
+			case 2:
+				localctx = NewAddSubContext(p, NewExprContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
+				p.SetState(183)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
+				}
+				{
+					p.SetState(184)
+
+					var _m = p.Match(NeonParserADD_SUB)
+
+					localctx.(*AddSubContext).op = _m
+				}
+				{
+					p.SetState(185)
+					p.expr(10)
+				}
+
+			case 3:
+				localctx = NewComparisonContext(p, NewExprContext(p, _parentctx, _parentState))
+				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
+				p.SetState(186)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
+					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
+				}
+				{
+					p.SetState(187)
+
+					var _m = p.Match(NeonParserCOMP)
+
+					localctx.(*ComparisonContext).op = _m
+				}
+				{
+					p.SetState(188)
+					p.expr(9)
+				}
+
 			}
 
 		}
-		p.SetState(194)
+		p.SetState(193)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -2825,7 +3184,7 @@ type TypeContext struct {
 func NewEmptyTypeContext() *TypeContext {
 	var p = new(TypeContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_type
+	p.RuleIndex = NeonParserRULE_type
 	return p
 }
 
@@ -2837,7 +3196,7 @@ func NewTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = neonParserRULE_type
+	p.RuleIndex = NeonParserRULE_type
 
 	return p
 }
@@ -2845,15 +3204,15 @@ func NewTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *TypeContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *TypeContext) NUMTYPE() antlr.TerminalNode {
-	return s.GetToken(neonParserNUMTYPE, 0)
+	return s.GetToken(NeonParserNUMTYPE, 0)
 }
 
 func (s *TypeContext) STRTYPE() antlr.TerminalNode {
-	return s.GetToken(neonParserSTRTYPE, 0)
+	return s.GetToken(NeonParserSTRTYPE, 0)
 }
 
 func (s *TypeContext) BOOLTYPE() antlr.TerminalNode {
-	return s.GetToken(neonParserBOOLTYPE, 0)
+	return s.GetToken(NeonParserBOOLTYPE, 0)
 }
 
 func (s *TypeContext) GetRuleContext() antlr.RuleContext {
@@ -2865,23 +3224,23 @@ func (s *TypeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 }
 
 func (s *TypeContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.EnterType(s)
 	}
 }
 
 func (s *TypeContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
+	if listenerT, ok := listener.(NeonListener); ok {
 		listenerT.ExitType(s)
 	}
 }
 
-func (p *neonParser) Type_() (localctx ITypeContext) {
+func (p *NeonParser) Type_() (localctx ITypeContext) {
 	this := p
 	_ = this
 
 	localctx = NewTypeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, neonParserRULE_type)
+	p.EnterRule(localctx, 26, NeonParserRULE_type)
 	var _la int
 
 	defer func() {
@@ -2902,10 +3261,10 @@ func (p *neonParser) Type_() (localctx ITypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(195)
+		p.SetState(194)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&14) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&57344) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -2916,475 +3275,7 @@ func (p *neonParser) Type_() (localctx ITypeContext) {
 	return localctx
 }
 
-// IArithopContext is an interface to support dynamic dispatch.
-type IArithopContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// IsArithopContext differentiates from other interfaces.
-	IsArithopContext()
-}
-
-type ArithopContext struct {
-	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyArithopContext() *ArithopContext {
-	var p = new(ArithopContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_arithop
-	return p
-}
-
-func (*ArithopContext) IsArithopContext() {}
-
-func NewArithopContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ArithopContext {
-	var p = new(ArithopContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = neonParserRULE_arithop
-
-	return p
-}
-
-func (s *ArithopContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *ArithopContext) ADD_SUB() antlr.TerminalNode {
-	return s.GetToken(neonParserADD_SUB, 0)
-}
-
-func (s *ArithopContext) MDM() antlr.TerminalNode {
-	return s.GetToken(neonParserMDM, 0)
-}
-
-func (s *ArithopContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ArithopContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *ArithopContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.EnterArithop(s)
-	}
-}
-
-func (s *ArithopContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.ExitArithop(s)
-	}
-}
-
-func (p *neonParser) Arithop() (localctx IArithopContext) {
-	this := p
-	_ = this
-
-	localctx = NewArithopContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, neonParserRULE_arithop)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(197)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == neonParserADD_SUB || _la == neonParserMDM) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
-}
-
-// ICompopContext is an interface to support dynamic dispatch.
-type ICompopContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// IsCompopContext differentiates from other interfaces.
-	IsCompopContext()
-}
-
-type CompopContext struct {
-	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyCompopContext() *CompopContext {
-	var p = new(CompopContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_compop
-	return p
-}
-
-func (*CompopContext) IsCompopContext() {}
-
-func NewCompopContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CompopContext {
-	var p = new(CompopContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = neonParserRULE_compop
-
-	return p
-}
-
-func (s *CompopContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *CompopContext) EQUALITY() antlr.TerminalNode {
-	return s.GetToken(neonParserEQUALITY, 0)
-}
-
-func (s *CompopContext) LESS() antlr.TerminalNode {
-	return s.GetToken(neonParserLESS, 0)
-}
-
-func (s *CompopContext) GREATER() antlr.TerminalNode {
-	return s.GetToken(neonParserGREATER, 0)
-}
-
-func (s *CompopContext) LESSEQ() antlr.TerminalNode {
-	return s.GetToken(neonParserLESSEQ, 0)
-}
-
-func (s *CompopContext) GREATEREQ() antlr.TerminalNode {
-	return s.GetToken(neonParserGREATEREQ, 0)
-}
-
-func (s *CompopContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *CompopContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *CompopContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.EnterCompop(s)
-	}
-}
-
-func (s *CompopContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.ExitCompop(s)
-	}
-}
-
-func (p *neonParser) Compop() (localctx ICompopContext) {
-	this := p
-	_ = this
-
-	localctx = NewCompopContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, neonParserRULE_compop)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(199)
-		_la = p.GetTokenStream().LA(1)
-
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&3221430272) != 0) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
-}
-
-// IOpContext is an interface to support dynamic dispatch.
-type IOpContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// IsOpContext differentiates from other interfaces.
-	IsOpContext()
-}
-
-type OpContext struct {
-	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyOpContext() *OpContext {
-	var p = new(OpContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_op
-	return p
-}
-
-func (*OpContext) IsOpContext() {}
-
-func NewOpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *OpContext {
-	var p = new(OpContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = neonParserRULE_op
-
-	return p
-}
-
-func (s *OpContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *OpContext) Arithop() IArithopContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IArithopContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IArithopContext)
-}
-
-func (s *OpContext) Compop() ICompopContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ICompopContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ICompopContext)
-}
-
-func (s *OpContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *OpContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *OpContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.EnterOp(s)
-	}
-}
-
-func (s *OpContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.ExitOp(s)
-	}
-}
-
-func (p *neonParser) Op() (localctx IOpContext) {
-	this := p
-	_ = this
-
-	localctx = NewOpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, neonParserRULE_op)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(203)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case neonParserADD_SUB, neonParserMDM:
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(201)
-			p.Arithop()
-		}
-
-	case neonParserEQUALITY, neonParserLESSEQ, neonParserGREATEREQ, neonParserLESS, neonParserGREATER:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(202)
-			p.Compop()
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
-}
-
-// IBoolContext is an interface to support dynamic dispatch.
-type IBoolContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// IsBoolContext differentiates from other interfaces.
-	IsBoolContext()
-}
-
-type BoolContext struct {
-	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyBoolContext() *BoolContext {
-	var p = new(BoolContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = neonParserRULE_bool
-	return p
-}
-
-func (*BoolContext) IsBoolContext() {}
-
-func NewBoolContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BoolContext {
-	var p = new(BoolContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = neonParserRULE_bool
-
-	return p
-}
-
-func (s *BoolContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *BoolContext) TRUE() antlr.TerminalNode {
-	return s.GetToken(neonParserTRUE, 0)
-}
-
-func (s *BoolContext) FALSE() antlr.TerminalNode {
-	return s.GetToken(neonParserFALSE, 0)
-}
-
-func (s *BoolContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *BoolContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *BoolContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.EnterBool(s)
-	}
-}
-
-func (s *BoolContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(neonListener); ok {
-		listenerT.ExitBool(s)
-	}
-}
-
-func (p *neonParser) Bool_() (localctx IBoolContext) {
-	this := p
-	_ = this
-
-	localctx = NewBoolContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, neonParserRULE_bool)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(205)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == neonParserTRUE || _la == neonParserFALSE) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
-}
-
-func (p *neonParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
+func (p *NeonParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
 	switch ruleIndex {
 	case 12:
 		var t *ExprContext = nil
@@ -3398,13 +3289,19 @@ func (p *neonParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex in
 	}
 }
 
-func (p *neonParser) Expr_Sempred(localctx antlr.RuleContext, predIndex int) bool {
+func (p *NeonParser) Expr_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	this := p
 	_ = this
 
 	switch predIndex {
 	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 7)
+		return p.Precpred(p.GetParserRuleContext(), 10)
+
+	case 1:
+		return p.Precpred(p.GetParserRuleContext(), 9)
+
+	case 2:
+		return p.Precpred(p.GetParserRuleContext(), 8)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/narutopig/neon-lang/lang/lexer"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/narutopig/neon-lang/parser"
 )
 
 func main() {
@@ -25,15 +25,9 @@ func main() {
 
 	content := string(c)
 
-	l := lexer.New(content)
-	tokens, ne := l.Tokenize()
-
-	if !ne.IsNull() {
-		fmt.Println(ne)
-	} else {
-		fmt.Println(len(tokens))
-		for _, t := range tokens {
-			fmt.Println(t)
-		}
-	}
+	is := antlr.NewInputStream(content)
+	lexer := parser.NewNeonLexer(is)
+	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+	p := parser.NewNeonParser(stream) // Create the Parser
+	p.Program()
 }
