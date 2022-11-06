@@ -1,8 +1,10 @@
 package listener
 
 import (
+	"fmt"
 	"strconv"
 
+	"github.com/narutopig/neon-lang/listener/operations"
 	"github.com/narutopig/neon-lang/parser"
 	"github.com/narutopig/neon-lang/util"
 	"github.com/narutopig/neon-lang/value"
@@ -24,14 +26,15 @@ func (l *Interpreter) push(val value.Value) {
 }
 
 func (l *Interpreter) pop() value.Value {
-	length := len(l.stack)
-	if length < 1 {
-		panic("empty stack")
+	if len(l.stack) < 1 {
+		panic("stack is empty unable to pop")
 	}
 
-	result := l.stack[length-1]
+	// Get the last value from the stack.
+	result := l.stack[len(l.stack)-1]
 
-	l.stack = l.stack[:length-1]
+	// Remove the last element from the stack.
+	l.stack = l.stack[:len(l.stack)-1]
 
 	return result
 }
@@ -115,16 +118,42 @@ func (l *Interpreter) EnterFuncCall(ctx *parser.FuncCallContext) {}
 func (l *Interpreter) ExitFuncCall(ctx *parser.FuncCallContext) {}
 
 // ExitAddSub is called when production AddSub is exited.
-func (l *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {}
+func (l *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {
+	right, left := l.pop(), l.pop()
+
+	switch ctx.GetOp().GetText() {
+	case "+":
+		l.push(operations.Add(left, right))
+	case "-":
+		l.push(operations.Subtract(left, right))
+	}
+}
 
 // ExitComparison is called when production Comparison is exited.
-func (l *Interpreter) ExitComparison(ctx *parser.ComparisonContext) {}
+func (l *Interpreter) ExitComparison(ctx *parser.ComparisonContext) {
+
+}
 
 // ExitMDM is called when production MDM is exited.
-func (l *Interpreter) ExitMDM(ctx *parser.MDMContext) {}
+func (l *Interpreter) ExitMDM(ctx *parser.MDMContext) {
+	right, left := l.pop(), l.pop()
+
+	op := ctx.GetOp().GetText()
+
+	if op == "*" {
+		l.push(operations.Multiply(left, right))
+	} else if op == "/" {
+		l.push(operations.Divide(left, right))
+	} else if op == "%" {
+		l.push(operations.Modulus(left, right))
+	} else {
+		panic(fmt.Sprintf("Unexpected operator %s", op))
+	}
+}
 
 // ExitNotExpr is called when production NotExpr is exited.
-func (l *Interpreter) ExitNotExpr(ctx *parser.NotExprContext) {}
+func (l *Interpreter) ExitNotExpr(ctx *parser.NotExprContext) {
+}
 
 // EnterString is called when production String is entered.
 func (l *Interpreter) EnterString(ctx *parser.StringContext) {
@@ -132,7 +161,9 @@ func (l *Interpreter) EnterString(ctx *parser.StringContext) {
 }
 
 // EnterIdentifier is called when production Identifier is entered.
-func (l *Interpreter) EnterIdentifier(ctx *parser.IdentifierContext) {}
+func (l *Interpreter) EnterIdentifier(ctx *parser.IdentifierContext) {
+	l.stack = append(l.stack, value.NewIdentifier(ctx.GetText()))
+}
 
 // EnterInt is called when production Int is entered.
 func (l *Interpreter) EnterInt(ctx *parser.IntContext) {

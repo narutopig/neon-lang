@@ -23,6 +23,11 @@ func NewBoolean(b bool) Value {
 	return Value{Type: Boolean, Data: boolToBytes(b)}
 }
 
+func NewIdentifier(id string) Value {
+	return Value{Type: Identifier, Data: []byte(id)}
+}
+
+//go:generate stringer -type=ValueType
 type ValueType byte
 
 func floatToBytes(num float64) []byte {
@@ -46,4 +51,5 @@ const (
 	String ValueType = iota
 	Number
 	Boolean
+	Identifier
 )

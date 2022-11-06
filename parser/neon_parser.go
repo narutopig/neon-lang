@@ -33,14 +33,14 @@ var neonParserStaticData struct {
 func neonParserInit() {
 	staticData := &neonParserStaticData
 	staticData.literalNames = []string{
-		"", "';'", "'('", "')'", "'{'", "'}'", "','", "'='", "'!'", "", "",
-		"", "", "'number'", "'string'", "'bool'", "'void'", "'def'", "'return'",
+		"", "';'", "'('", "')'", "'{'", "'}'", "','", "'='", "'!'", "'number'",
+		"'string'", "'bool'", "'void'", "", "", "", "", "'def'", "'return'",
 		"'if'", "'elif'", "'else'", "'while'",
 	}
 	staticData.symbolicNames = []string{
-		"", "", "", "", "", "", "", "", "", "ADD_SUB", "MDM", "COMP", "BOOL",
-		"NUMTYPE", "STRTYPE", "BOOLTYPE", "VOID", "DEF", "RETURN", "IF", "ELIF",
-		"ELSE", "WHILE", "STRING", "ID", "INT", "WS",
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "ADD_SUB", "MDM",
+		"COMP", "BOOL", "DEF", "RETURN", "IF", "ELIF", "ELSE", "WHILE", "STRING",
+		"ID", "INT", "WS",
 	}
 	staticData.ruleNames = []string{
 		"program", "stat", "if", "elif", "else", "while", "func", "funccall",
@@ -48,7 +48,7 @@ func neonParserInit() {
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 26, 197, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 26, 194, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 1, 0, 1, 0, 3, 0, 31, 8,
 		0, 5, 0, 33, 8, 0, 10, 0, 12, 0, 36, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
@@ -58,81 +58,79 @@ func neonParserInit() {
 		2, 73, 8, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 3, 81, 8, 3, 10, 3,
 		12, 3, 84, 9, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 5, 4, 91, 8, 4, 10, 4, 12,
 		4, 94, 9, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 5, 5, 104,
-		8, 5, 10, 5, 12, 5, 107, 9, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 3, 6, 114,
-		8, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 5, 6, 121, 8, 6, 10, 6, 12, 6, 124,
-		9, 6, 3, 6, 126, 8, 6, 1, 6, 3, 6, 129, 8, 6, 1, 6, 1, 6, 5, 6, 133, 8,
-		6, 10, 6, 12, 6, 136, 9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5,
-		7, 145, 8, 7, 10, 7, 12, 7, 148, 9, 7, 3, 7, 150, 8, 7, 1, 7, 1, 7, 1,
-		8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1,
-		11, 1, 11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
-		1, 12, 1, 12, 1, 12, 3, 12, 179, 8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1,
-		12, 1, 12, 1, 12, 1, 12, 1, 12, 5, 12, 190, 8, 12, 10, 12, 12, 12, 193,
-		9, 12, 1, 13, 1, 13, 1, 13, 0, 1, 24, 14, 0, 2, 4, 6, 8, 10, 12, 14, 16,
-		18, 20, 22, 24, 26, 0, 1, 1, 0, 13, 15, 211, 0, 34, 1, 0, 0, 0, 2, 51,
-		1, 0, 0, 0, 4, 53, 1, 0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 87, 1, 0, 0, 0, 10,
-		97, 1, 0, 0, 0, 12, 110, 1, 0, 0, 0, 14, 139, 1, 0, 0, 0, 16, 153, 1, 0,
-		0, 0, 18, 156, 1, 0, 0, 0, 20, 159, 1, 0, 0, 0, 22, 163, 1, 0, 0, 0, 24,
-		178, 1, 0, 0, 0, 26, 194, 1, 0, 0, 0, 28, 31, 3, 2, 1, 0, 29, 31, 3, 12,
-		6, 0, 30, 28, 1, 0, 0, 0, 30, 29, 1, 0, 0, 0, 31, 33, 1, 0, 0, 0, 32, 30,
-		1, 0, 0, 0, 33, 36, 1, 0, 0, 0, 34, 32, 1, 0, 0, 0, 34, 35, 1, 0, 0, 0,
-		35, 37, 1, 0, 0, 0, 36, 34, 1, 0, 0, 0, 37, 38, 5, 0, 0, 1, 38, 1, 1, 0,
-		0, 0, 39, 44, 3, 18, 9, 0, 40, 44, 3, 20, 10, 0, 41, 44, 3, 14, 7, 0, 42,
-		44, 3, 22, 11, 0, 43, 39, 1, 0, 0, 0, 43, 40, 1, 0, 0, 0, 43, 41, 1, 0,
-		0, 0, 43, 42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 46, 5, 1, 0, 0, 46, 52,
-		1, 0, 0, 0, 47, 50, 3, 4, 2, 0, 48, 50, 3, 10, 5, 0, 49, 47, 1, 0, 0, 0,
-		49, 48, 1, 0, 0, 0, 50, 52, 1, 0, 0, 0, 51, 43, 1, 0, 0, 0, 51, 49, 1,
-		0, 0, 0, 52, 3, 1, 0, 0, 0, 53, 54, 5, 19, 0, 0, 54, 55, 5, 2, 0, 0, 55,
-		56, 3, 24, 12, 0, 56, 57, 5, 3, 0, 0, 57, 61, 5, 4, 0, 0, 58, 60, 3, 2,
-		1, 0, 59, 58, 1, 0, 0, 0, 60, 63, 1, 0, 0, 0, 61, 59, 1, 0, 0, 0, 61, 62,
-		1, 0, 0, 0, 62, 64, 1, 0, 0, 0, 63, 61, 1, 0, 0, 0, 64, 68, 5, 5, 0, 0,
-		65, 67, 3, 6, 3, 0, 66, 65, 1, 0, 0, 0, 67, 70, 1, 0, 0, 0, 68, 66, 1,
-		0, 0, 0, 68, 69, 1, 0, 0, 0, 69, 72, 1, 0, 0, 0, 70, 68, 1, 0, 0, 0, 71,
-		73, 3, 8, 4, 0, 72, 71, 1, 0, 0, 0, 72, 73, 1, 0, 0, 0, 73, 5, 1, 0, 0,
-		0, 74, 75, 5, 20, 0, 0, 75, 76, 5, 2, 0, 0, 76, 77, 3, 24, 12, 0, 77, 78,
-		5, 3, 0, 0, 78, 82, 5, 4, 0, 0, 79, 81, 3, 2, 1, 0, 80, 79, 1, 0, 0, 0,
-		81, 84, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 82, 83, 1, 0, 0, 0, 83, 85, 1,
-		0, 0, 0, 84, 82, 1, 0, 0, 0, 85, 86, 5, 5, 0, 0, 86, 7, 1, 0, 0, 0, 87,
-		88, 5, 21, 0, 0, 88, 92, 5, 4, 0, 0, 89, 91, 3, 2, 1, 0, 90, 89, 1, 0,
-		0, 0, 91, 94, 1, 0, 0, 0, 92, 90, 1, 0, 0, 0, 92, 93, 1, 0, 0, 0, 93, 95,
-		1, 0, 0, 0, 94, 92, 1, 0, 0, 0, 95, 96, 5, 5, 0, 0, 96, 9, 1, 0, 0, 0,
-		97, 98, 5, 22, 0, 0, 98, 99, 5, 2, 0, 0, 99, 100, 3, 24, 12, 0, 100, 101,
-		5, 3, 0, 0, 101, 105, 5, 4, 0, 0, 102, 104, 3, 2, 1, 0, 103, 102, 1, 0,
-		0, 0, 104, 107, 1, 0, 0, 0, 105, 103, 1, 0, 0, 0, 105, 106, 1, 0, 0, 0,
-		106, 108, 1, 0, 0, 0, 107, 105, 1, 0, 0, 0, 108, 109, 5, 5, 0, 0, 109,
-		11, 1, 0, 0, 0, 110, 113, 5, 17, 0, 0, 111, 114, 3, 26, 13, 0, 112, 114,
-		5, 16, 0, 0, 113, 111, 1, 0, 0, 0, 113, 112, 1, 0, 0, 0, 114, 115, 1, 0,
-		0, 0, 115, 128, 5, 24, 0, 0, 116, 125, 5, 2, 0, 0, 117, 122, 3, 16, 8,
-		0, 118, 119, 5, 6, 0, 0, 119, 121, 3, 16, 8, 0, 120, 118, 1, 0, 0, 0, 121,
-		124, 1, 0, 0, 0, 122, 120, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 126,
-		1, 0, 0, 0, 124, 122, 1, 0, 0, 0, 125, 117, 1, 0, 0, 0, 125, 126, 1, 0,
-		0, 0, 126, 127, 1, 0, 0, 0, 127, 129, 5, 3, 0, 0, 128, 116, 1, 0, 0, 0,
-		128, 129, 1, 0, 0, 0, 129, 130, 1, 0, 0, 0, 130, 134, 5, 4, 0, 0, 131,
-		133, 3, 2, 1, 0, 132, 131, 1, 0, 0, 0, 133, 136, 1, 0, 0, 0, 134, 132,
-		1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135, 137, 1, 0, 0, 0, 136, 134, 1, 0,
-		0, 0, 137, 138, 5, 5, 0, 0, 138, 13, 1, 0, 0, 0, 139, 140, 5, 24, 0, 0,
-		140, 149, 5, 2, 0, 0, 141, 146, 3, 24, 12, 0, 142, 143, 5, 6, 0, 0, 143,
-		145, 3, 24, 12, 0, 144, 142, 1, 0, 0, 0, 145, 148, 1, 0, 0, 0, 146, 144,
-		1, 0, 0, 0, 146, 147, 1, 0, 0, 0, 147, 150, 1, 0, 0, 0, 148, 146, 1, 0,
-		0, 0, 149, 141, 1, 0, 0, 0, 149, 150, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0,
-		151, 152, 5, 3, 0, 0, 152, 15, 1, 0, 0, 0, 153, 154, 3, 26, 13, 0, 154,
-		155, 5, 24, 0, 0, 155, 17, 1, 0, 0, 0, 156, 157, 3, 26, 13, 0, 157, 158,
-		3, 20, 10, 0, 158, 19, 1, 0, 0, 0, 159, 160, 5, 24, 0, 0, 160, 161, 5,
-		7, 0, 0, 161, 162, 3, 24, 12, 0, 162, 21, 1, 0, 0, 0, 163, 164, 5, 18,
-		0, 0, 164, 165, 3, 24, 12, 0, 165, 23, 1, 0, 0, 0, 166, 167, 6, 12, -1,
-		0, 167, 168, 5, 8, 0, 0, 168, 179, 3, 24, 12, 7, 169, 179, 3, 14, 7, 0,
-		170, 179, 5, 25, 0, 0, 171, 179, 5, 12, 0, 0, 172, 179, 5, 23, 0, 0, 173,
-		179, 5, 24, 0, 0, 174, 175, 5, 2, 0, 0, 175, 176, 3, 24, 12, 0, 176, 177,
-		5, 3, 0, 0, 177, 179, 1, 0, 0, 0, 178, 166, 1, 0, 0, 0, 178, 169, 1, 0,
-		0, 0, 178, 170, 1, 0, 0, 0, 178, 171, 1, 0, 0, 0, 178, 172, 1, 0, 0, 0,
-		178, 173, 1, 0, 0, 0, 178, 174, 1, 0, 0, 0, 179, 191, 1, 0, 0, 0, 180,
-		181, 10, 10, 0, 0, 181, 182, 5, 10, 0, 0, 182, 190, 3, 24, 12, 11, 183,
-		184, 10, 9, 0, 0, 184, 185, 5, 9, 0, 0, 185, 190, 3, 24, 12, 10, 186, 187,
-		10, 8, 0, 0, 187, 188, 5, 11, 0, 0, 188, 190, 3, 24, 12, 9, 189, 180, 1,
-		0, 0, 0, 189, 183, 1, 0, 0, 0, 189, 186, 1, 0, 0, 0, 190, 193, 1, 0, 0,
-		0, 191, 189, 1, 0, 0, 0, 191, 192, 1, 0, 0, 0, 192, 25, 1, 0, 0, 0, 193,
-		191, 1, 0, 0, 0, 194, 195, 7, 0, 0, 0, 195, 27, 1, 0, 0, 0, 21, 30, 34,
-		43, 49, 51, 61, 68, 72, 82, 92, 105, 113, 122, 125, 128, 134, 146, 149,
-		178, 189, 191,
+		8, 5, 10, 5, 12, 5, 107, 9, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6,
+		1, 6, 1, 6, 5, 6, 118, 8, 6, 10, 6, 12, 6, 121, 9, 6, 3, 6, 123, 8, 6,
+		1, 6, 3, 6, 126, 8, 6, 1, 6, 1, 6, 5, 6, 130, 8, 6, 10, 6, 12, 6, 133,
+		9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 142, 8, 7, 10, 7,
+		12, 7, 145, 9, 7, 3, 7, 147, 8, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 9,
+		1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 12, 1,
+		12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
+		3, 12, 176, 8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1,
+		12, 1, 12, 5, 12, 187, 8, 12, 10, 12, 12, 12, 190, 9, 12, 1, 13, 1, 13,
+		1, 13, 0, 1, 24, 14, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26,
+		0, 1, 1, 0, 9, 12, 207, 0, 34, 1, 0, 0, 0, 2, 51, 1, 0, 0, 0, 4, 53, 1,
+		0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 87, 1, 0, 0, 0, 10, 97, 1, 0, 0, 0, 12,
+		110, 1, 0, 0, 0, 14, 136, 1, 0, 0, 0, 16, 150, 1, 0, 0, 0, 18, 153, 1,
+		0, 0, 0, 20, 156, 1, 0, 0, 0, 22, 160, 1, 0, 0, 0, 24, 175, 1, 0, 0, 0,
+		26, 191, 1, 0, 0, 0, 28, 31, 3, 2, 1, 0, 29, 31, 3, 12, 6, 0, 30, 28, 1,
+		0, 0, 0, 30, 29, 1, 0, 0, 0, 31, 33, 1, 0, 0, 0, 32, 30, 1, 0, 0, 0, 33,
+		36, 1, 0, 0, 0, 34, 32, 1, 0, 0, 0, 34, 35, 1, 0, 0, 0, 35, 37, 1, 0, 0,
+		0, 36, 34, 1, 0, 0, 0, 37, 38, 5, 0, 0, 1, 38, 1, 1, 0, 0, 0, 39, 44, 3,
+		18, 9, 0, 40, 44, 3, 20, 10, 0, 41, 44, 3, 14, 7, 0, 42, 44, 3, 22, 11,
+		0, 43, 39, 1, 0, 0, 0, 43, 40, 1, 0, 0, 0, 43, 41, 1, 0, 0, 0, 43, 42,
+		1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 46, 5, 1, 0, 0, 46, 52, 1, 0, 0, 0,
+		47, 50, 3, 4, 2, 0, 48, 50, 3, 10, 5, 0, 49, 47, 1, 0, 0, 0, 49, 48, 1,
+		0, 0, 0, 50, 52, 1, 0, 0, 0, 51, 43, 1, 0, 0, 0, 51, 49, 1, 0, 0, 0, 52,
+		3, 1, 0, 0, 0, 53, 54, 5, 19, 0, 0, 54, 55, 5, 2, 0, 0, 55, 56, 3, 24,
+		12, 0, 56, 57, 5, 3, 0, 0, 57, 61, 5, 4, 0, 0, 58, 60, 3, 2, 1, 0, 59,
+		58, 1, 0, 0, 0, 60, 63, 1, 0, 0, 0, 61, 59, 1, 0, 0, 0, 61, 62, 1, 0, 0,
+		0, 62, 64, 1, 0, 0, 0, 63, 61, 1, 0, 0, 0, 64, 68, 5, 5, 0, 0, 65, 67,
+		3, 6, 3, 0, 66, 65, 1, 0, 0, 0, 67, 70, 1, 0, 0, 0, 68, 66, 1, 0, 0, 0,
+		68, 69, 1, 0, 0, 0, 69, 72, 1, 0, 0, 0, 70, 68, 1, 0, 0, 0, 71, 73, 3,
+		8, 4, 0, 72, 71, 1, 0, 0, 0, 72, 73, 1, 0, 0, 0, 73, 5, 1, 0, 0, 0, 74,
+		75, 5, 20, 0, 0, 75, 76, 5, 2, 0, 0, 76, 77, 3, 24, 12, 0, 77, 78, 5, 3,
+		0, 0, 78, 82, 5, 4, 0, 0, 79, 81, 3, 2, 1, 0, 80, 79, 1, 0, 0, 0, 81, 84,
+		1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 82, 83, 1, 0, 0, 0, 83, 85, 1, 0, 0, 0,
+		84, 82, 1, 0, 0, 0, 85, 86, 5, 5, 0, 0, 86, 7, 1, 0, 0, 0, 87, 88, 5, 21,
+		0, 0, 88, 92, 5, 4, 0, 0, 89, 91, 3, 2, 1, 0, 90, 89, 1, 0, 0, 0, 91, 94,
+		1, 0, 0, 0, 92, 90, 1, 0, 0, 0, 92, 93, 1, 0, 0, 0, 93, 95, 1, 0, 0, 0,
+		94, 92, 1, 0, 0, 0, 95, 96, 5, 5, 0, 0, 96, 9, 1, 0, 0, 0, 97, 98, 5, 22,
+		0, 0, 98, 99, 5, 2, 0, 0, 99, 100, 3, 24, 12, 0, 100, 101, 5, 3, 0, 0,
+		101, 105, 5, 4, 0, 0, 102, 104, 3, 2, 1, 0, 103, 102, 1, 0, 0, 0, 104,
+		107, 1, 0, 0, 0, 105, 103, 1, 0, 0, 0, 105, 106, 1, 0, 0, 0, 106, 108,
+		1, 0, 0, 0, 107, 105, 1, 0, 0, 0, 108, 109, 5, 5, 0, 0, 109, 11, 1, 0,
+		0, 0, 110, 111, 5, 17, 0, 0, 111, 112, 3, 26, 13, 0, 112, 125, 5, 24, 0,
+		0, 113, 122, 5, 2, 0, 0, 114, 119, 3, 16, 8, 0, 115, 116, 5, 6, 0, 0, 116,
+		118, 3, 16, 8, 0, 117, 115, 1, 0, 0, 0, 118, 121, 1, 0, 0, 0, 119, 117,
+		1, 0, 0, 0, 119, 120, 1, 0, 0, 0, 120, 123, 1, 0, 0, 0, 121, 119, 1, 0,
+		0, 0, 122, 114, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 124, 1, 0, 0, 0,
+		124, 126, 5, 3, 0, 0, 125, 113, 1, 0, 0, 0, 125, 126, 1, 0, 0, 0, 126,
+		127, 1, 0, 0, 0, 127, 131, 5, 4, 0, 0, 128, 130, 3, 2, 1, 0, 129, 128,
+		1, 0, 0, 0, 130, 133, 1, 0, 0, 0, 131, 129, 1, 0, 0, 0, 131, 132, 1, 0,
+		0, 0, 132, 134, 1, 0, 0, 0, 133, 131, 1, 0, 0, 0, 134, 135, 5, 5, 0, 0,
+		135, 13, 1, 0, 0, 0, 136, 137, 5, 24, 0, 0, 137, 146, 5, 2, 0, 0, 138,
+		143, 3, 24, 12, 0, 139, 140, 5, 6, 0, 0, 140, 142, 3, 24, 12, 0, 141, 139,
+		1, 0, 0, 0, 142, 145, 1, 0, 0, 0, 143, 141, 1, 0, 0, 0, 143, 144, 1, 0,
+		0, 0, 144, 147, 1, 0, 0, 0, 145, 143, 1, 0, 0, 0, 146, 138, 1, 0, 0, 0,
+		146, 147, 1, 0, 0, 0, 147, 148, 1, 0, 0, 0, 148, 149, 5, 3, 0, 0, 149,
+		15, 1, 0, 0, 0, 150, 151, 3, 26, 13, 0, 151, 152, 5, 24, 0, 0, 152, 17,
+		1, 0, 0, 0, 153, 154, 3, 26, 13, 0, 154, 155, 3, 20, 10, 0, 155, 19, 1,
+		0, 0, 0, 156, 157, 5, 24, 0, 0, 157, 158, 5, 7, 0, 0, 158, 159, 3, 24,
+		12, 0, 159, 21, 1, 0, 0, 0, 160, 161, 5, 18, 0, 0, 161, 162, 3, 24, 12,
+		0, 162, 23, 1, 0, 0, 0, 163, 164, 6, 12, -1, 0, 164, 165, 5, 8, 0, 0, 165,
+		176, 3, 24, 12, 7, 166, 176, 3, 14, 7, 0, 167, 176, 5, 25, 0, 0, 168, 176,
+		5, 16, 0, 0, 169, 176, 5, 23, 0, 0, 170, 176, 5, 24, 0, 0, 171, 172, 5,
+		2, 0, 0, 172, 173, 3, 24, 12, 0, 173, 174, 5, 3, 0, 0, 174, 176, 1, 0,
+		0, 0, 175, 163, 1, 0, 0, 0, 175, 166, 1, 0, 0, 0, 175, 167, 1, 0, 0, 0,
+		175, 168, 1, 0, 0, 0, 175, 169, 1, 0, 0, 0, 175, 170, 1, 0, 0, 0, 175,
+		171, 1, 0, 0, 0, 176, 188, 1, 0, 0, 0, 177, 178, 10, 10, 0, 0, 178, 179,
+		5, 14, 0, 0, 179, 187, 3, 24, 12, 11, 180, 181, 10, 9, 0, 0, 181, 182,
+		5, 13, 0, 0, 182, 187, 3, 24, 12, 10, 183, 184, 10, 8, 0, 0, 184, 185,
+		5, 15, 0, 0, 185, 187, 3, 24, 12, 9, 186, 177, 1, 0, 0, 0, 186, 180, 1,
+		0, 0, 0, 186, 183, 1, 0, 0, 0, 187, 190, 1, 0, 0, 0, 188, 186, 1, 0, 0,
+		0, 188, 189, 1, 0, 0, 0, 189, 25, 1, 0, 0, 0, 190, 188, 1, 0, 0, 0, 191,
+		192, 7, 0, 0, 0, 192, 27, 1, 0, 0, 0, 20, 30, 34, 43, 49, 51, 61, 68, 72,
+		82, 92, 105, 119, 122, 125, 131, 143, 146, 175, 186, 188,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -170,33 +168,33 @@ func NewNeonParser(input antlr.TokenStream) *NeonParser {
 
 // NeonParser tokens.
 const (
-	NeonParserEOF      = antlr.TokenEOF
-	NeonParserT__0     = 1
-	NeonParserT__1     = 2
-	NeonParserT__2     = 3
-	NeonParserT__3     = 4
-	NeonParserT__4     = 5
-	NeonParserT__5     = 6
-	NeonParserT__6     = 7
-	NeonParserT__7     = 8
-	NeonParserADD_SUB  = 9
-	NeonParserMDM      = 10
-	NeonParserCOMP     = 11
-	NeonParserBOOL     = 12
-	NeonParserNUMTYPE  = 13
-	NeonParserSTRTYPE  = 14
-	NeonParserBOOLTYPE = 15
-	NeonParserVOID     = 16
-	NeonParserDEF      = 17
-	NeonParserRETURN   = 18
-	NeonParserIF       = 19
-	NeonParserELIF     = 20
-	NeonParserELSE     = 21
-	NeonParserWHILE    = 22
-	NeonParserSTRING   = 23
-	NeonParserID       = 24
-	NeonParserINT      = 25
-	NeonParserWS       = 26
+	NeonParserEOF     = antlr.TokenEOF
+	NeonParserT__0    = 1
+	NeonParserT__1    = 2
+	NeonParserT__2    = 3
+	NeonParserT__3    = 4
+	NeonParserT__4    = 5
+	NeonParserT__5    = 6
+	NeonParserT__6    = 7
+	NeonParserT__7    = 8
+	NeonParserT__8    = 9
+	NeonParserT__9    = 10
+	NeonParserT__10   = 11
+	NeonParserT__11   = 12
+	NeonParserADD_SUB = 13
+	NeonParserMDM     = 14
+	NeonParserCOMP    = 15
+	NeonParserBOOL    = 16
+	NeonParserDEF     = 17
+	NeonParserRETURN  = 18
+	NeonParserIF      = 19
+	NeonParserELIF    = 20
+	NeonParserELSE    = 21
+	NeonParserWHILE   = 22
+	NeonParserSTRING  = 23
+	NeonParserID      = 24
+	NeonParserINT     = 25
+	NeonParserWS      = 26
 )
 
 // NeonParser rules.
@@ -390,12 +388,12 @@ func (p *NeonParser) Program() (localctx IProgramContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21946368) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21896704) != 0 {
 		p.SetState(30)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
-		case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE, NeonParserRETURN, NeonParserIF, NeonParserWHILE, NeonParserID:
+		case NeonParserT__8, NeonParserT__9, NeonParserT__10, NeonParserT__11, NeonParserRETURN, NeonParserIF, NeonParserWHILE, NeonParserID:
 			{
 				p.SetState(28)
 				p.Stat()
@@ -604,7 +602,7 @@ func (p *NeonParser) Stat() (localctx IStatContext) {
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE, NeonParserRETURN, NeonParserID:
+	case NeonParserT__8, NeonParserT__9, NeonParserT__10, NeonParserT__11, NeonParserRETURN, NeonParserID:
 		p.EnterOuterAlt(localctx, 1)
 		p.SetState(43)
 		p.GetErrorHandler().Sync(p)
@@ -893,7 +891,7 @@ func (p *NeonParser) If_() (localctx IIfContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
 		{
 			p.SetState(58)
 			p.Stat()
@@ -1104,7 +1102,7 @@ func (p *NeonParser) Elif() (localctx IElifContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
 		{
 			p.SetState(79)
 			p.Stat()
@@ -1262,7 +1260,7 @@ func (p *NeonParser) Else_() (localctx IElseContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
 		{
 			p.SetState(89)
 			p.Stat()
@@ -1448,7 +1446,7 @@ func (p *NeonParser) While() (localctx IWhileContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
 		{
 			p.SetState(102)
 			p.Stat()
@@ -1508,10 +1506,6 @@ func (s *FuncContext) DEF() antlr.TerminalNode {
 	return s.GetToken(NeonParserDEF, 0)
 }
 
-func (s *FuncContext) ID() antlr.TerminalNode {
-	return s.GetToken(NeonParserID, 0)
-}
-
 func (s *FuncContext) Type_() ITypeContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -1528,8 +1522,8 @@ func (s *FuncContext) Type_() ITypeContext {
 	return t.(ITypeContext)
 }
 
-func (s *FuncContext) VOID() antlr.TerminalNode {
-	return s.GetToken(NeonParserVOID, 0)
+func (s *FuncContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *FuncContext) AllStat() []IStatContext {
@@ -1663,93 +1657,78 @@ func (p *NeonParser) Func_() (localctx IFuncContext) {
 		p.SetState(110)
 		p.Match(NeonParserDEF)
 	}
-	p.SetState(113)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case NeonParserNUMTYPE, NeonParserSTRTYPE, NeonParserBOOLTYPE:
-		{
-			p.SetState(111)
-			p.Type_()
-		}
-
-	case NeonParserVOID:
-		{
-			p.SetState(112)
-			p.Match(NeonParserVOID)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	{
+		p.SetState(111)
+		p.Type_()
 	}
 	{
-		p.SetState(115)
+		p.SetState(112)
 		p.Match(NeonParserID)
 	}
-	p.SetState(128)
+	p.SetState(125)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == NeonParserT__1 {
 		{
-			p.SetState(116)
+			p.SetState(113)
 			p.Match(NeonParserT__1)
 		}
-		p.SetState(125)
+		p.SetState(122)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&57344) != 0 {
+		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7680) != 0 {
 			{
-				p.SetState(117)
+				p.SetState(114)
 				p.Funcarg()
 			}
-			p.SetState(122)
+			p.SetState(119)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 
 			for _la == NeonParserT__5 {
 				{
-					p.SetState(118)
+					p.SetState(115)
 					p.Match(NeonParserT__5)
 				}
 				{
-					p.SetState(119)
+					p.SetState(116)
 					p.Funcarg()
 				}
 
-				p.SetState(124)
+				p.SetState(121)
 				p.GetErrorHandler().Sync(p)
 				_la = p.GetTokenStream().LA(1)
 			}
 
 		}
 		{
-			p.SetState(127)
+			p.SetState(124)
 			p.Match(NeonParserT__2)
 		}
 
 	}
 	{
-		p.SetState(130)
+		p.SetState(127)
 		p.Match(NeonParserT__3)
 	}
-	p.SetState(134)
+	p.SetState(131)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21815296) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
 		{
-			p.SetState(131)
+			p.SetState(128)
 			p.Stat()
 		}
 
-		p.SetState(136)
+		p.SetState(133)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(137)
+		p.SetState(134)
 		p.Match(NeonParserT__4)
 	}
 
@@ -1885,44 +1864,44 @@ func (p *NeonParser) Funccall() (localctx IFunccallContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(139)
+		p.SetState(136)
 		p.Match(NeonParserID)
 	}
 	{
-		p.SetState(140)
+		p.SetState(137)
 		p.Match(NeonParserT__1)
 	}
-	p.SetState(149)
+	p.SetState(146)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&58724612) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&58786052) != 0 {
 		{
-			p.SetState(141)
+			p.SetState(138)
 			p.expr(0)
 		}
-		p.SetState(146)
+		p.SetState(143)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
 		for _la == NeonParserT__5 {
 			{
-				p.SetState(142)
+				p.SetState(139)
 				p.Match(NeonParserT__5)
 			}
 			{
-				p.SetState(143)
+				p.SetState(140)
 				p.expr(0)
 			}
 
-			p.SetState(148)
+			p.SetState(145)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
 
 	}
 	{
-		p.SetState(151)
+		p.SetState(148)
 		p.Match(NeonParserT__2)
 	}
 
@@ -2032,11 +2011,11 @@ func (p *NeonParser) Funcarg() (localctx IFuncargContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(153)
+		p.SetState(150)
 		p.Type_()
 	}
 	{
-		p.SetState(154)
+		p.SetState(151)
 		p.Match(NeonParserID)
 	}
 
@@ -2158,11 +2137,11 @@ func (p *NeonParser) Decl() (localctx IDeclContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(156)
+		p.SetState(153)
 		p.Type_()
 	}
 	{
-		p.SetState(157)
+		p.SetState(154)
 		p.Assign()
 	}
 
@@ -2272,15 +2251,15 @@ func (p *NeonParser) Assign() (localctx IAssignContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(159)
+		p.SetState(156)
 		p.Match(NeonParserID)
 	}
 	{
-		p.SetState(160)
+		p.SetState(157)
 		p.Match(NeonParserT__6)
 	}
 	{
-		p.SetState(161)
+		p.SetState(158)
 		p.expr(0)
 	}
 
@@ -2390,11 +2369,11 @@ func (p *NeonParser) Return_() (localctx IReturnContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(163)
+		p.SetState(160)
 		p.Match(NeonParserRETURN)
 	}
 	{
-		p.SetState(164)
+		p.SetState(161)
 		p.expr(0)
 	}
 
@@ -3000,20 +2979,20 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(178)
+	p.SetState(175)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 17, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewNotExprContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 
 		{
-			p.SetState(167)
+			p.SetState(164)
 			p.Match(NeonParserT__7)
 		}
 		{
-			p.SetState(168)
+			p.SetState(165)
 			p.expr(7)
 		}
 
@@ -3022,7 +3001,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(169)
+			p.SetState(166)
 			p.Funccall()
 		}
 
@@ -3031,7 +3010,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(170)
+			p.SetState(167)
 			p.Match(NeonParserINT)
 		}
 
@@ -3040,7 +3019,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(171)
+			p.SetState(168)
 			p.Match(NeonParserBOOL)
 		}
 
@@ -3049,7 +3028,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(172)
+			p.SetState(169)
 			p.Match(NeonParserSTRING)
 		}
 
@@ -3058,7 +3037,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(173)
+			p.SetState(170)
 			p.Match(NeonParserID)
 		}
 
@@ -3067,23 +3046,23 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(174)
+			p.SetState(171)
 			p.Match(NeonParserT__1)
 		}
 		{
-			p.SetState(175)
+			p.SetState(172)
 			p.expr(0)
 		}
 		{
-			p.SetState(176)
+			p.SetState(173)
 			p.Match(NeonParserT__2)
 		}
 
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(191)
+	p.SetState(188)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
@@ -3091,75 +3070,75 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(189)
+			p.SetState(186)
 			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewMDMContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(180)
+				p.SetState(177)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
 				}
 				{
-					p.SetState(181)
+					p.SetState(178)
 
 					var _m = p.Match(NeonParserMDM)
 
 					localctx.(*MDMContext).op = _m
 				}
 				{
-					p.SetState(182)
+					p.SetState(179)
 					p.expr(11)
 				}
 
 			case 2:
 				localctx = NewAddSubContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(183)
+				p.SetState(180)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
 				}
 				{
-					p.SetState(184)
+					p.SetState(181)
 
 					var _m = p.Match(NeonParserADD_SUB)
 
 					localctx.(*AddSubContext).op = _m
 				}
 				{
-					p.SetState(185)
+					p.SetState(182)
 					p.expr(10)
 				}
 
 			case 3:
 				localctx = NewComparisonContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(186)
+				p.SetState(183)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
 				}
 				{
-					p.SetState(187)
+					p.SetState(184)
 
 					var _m = p.Match(NeonParserCOMP)
 
 					localctx.(*ComparisonContext).op = _m
 				}
 				{
-					p.SetState(188)
+					p.SetState(185)
 					p.expr(9)
 				}
 
 			}
 
 		}
-		p.SetState(193)
+		p.SetState(190)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -3202,19 +3181,6 @@ func NewTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 }
 
 func (s *TypeContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *TypeContext) NUMTYPE() antlr.TerminalNode {
-	return s.GetToken(NeonParserNUMTYPE, 0)
-}
-
-func (s *TypeContext) STRTYPE() antlr.TerminalNode {
-	return s.GetToken(NeonParserSTRTYPE, 0)
-}
-
-func (s *TypeContext) BOOLTYPE() antlr.TerminalNode {
-	return s.GetToken(NeonParserBOOLTYPE, 0)
-}
-
 func (s *TypeContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -3261,10 +3227,10 @@ func (p *NeonParser) Type_() (localctx ITypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(194)
+		p.SetState(191)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&57344) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7680) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
