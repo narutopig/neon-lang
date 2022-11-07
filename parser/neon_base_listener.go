@@ -69,17 +69,41 @@ func (s *BaseNeonListener) EnterFunccall(ctx *FunccallContext) {}
 // ExitFunccall is called when production funccall is exited.
 func (s *BaseNeonListener) ExitFunccall(ctx *FunccallContext) {}
 
-// EnterFuncarg is called when production funcarg is entered.
-func (s *BaseNeonListener) EnterFuncarg(ctx *FuncargContext) {}
+// EnterNumArg is called when production NumArg is entered.
+func (s *BaseNeonListener) EnterNumArg(ctx *NumArgContext) {}
 
-// ExitFuncarg is called when production funcarg is exited.
-func (s *BaseNeonListener) ExitFuncarg(ctx *FuncargContext) {}
+// ExitNumArg is called when production NumArg is exited.
+func (s *BaseNeonListener) ExitNumArg(ctx *NumArgContext) {}
 
-// EnterDecl is called when production decl is entered.
-func (s *BaseNeonListener) EnterDecl(ctx *DeclContext) {}
+// EnterStrArg is called when production StrArg is entered.
+func (s *BaseNeonListener) EnterStrArg(ctx *StrArgContext) {}
 
-// ExitDecl is called when production decl is exited.
-func (s *BaseNeonListener) ExitDecl(ctx *DeclContext) {}
+// ExitStrArg is called when production StrArg is exited.
+func (s *BaseNeonListener) ExitStrArg(ctx *StrArgContext) {}
+
+// EnterBoolArg is called when production BoolArg is entered.
+func (s *BaseNeonListener) EnterBoolArg(ctx *BoolArgContext) {}
+
+// ExitBoolArg is called when production BoolArg is exited.
+func (s *BaseNeonListener) ExitBoolArg(ctx *BoolArgContext) {}
+
+// EnterNumVar is called when production NumVar is entered.
+func (s *BaseNeonListener) EnterNumVar(ctx *NumVarContext) {}
+
+// ExitNumVar is called when production NumVar is exited.
+func (s *BaseNeonListener) ExitNumVar(ctx *NumVarContext) {}
+
+// EnterStrVar is called when production StrVar is entered.
+func (s *BaseNeonListener) EnterStrVar(ctx *StrVarContext) {}
+
+// ExitStrVar is called when production StrVar is exited.
+func (s *BaseNeonListener) ExitStrVar(ctx *StrVarContext) {}
+
+// EnterBoolVar is called when production BoolVar is entered.
+func (s *BaseNeonListener) EnterBoolVar(ctx *BoolVarContext) {}
+
+// ExitBoolVar is called when production BoolVar is exited.
+func (s *BaseNeonListener) ExitBoolVar(ctx *BoolVarContext) {}
 
 // EnterAssign is called when production assign is entered.
 func (s *BaseNeonListener) EnterAssign(ctx *AssignContext) {}

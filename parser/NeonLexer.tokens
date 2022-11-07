@@ -30,11 +30,11 @@ WS=26
 '{'=4
 '}'=5
 ','=6
-'='=7
-'!'=8
-'number'=9
-'string'=10
-'bool'=11
+'number'=7
+'string'=8
+'bool'=9
+'='=10
+'!'=11
 'void'=12
 'def'=17
 'return'=18

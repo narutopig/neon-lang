@@ -33,8 +33,8 @@ var neonParserStaticData struct {
 func neonParserInit() {
 	staticData := &neonParserStaticData
 	staticData.literalNames = []string{
-		"", "';'", "'('", "')'", "'{'", "'}'", "','", "'='", "'!'", "'number'",
-		"'string'", "'bool'", "'void'", "", "", "", "", "'def'", "'return'",
+		"", "';'", "'('", "')'", "'{'", "'}'", "','", "'number'", "'string'",
+		"'bool'", "'='", "'!'", "'void'", "", "", "", "", "'def'", "'return'",
 		"'if'", "'elif'", "'else'", "'while'",
 	}
 	staticData.symbolicNames = []string{
@@ -48,7 +48,7 @@ func neonParserInit() {
 	}
 	staticData.predictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 26, 194, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 26, 204, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 1, 0, 1, 0, 3, 0, 31, 8,
 		0, 5, 0, 33, 8, 0, 10, 0, 12, 0, 36, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
@@ -62,17 +62,18 @@ func neonParserInit() {
 		1, 6, 1, 6, 5, 6, 118, 8, 6, 10, 6, 12, 6, 121, 9, 6, 3, 6, 123, 8, 6,
 		1, 6, 3, 6, 126, 8, 6, 1, 6, 1, 6, 5, 6, 130, 8, 6, 10, 6, 12, 6, 133,
 		9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 142, 8, 7, 10, 7,
-		12, 7, 145, 9, 7, 3, 7, 147, 8, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 9,
-		1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 12, 1,
-		12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
-		3, 12, 176, 8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1,
-		12, 1, 12, 5, 12, 187, 8, 12, 10, 12, 12, 12, 190, 9, 12, 1, 13, 1, 13,
-		1, 13, 0, 1, 24, 14, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26,
-		0, 1, 1, 0, 9, 12, 207, 0, 34, 1, 0, 0, 0, 2, 51, 1, 0, 0, 0, 4, 53, 1,
-		0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 87, 1, 0, 0, 0, 10, 97, 1, 0, 0, 0, 12,
-		110, 1, 0, 0, 0, 14, 136, 1, 0, 0, 0, 16, 150, 1, 0, 0, 0, 18, 153, 1,
-		0, 0, 0, 20, 156, 1, 0, 0, 0, 22, 160, 1, 0, 0, 0, 24, 175, 1, 0, 0, 0,
-		26, 191, 1, 0, 0, 0, 28, 31, 3, 2, 1, 0, 29, 31, 3, 12, 6, 0, 30, 28, 1,
+		12, 7, 145, 9, 7, 3, 7, 147, 8, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 8,
+		1, 8, 1, 8, 3, 8, 157, 8, 8, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 3, 9,
+		165, 8, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 12, 1, 12,
+		1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 3,
+		12, 186, 8, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12,
+		1, 12, 5, 12, 197, 8, 12, 10, 12, 12, 12, 200, 9, 12, 1, 13, 1, 13, 1,
+		13, 0, 1, 24, 14, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 0,
+		1, 2, 0, 7, 9, 12, 12, 221, 0, 34, 1, 0, 0, 0, 2, 51, 1, 0, 0, 0, 4, 53,
+		1, 0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 87, 1, 0, 0, 0, 10, 97, 1, 0, 0, 0, 12,
+		110, 1, 0, 0, 0, 14, 136, 1, 0, 0, 0, 16, 156, 1, 0, 0, 0, 18, 164, 1,
+		0, 0, 0, 20, 166, 1, 0, 0, 0, 22, 170, 1, 0, 0, 0, 24, 185, 1, 0, 0, 0,
+		26, 201, 1, 0, 0, 0, 28, 31, 3, 2, 1, 0, 29, 31, 3, 12, 6, 0, 30, 28, 1,
 		0, 0, 0, 30, 29, 1, 0, 0, 0, 31, 33, 1, 0, 0, 0, 32, 30, 1, 0, 0, 0, 33,
 		36, 1, 0, 0, 0, 34, 32, 1, 0, 0, 0, 34, 35, 1, 0, 0, 0, 35, 37, 1, 0, 0,
 		0, 36, 34, 1, 0, 0, 0, 37, 38, 5, 0, 0, 1, 38, 1, 1, 0, 0, 0, 39, 44, 3,
@@ -113,24 +114,29 @@ func neonParserInit() {
 		1, 0, 0, 0, 142, 145, 1, 0, 0, 0, 143, 141, 1, 0, 0, 0, 143, 144, 1, 0,
 		0, 0, 144, 147, 1, 0, 0, 0, 145, 143, 1, 0, 0, 0, 146, 138, 1, 0, 0, 0,
 		146, 147, 1, 0, 0, 0, 147, 148, 1, 0, 0, 0, 148, 149, 5, 3, 0, 0, 149,
-		15, 1, 0, 0, 0, 150, 151, 3, 26, 13, 0, 151, 152, 5, 24, 0, 0, 152, 17,
-		1, 0, 0, 0, 153, 154, 3, 26, 13, 0, 154, 155, 3, 20, 10, 0, 155, 19, 1,
-		0, 0, 0, 156, 157, 5, 24, 0, 0, 157, 158, 5, 7, 0, 0, 158, 159, 3, 24,
-		12, 0, 159, 21, 1, 0, 0, 0, 160, 161, 5, 18, 0, 0, 161, 162, 3, 24, 12,
-		0, 162, 23, 1, 0, 0, 0, 163, 164, 6, 12, -1, 0, 164, 165, 5, 8, 0, 0, 165,
-		176, 3, 24, 12, 7, 166, 176, 3, 14, 7, 0, 167, 176, 5, 25, 0, 0, 168, 176,
-		5, 16, 0, 0, 169, 176, 5, 23, 0, 0, 170, 176, 5, 24, 0, 0, 171, 172, 5,
-		2, 0, 0, 172, 173, 3, 24, 12, 0, 173, 174, 5, 3, 0, 0, 174, 176, 1, 0,
-		0, 0, 175, 163, 1, 0, 0, 0, 175, 166, 1, 0, 0, 0, 175, 167, 1, 0, 0, 0,
-		175, 168, 1, 0, 0, 0, 175, 169, 1, 0, 0, 0, 175, 170, 1, 0, 0, 0, 175,
-		171, 1, 0, 0, 0, 176, 188, 1, 0, 0, 0, 177, 178, 10, 10, 0, 0, 178, 179,
-		5, 14, 0, 0, 179, 187, 3, 24, 12, 11, 180, 181, 10, 9, 0, 0, 181, 182,
-		5, 13, 0, 0, 182, 187, 3, 24, 12, 10, 183, 184, 10, 8, 0, 0, 184, 185,
-		5, 15, 0, 0, 185, 187, 3, 24, 12, 9, 186, 177, 1, 0, 0, 0, 186, 180, 1,
-		0, 0, 0, 186, 183, 1, 0, 0, 0, 187, 190, 1, 0, 0, 0, 188, 186, 1, 0, 0,
-		0, 188, 189, 1, 0, 0, 0, 189, 25, 1, 0, 0, 0, 190, 188, 1, 0, 0, 0, 191,
-		192, 7, 0, 0, 0, 192, 27, 1, 0, 0, 0, 20, 30, 34, 43, 49, 51, 61, 68, 72,
-		82, 92, 105, 119, 122, 125, 131, 143, 146, 175, 186, 188,
+		15, 1, 0, 0, 0, 150, 151, 5, 7, 0, 0, 151, 157, 5, 24, 0, 0, 152, 153,
+		5, 8, 0, 0, 153, 157, 5, 24, 0, 0, 154, 155, 5, 9, 0, 0, 155, 157, 5, 24,
+		0, 0, 156, 150, 1, 0, 0, 0, 156, 152, 1, 0, 0, 0, 156, 154, 1, 0, 0, 0,
+		157, 17, 1, 0, 0, 0, 158, 159, 5, 7, 0, 0, 159, 165, 3, 20, 10, 0, 160,
+		161, 5, 8, 0, 0, 161, 165, 3, 20, 10, 0, 162, 163, 5, 9, 0, 0, 163, 165,
+		3, 20, 10, 0, 164, 158, 1, 0, 0, 0, 164, 160, 1, 0, 0, 0, 164, 162, 1,
+		0, 0, 0, 165, 19, 1, 0, 0, 0, 166, 167, 5, 24, 0, 0, 167, 168, 5, 10, 0,
+		0, 168, 169, 3, 24, 12, 0, 169, 21, 1, 0, 0, 0, 170, 171, 5, 18, 0, 0,
+		171, 172, 3, 24, 12, 0, 172, 23, 1, 0, 0, 0, 173, 174, 6, 12, -1, 0, 174,
+		175, 5, 11, 0, 0, 175, 186, 3, 24, 12, 7, 176, 186, 3, 14, 7, 0, 177, 186,
+		5, 25, 0, 0, 178, 186, 5, 16, 0, 0, 179, 186, 5, 23, 0, 0, 180, 186, 5,
+		24, 0, 0, 181, 182, 5, 2, 0, 0, 182, 183, 3, 24, 12, 0, 183, 184, 5, 3,
+		0, 0, 184, 186, 1, 0, 0, 0, 185, 173, 1, 0, 0, 0, 185, 176, 1, 0, 0, 0,
+		185, 177, 1, 0, 0, 0, 185, 178, 1, 0, 0, 0, 185, 179, 1, 0, 0, 0, 185,
+		180, 1, 0, 0, 0, 185, 181, 1, 0, 0, 0, 186, 198, 1, 0, 0, 0, 187, 188,
+		10, 10, 0, 0, 188, 189, 5, 14, 0, 0, 189, 197, 3, 24, 12, 11, 190, 191,
+		10, 9, 0, 0, 191, 192, 5, 13, 0, 0, 192, 197, 3, 24, 12, 10, 193, 194,
+		10, 8, 0, 0, 194, 195, 5, 15, 0, 0, 195, 197, 3, 24, 12, 9, 196, 187, 1,
+		0, 0, 0, 196, 190, 1, 0, 0, 0, 196, 193, 1, 0, 0, 0, 197, 200, 1, 0, 0,
+		0, 198, 196, 1, 0, 0, 0, 198, 199, 1, 0, 0, 0, 199, 25, 1, 0, 0, 0, 200,
+		198, 1, 0, 0, 0, 201, 202, 7, 0, 0, 0, 202, 27, 1, 0, 0, 0, 22, 30, 34,
+		43, 49, 51, 61, 68, 72, 82, 92, 105, 119, 122, 125, 131, 143, 146, 156,
+		164, 185, 196, 198,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -388,12 +394,12 @@ func (p *NeonParser) Program() (localctx IProgramContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21896704) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21889920) != 0 {
 		p.SetState(30)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
-		case NeonParserT__8, NeonParserT__9, NeonParserT__10, NeonParserT__11, NeonParserRETURN, NeonParserIF, NeonParserWHILE, NeonParserID:
+		case NeonParserT__6, NeonParserT__7, NeonParserT__8, NeonParserRETURN, NeonParserIF, NeonParserWHILE, NeonParserID:
 			{
 				p.SetState(28)
 				p.Stat()
@@ -602,7 +608,7 @@ func (p *NeonParser) Stat() (localctx IStatContext) {
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case NeonParserT__8, NeonParserT__9, NeonParserT__10, NeonParserT__11, NeonParserRETURN, NeonParserID:
+	case NeonParserT__6, NeonParserT__7, NeonParserT__8, NeonParserRETURN, NeonParserID:
 		p.EnterOuterAlt(localctx, 1)
 		p.SetState(43)
 		p.GetErrorHandler().Sync(p)
@@ -891,7 +897,7 @@ func (p *NeonParser) If_() (localctx IIfContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21758848) != 0 {
 		{
 			p.SetState(58)
 			p.Stat()
@@ -1102,7 +1108,7 @@ func (p *NeonParser) Elif() (localctx IElifContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21758848) != 0 {
 		{
 			p.SetState(79)
 			p.Stat()
@@ -1260,7 +1266,7 @@ func (p *NeonParser) Else_() (localctx IElseContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21758848) != 0 {
 		{
 			p.SetState(89)
 			p.Stat()
@@ -1446,7 +1452,7 @@ func (p *NeonParser) While() (localctx IWhileContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21758848) != 0 {
 		{
 			p.SetState(102)
 			p.Stat()
@@ -1678,7 +1684,7 @@ func (p *NeonParser) Func_() (localctx IFuncContext) {
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7680) != 0 {
+		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&896) != 0 {
 			{
 				p.SetState(114)
 				p.Funcarg()
@@ -1717,7 +1723,7 @@ func (p *NeonParser) Func_() (localctx IFuncContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21765632) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&21758848) != 0 {
 		{
 			p.SetState(128)
 			p.Stat()
@@ -1875,7 +1881,7 @@ func (p *NeonParser) Funccall() (localctx IFunccallContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&58786052) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&58787844) != 0 {
 		{
 			p.SetState(138)
 			p.expr(0)
@@ -1946,24 +1952,8 @@ func NewFuncargContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 
 func (s *FuncargContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *FuncargContext) Type_() ITypeContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITypeContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITypeContext)
-}
-
-func (s *FuncargContext) ID() antlr.TerminalNode {
-	return s.GetToken(NeonParserID, 0)
+func (s *FuncargContext) CopyFrom(ctx *FuncargContext) {
+	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
 }
 
 func (s *FuncargContext) GetRuleContext() antlr.RuleContext {
@@ -1974,15 +1964,105 @@ func (s *FuncargContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FuncargContext) EnterRule(listener antlr.ParseTreeListener) {
+type StrArgContext struct {
+	*FuncargContext
+}
+
+func NewStrArgContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StrArgContext {
+	var p = new(StrArgContext)
+
+	p.FuncargContext = NewEmptyFuncargContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*FuncargContext))
+
+	return p
+}
+
+func (s *StrArgContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *StrArgContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
+}
+
+func (s *StrArgContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(NeonListener); ok {
-		listenerT.EnterFuncarg(s)
+		listenerT.EnterStrArg(s)
 	}
 }
 
-func (s *FuncargContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *StrArgContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(NeonListener); ok {
-		listenerT.ExitFuncarg(s)
+		listenerT.ExitStrArg(s)
+	}
+}
+
+type NumArgContext struct {
+	*FuncargContext
+}
+
+func NewNumArgContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumArgContext {
+	var p = new(NumArgContext)
+
+	p.FuncargContext = NewEmptyFuncargContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*FuncargContext))
+
+	return p
+}
+
+func (s *NumArgContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumArgContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
+}
+
+func (s *NumArgContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterNumArg(s)
+	}
+}
+
+func (s *NumArgContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitNumArg(s)
+	}
+}
+
+type BoolArgContext struct {
+	*FuncargContext
+}
+
+func NewBoolArgContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolArgContext {
+	var p = new(BoolArgContext)
+
+	p.FuncargContext = NewEmptyFuncargContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*FuncargContext))
+
+	return p
+}
+
+func (s *BoolArgContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BoolArgContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
+}
+
+func (s *BoolArgContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterBoolArg(s)
+	}
+}
+
+func (s *BoolArgContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitBoolArg(s)
 	}
 }
 
@@ -2009,14 +2089,48 @@ func (p *NeonParser) Funcarg() (localctx IFuncargContext) {
 		}
 	}()
 
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(150)
-		p.Type_()
-	}
-	{
-		p.SetState(151)
-		p.Match(NeonParserID)
+	p.SetState(156)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case NeonParserT__6:
+		localctx = NewNumArgContext(p, localctx)
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(150)
+			p.Match(NeonParserT__6)
+		}
+		{
+			p.SetState(151)
+			p.Match(NeonParserID)
+		}
+
+	case NeonParserT__7:
+		localctx = NewStrArgContext(p, localctx)
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(152)
+			p.Match(NeonParserT__7)
+		}
+		{
+			p.SetState(153)
+			p.Match(NeonParserID)
+		}
+
+	case NeonParserT__8:
+		localctx = NewBoolArgContext(p, localctx)
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(154)
+			p.Match(NeonParserT__8)
+		}
+		{
+			p.SetState(155)
+			p.Match(NeonParserID)
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 
 	return localctx
@@ -2060,23 +2174,37 @@ func NewDeclContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 
 func (s *DeclContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *DeclContext) Type_() ITypeContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITypeContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITypeContext)
+func (s *DeclContext) CopyFrom(ctx *DeclContext) {
+	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
 }
 
-func (s *DeclContext) Assign() IAssignContext {
+func (s *DeclContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *DeclContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+type NumVarContext struct {
+	*DeclContext
+}
+
+func NewNumVarContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumVarContext {
+	var p = new(NumVarContext)
+
+	p.DeclContext = NewEmptyDeclContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*DeclContext))
+
+	return p
+}
+
+func (s *NumVarContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumVarContext) Assign() IAssignContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
 		if _, ok := ctx.(IAssignContext); ok {
@@ -2092,23 +2220,107 @@ func (s *DeclContext) Assign() IAssignContext {
 	return t.(IAssignContext)
 }
 
-func (s *DeclContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *DeclContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *DeclContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *NumVarContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(NeonListener); ok {
-		listenerT.EnterDecl(s)
+		listenerT.EnterNumVar(s)
 	}
 }
 
-func (s *DeclContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *NumVarContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(NeonListener); ok {
-		listenerT.ExitDecl(s)
+		listenerT.ExitNumVar(s)
+	}
+}
+
+type StrVarContext struct {
+	*DeclContext
+}
+
+func NewStrVarContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StrVarContext {
+	var p = new(StrVarContext)
+
+	p.DeclContext = NewEmptyDeclContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*DeclContext))
+
+	return p
+}
+
+func (s *StrVarContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *StrVarContext) Assign() IAssignContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAssignContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAssignContext)
+}
+
+func (s *StrVarContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterStrVar(s)
+	}
+}
+
+func (s *StrVarContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitStrVar(s)
+	}
+}
+
+type BoolVarContext struct {
+	*DeclContext
+}
+
+func NewBoolVarContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolVarContext {
+	var p = new(BoolVarContext)
+
+	p.DeclContext = NewEmptyDeclContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*DeclContext))
+
+	return p
+}
+
+func (s *BoolVarContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BoolVarContext) Assign() IAssignContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAssignContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAssignContext)
+}
+
+func (s *BoolVarContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.EnterBoolVar(s)
+	}
+}
+
+func (s *BoolVarContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NeonListener); ok {
+		listenerT.ExitBoolVar(s)
 	}
 }
 
@@ -2135,14 +2347,48 @@ func (p *NeonParser) Decl() (localctx IDeclContext) {
 		}
 	}()
 
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(153)
-		p.Type_()
-	}
-	{
-		p.SetState(154)
-		p.Assign()
+	p.SetState(164)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case NeonParserT__6:
+		localctx = NewNumVarContext(p, localctx)
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(158)
+			p.Match(NeonParserT__6)
+		}
+		{
+			p.SetState(159)
+			p.Assign()
+		}
+
+	case NeonParserT__7:
+		localctx = NewStrVarContext(p, localctx)
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(160)
+			p.Match(NeonParserT__7)
+		}
+		{
+			p.SetState(161)
+			p.Assign()
+		}
+
+	case NeonParserT__8:
+		localctx = NewBoolVarContext(p, localctx)
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(162)
+			p.Match(NeonParserT__8)
+		}
+		{
+			p.SetState(163)
+			p.Assign()
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 
 	return localctx
@@ -2155,6 +2401,12 @@ type IAssignContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// GetVar_ returns the var_ token.
+	GetVar_() antlr.Token
+
+	// SetVar_ sets the var_ token.
+	SetVar_(antlr.Token)
+
 	// IsAssignContext differentiates from other interfaces.
 	IsAssignContext()
 }
@@ -2162,6 +2414,7 @@ type IAssignContext interface {
 type AssignContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
+	var_   antlr.Token
 }
 
 func NewEmptyAssignContext() *AssignContext {
@@ -2186,9 +2439,9 @@ func NewAssignContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 
 func (s *AssignContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *AssignContext) ID() antlr.TerminalNode {
-	return s.GetToken(NeonParserID, 0)
-}
+func (s *AssignContext) GetVar_() antlr.Token { return s.var_ }
+
+func (s *AssignContext) SetVar_(v antlr.Token) { s.var_ = v }
 
 func (s *AssignContext) Expr() IExprContext {
 	var t antlr.RuleContext
@@ -2204,6 +2457,10 @@ func (s *AssignContext) Expr() IExprContext {
 	}
 
 	return t.(IExprContext)
+}
+
+func (s *AssignContext) ID() antlr.TerminalNode {
+	return s.GetToken(NeonParserID, 0)
 }
 
 func (s *AssignContext) GetRuleContext() antlr.RuleContext {
@@ -2251,15 +2508,18 @@ func (p *NeonParser) Assign() (localctx IAssignContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(156)
-		p.Match(NeonParserID)
+		p.SetState(166)
+
+		var _m = p.Match(NeonParserID)
+
+		localctx.(*AssignContext).var_ = _m
 	}
 	{
-		p.SetState(157)
-		p.Match(NeonParserT__6)
+		p.SetState(167)
+		p.Match(NeonParserT__9)
 	}
 	{
-		p.SetState(158)
+		p.SetState(168)
 		p.expr(0)
 	}
 
@@ -2369,11 +2629,11 @@ func (p *NeonParser) Return_() (localctx IReturnContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(160)
+		p.SetState(170)
 		p.Match(NeonParserRETURN)
 	}
 	{
-		p.SetState(161)
+		p.SetState(171)
 		p.expr(0)
 	}
 
@@ -2979,20 +3239,20 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(175)
+	p.SetState(185)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 17, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewNotExprContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 
 		{
-			p.SetState(164)
-			p.Match(NeonParserT__7)
+			p.SetState(174)
+			p.Match(NeonParserT__10)
 		}
 		{
-			p.SetState(165)
+			p.SetState(175)
 			p.expr(7)
 		}
 
@@ -3001,7 +3261,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(166)
+			p.SetState(176)
 			p.Funccall()
 		}
 
@@ -3010,7 +3270,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(167)
+			p.SetState(177)
 			p.Match(NeonParserINT)
 		}
 
@@ -3019,7 +3279,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(168)
+			p.SetState(178)
 			p.Match(NeonParserBOOL)
 		}
 
@@ -3028,7 +3288,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(169)
+			p.SetState(179)
 			p.Match(NeonParserSTRING)
 		}
 
@@ -3037,7 +3297,7 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(170)
+			p.SetState(180)
 			p.Match(NeonParserID)
 		}
 
@@ -3046,23 +3306,23 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(171)
+			p.SetState(181)
 			p.Match(NeonParserT__1)
 		}
 		{
-			p.SetState(172)
+			p.SetState(182)
 			p.expr(0)
 		}
 		{
-			p.SetState(173)
+			p.SetState(183)
 			p.Match(NeonParserT__2)
 		}
 
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(188)
+	p.SetState(198)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 21, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
@@ -3070,75 +3330,75 @@ func (p *NeonParser) expr(_p int) (localctx IExprContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(186)
+			p.SetState(196)
 			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewMDMContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(177)
+				p.SetState(187)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
 				}
 				{
-					p.SetState(178)
+					p.SetState(188)
 
 					var _m = p.Match(NeonParserMDM)
 
 					localctx.(*MDMContext).op = _m
 				}
 				{
-					p.SetState(179)
+					p.SetState(189)
 					p.expr(11)
 				}
 
 			case 2:
 				localctx = NewAddSubContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(180)
+				p.SetState(190)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
 				}
 				{
-					p.SetState(181)
+					p.SetState(191)
 
 					var _m = p.Match(NeonParserADD_SUB)
 
 					localctx.(*AddSubContext).op = _m
 				}
 				{
-					p.SetState(182)
+					p.SetState(192)
 					p.expr(10)
 				}
 
 			case 3:
 				localctx = NewComparisonContext(p, NewExprContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, NeonParserRULE_expr)
-				p.SetState(183)
+				p.SetState(193)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
 					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
 				}
 				{
-					p.SetState(184)
+					p.SetState(194)
 
 					var _m = p.Match(NeonParserCOMP)
 
 					localctx.(*ComparisonContext).op = _m
 				}
 				{
-					p.SetState(185)
+					p.SetState(195)
 					p.expr(9)
 				}
 
 			}
 
 		}
-		p.SetState(190)
+		p.SetState(200)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 21, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -3227,10 +3487,10 @@ func (p *NeonParser) Type_() (localctx ITypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(191)
+		p.SetState(201)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7680) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4992) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)

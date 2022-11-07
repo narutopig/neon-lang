@@ -25,9 +25,17 @@ while  : WHILE '(' expr ')' '{' stat* '}';
 func : DEF type ID ('(' (funcarg (',' funcarg)*)? ')')? '{' stat* '}';
 funccall : ID '(' (expr (',' expr)*)? ')'; // allow stuff like func()() later, where func() returns a function
 
-funcarg : type ID;
-decl : type assign;
-assign: ID '=' expr;
+funcarg :
+     'number' ID #NumArg
+     | 'string' ID #StrArg
+     | 'bool' ID #BoolArg
+     ;
+
+decl : 'number' assign #NumVar
+     | 'string' assign #StrVar
+     | 'bool' assign #BoolVar
+     ;
+assign: var=ID '=' expr;
 return: RETURN expr;
 
 expr : expr op=MDM expr #MDM

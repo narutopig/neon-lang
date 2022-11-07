@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
+	"math"
 )
 
 type Value struct {
@@ -27,6 +28,40 @@ func NewIdentifier(id string) Value {
 	return Value{Type: Identifier, Data: []byte(id)}
 }
 
+func (v Value) String() string {
+	var data any
+	switch v.Type {
+	case String:
+		data = string(v.Data)
+	case Number:
+		data = floatFromBytes(v.Data)
+	case Boolean:
+		if v.Data[0] == 0 {
+			data = False
+		} else {
+			data = True
+		}
+	}
+
+	return fmt.Sprintf("Value{Type: %s, Value: %s}", v.Type, data)
+}
+
+// Value enum
+const (
+	String ValueType = iota
+	Number
+	Boolean
+	Identifier
+)
+
+// Boolean constants
+var (
+	True  = NewBoolean(true)
+	False = NewBoolean(false)
+)
+
+// ValueType describes what type a value is
+//
 //go:generate stringer -type=ValueType
 type ValueType byte
 
@@ -47,9 +82,6 @@ func boolToBytes(b bool) []byte {
 	return []byte{0}
 }
 
-const (
-	String ValueType = iota
-	Number
-	Boolean
-	Identifier
-)
+func floatFromBytes(bytes []byte) float64 {
+	return math.Float64frombits(binary.BigEndian.Uint64(bytes))
+}

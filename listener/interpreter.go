@@ -131,7 +131,17 @@ func (l *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {
 
 // ExitComparison is called when production Comparison is exited.
 func (l *Interpreter) ExitComparison(ctx *parser.ComparisonContext) {
+	right, left := l.pop(), l.pop()
 
+	op := ctx.GetOp().GetText()
+
+	if op == "==" {
+		l.push(operations.Equal(left, right))
+	} else if op == "<=" {
+	} else if op == ">=" {
+	} else if op == "<" {
+	} else if op == ">" {
+	}
 }
 
 // ExitMDM is called when production MDM is exited.

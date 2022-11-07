@@ -13,5 +13,5 @@ func invalidOp(left value.ValueType, right value.ValueType, op string) {
 }
 
 func floatFromBytes(bytes []byte) float64 {
-	return math.Float64frombits(binary.LittleEndian.Uint64(bytes))
+	return math.Float64frombits(binary.BigEndian.Uint64(bytes))
 }

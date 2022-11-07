@@ -1,9 +1,7 @@
 package operations
 
 import (
-	"encoding/binary"
 	"fmt"
-	"math"
 
 	"github.com/narutopig/neon-lang/value"
 )
@@ -13,7 +11,7 @@ func Add(left value.Value, right value.Value) value.Value {
 		lval := floatFromBytes(left.Data)
 
 		if right.Type == value.Number {
-			rval := math.Float64frombits(binary.LittleEndian.Uint64(right.Data))
+			rval := floatFromBytes(right.Data)
 
 			return value.NewNumber(lval + rval)
 		} else if right.Type == value.String {

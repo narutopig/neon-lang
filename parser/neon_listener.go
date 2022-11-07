@@ -32,11 +32,23 @@ type NeonListener interface {
 	// EnterFunccall is called when entering the funccall production.
 	EnterFunccall(c *FunccallContext)
 
-	// EnterFuncarg is called when entering the funcarg production.
-	EnterFuncarg(c *FuncargContext)
+	// EnterNumArg is called when entering the NumArg production.
+	EnterNumArg(c *NumArgContext)
 
-	// EnterDecl is called when entering the decl production.
-	EnterDecl(c *DeclContext)
+	// EnterStrArg is called when entering the StrArg production.
+	EnterStrArg(c *StrArgContext)
+
+	// EnterBoolArg is called when entering the BoolArg production.
+	EnterBoolArg(c *BoolArgContext)
+
+	// EnterNumVar is called when entering the NumVar production.
+	EnterNumVar(c *NumVarContext)
+
+	// EnterStrVar is called when entering the StrVar production.
+	EnterStrVar(c *StrVarContext)
+
+	// EnterBoolVar is called when entering the BoolVar production.
+	EnterBoolVar(c *BoolVarContext)
 
 	// EnterAssign is called when entering the assign production.
 	EnterAssign(c *AssignContext)
@@ -101,11 +113,23 @@ type NeonListener interface {
 	// ExitFunccall is called when exiting the funccall production.
 	ExitFunccall(c *FunccallContext)
 
-	// ExitFuncarg is called when exiting the funcarg production.
-	ExitFuncarg(c *FuncargContext)
+	// ExitNumArg is called when exiting the NumArg production.
+	ExitNumArg(c *NumArgContext)
 
-	// ExitDecl is called when exiting the decl production.
-	ExitDecl(c *DeclContext)
+	// ExitStrArg is called when exiting the StrArg production.
+	ExitStrArg(c *StrArgContext)
+
+	// ExitBoolArg is called when exiting the BoolArg production.
+	ExitBoolArg(c *BoolArgContext)
+
+	// ExitNumVar is called when exiting the NumVar production.
+	ExitNumVar(c *NumVarContext)
+
+	// ExitStrVar is called when exiting the StrVar production.
+	ExitStrVar(c *StrVarContext)
+
+	// ExitBoolVar is called when exiting the BoolVar production.
+	ExitBoolVar(c *BoolVarContext)
 
 	// ExitAssign is called when exiting the assign production.
 	ExitAssign(c *AssignContext)
