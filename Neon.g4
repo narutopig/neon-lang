@@ -22,8 +22,8 @@ if  : IF '(' expr ')' '{' stat* '}' elif* else?;
 elif: ELIF '(' expr ')' '{' stat* '}';
 else: ELSE '{' stat* '}';
 while  : WHILE '(' expr ')' '{' stat* '}';
-func : DEF type ID ('(' (funcarg (',' funcarg)*)? ')')? '{' stat* '}';
-funccall : ID '(' (expr (',' expr)*)? ')'; // allow stuff like func()() later, where func() returns a function
+func : DEF funcType=type function=ID ('(' (funcarg (',' funcarg)*)? ')')? '{' stat* '}';
+funccall : function=ID '(' (expr (',' expr)*)? ')'; // allow stuff like func()() later, where func() returns a function
 
 funcarg :
      'number' ID #NumArg
@@ -31,10 +31,11 @@ funcarg :
      | 'bool' ID #BoolArg
      ;
 
-decl : 'number' assign #NumVar
-     | 'string' assign #StrVar
-     | 'bool' assign #BoolVar
+decl : 'number' var=ID '=' expr #NumVar
+     | 'string' var=ID '=' expr #StrVar
+     | 'bool' var=ID '=' expr #BoolVar
      ;
+     
 assign: var=ID '=' expr;
 return: RETURN expr;
 

@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/narutopig/neon-lang/listener/operations"
+	"github.com/narutopig/neon-lang/listener/runtime"
 	"github.com/narutopig/neon-lang/parser"
 	"github.com/narutopig/neon-lang/util"
 	"github.com/narutopig/neon-lang/value"
@@ -13,188 +14,158 @@ import (
 // Interpreter implements BaseNeonListener
 type Interpreter struct {
 	*parser.BaseNeonListener
-	stack []value.Value
+	Memory runtime.Memory
+	stack  []value.Value
 }
 
 // NewInterpreter returns a new interpreter instance
-func NewInterpreter() Interpreter {
-	return Interpreter{}
+func NewInterpreter() *Interpreter {
+	return &Interpreter{Memory: *runtime.NewMemory()}
 }
 
-func (l *Interpreter) push(val value.Value) {
-	l.stack = append(l.stack, val)
+func (i *Interpreter) push(val value.Value) {
+	i.stack = append(i.stack, val)
 }
 
-func (l *Interpreter) pop() value.Value {
-	if len(l.stack) < 1 {
+func (i *Interpreter) pop() value.Value {
+	if len(i.stack) < 1 {
 		panic("stack is empty unable to pop")
 	}
 
 	// Get the last value from the stack.
-	result := l.stack[len(l.stack)-1]
+	result := i.stack[len(i.stack)-1]
 
 	// Remove the last element from the stack.
-	l.stack = l.stack[:len(l.stack)-1]
+	i.stack = i.stack[:len(i.stack)-1]
 
 	return result
 }
 
-// EnterIf is called when production if is entered.
-func (l *Interpreter) EnterIf(ctx *parser.IfContext) {}
+// EnterNumVar is called when production NumVar is entered.
+func (i *Interpreter) EnterNumVar(ctx *parser.NumVarContext) {
+	varname := ctx.GetVar_().GetText()
+	_, exists := i.Memory.Get(varname)
 
-// ExitIf is called when production if is exited.
-func (l *Interpreter) ExitIf(ctx *parser.IfContext) {}
+	if exists {
+		panic(fmt.Sprintf("Variable %s already exists", varname))
+	}
+}
 
-// EnterElif is called when production elif is entered.
-func (l *Interpreter) EnterElif(ctx *parser.ElifContext) {}
+// ExitNumVar is called when production NumVar is exited.
+func (i *Interpreter) ExitNumVar(ctx *parser.NumVarContext) {
+	varname := ctx.GetVar_().GetText()
 
-// ExitElif is called when production elif is exited.
-func (l *Interpreter) ExitElif(ctx *parser.ElifContext) {}
+	i.Memory.Put(varname, i.pop())
+}
 
-// EnterElse is called when production else is entered.
-func (l *Interpreter) EnterElse(ctx *parser.ElseContext) {}
+// EnterStrVar is called when production StrVar is entered.
+func (i *Interpreter) EnterStrVar(ctx *parser.StrVarContext) {
+	varname := ctx.GetVar_().GetText()
+	_, exists := i.Memory.Get(varname)
 
-// ExitElse is called when production else is exited.
-func (l *Interpreter) ExitElse(ctx *parser.ElseContext) {}
+	if exists {
+		panic(fmt.Sprintf("Variable %s already exists", varname))
+	}
+}
 
-// EnterWhile is called when production while is entered.
-func (l *Interpreter) EnterWhile(ctx *parser.WhileContext) {}
+// ExitStrVar is called when production StrVar is exited.
+func (i *Interpreter) ExitStrVar(ctx *parser.StrVarContext) {
+	varname := ctx.GetVar_().GetText()
 
-// ExitWhile is called when production while is exited.
-func (l *Interpreter) ExitWhile(ctx *parser.WhileContext) {}
+	i.Memory.Put(varname, i.pop())
+}
 
-// EnterFunc is called when production func is entered.
-func (l *Interpreter) EnterFunc(ctx *parser.FuncContext) {}
+// EnterBoolVar is called when production BoolVar is entered.
+func (i *Interpreter) EnterBoolVar(ctx *parser.BoolVarContext) {
+	varname := ctx.GetVar_().GetText()
+	_, exists := i.Memory.Get(varname)
 
-// ExitFunc is called when production func is exited.
-func (l *Interpreter) ExitFunc(ctx *parser.FuncContext) {}
+	if exists {
+		panic(fmt.Sprintf("Variable %s already exists", varname))
+	}
+}
 
-// EnterFunccall is called when production funccall is entered.
-func (l *Interpreter) EnterFunccall(ctx *parser.FunccallContext) {}
+// ExitBoolVar is called when production BoolVar is exited.
+func (i *Interpreter) ExitBoolVar(ctx *parser.BoolVarContext) {
+	varname := ctx.GetVar_().GetText()
 
-// ExitFunccall is called when production funccall is exited.
-func (l *Interpreter) ExitFunccall(ctx *parser.FunccallContext) {}
-
-// EnterFuncarg is called when production funcarg is entered.
-func (l *Interpreter) EnterFuncarg(ctx *parser.FuncargContext) {}
-
-// ExitFuncarg is called when production funcarg is exited.
-func (l *Interpreter) ExitFuncarg(ctx *parser.FuncargContext) {}
-
-// EnterDecl is called when production decl is entered.
-func (l *Interpreter) EnterDecl(ctx *parser.DeclContext) {}
-
-// ExitDecl is called when production decl is exited.
-func (l *Interpreter) ExitDecl(ctx *parser.DeclContext) {}
-
-// EnterAssign is called when production assign is entered.
-func (l *Interpreter) EnterAssign(ctx *parser.AssignContext) {}
-
-// ExitAssign is called when production assign is exited.
-func (l *Interpreter) ExitAssign(ctx *parser.AssignContext) {}
-
-// EnterReturn is called when production return is entered.
-func (l *Interpreter) EnterReturn(ctx *parser.ReturnContext) {}
-
-// ExitReturn is called when production return is exited.
-func (l *Interpreter) ExitReturn(ctx *parser.ReturnContext) {}
-
-// EnterExpr is called when production expr is entered.
-func (l *Interpreter) EnterExpr(ctx *parser.ExprContext) {}
-
-// ExitExpr is called when production expr is exited.
-func (l *Interpreter) ExitExpr(ctx *parser.ExprContext) {}
-
-// EnterType is called when production type is entered.
-func (l *Interpreter) EnterType(ctx *parser.TypeContext) {}
-
-// ExitType is called when production type is exited.
-func (l *Interpreter) ExitType(ctx *parser.TypeContext) {}
-
-// EnterFuncCall is called when production FuncCall is entered.
-func (l *Interpreter) EnterFuncCall(ctx *parser.FuncCallContext) {}
-
-// ExitFuncCall is called when production FuncCall is exited.
-func (l *Interpreter) ExitFuncCall(ctx *parser.FuncCallContext) {}
+	i.Memory.Put(varname, i.pop())
+}
 
 // ExitAddSub is called when production AddSub is exited.
-func (l *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {
-	right, left := l.pop(), l.pop()
+func (i *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {
+	right, left := i.pop(), i.pop()
 
 	switch ctx.GetOp().GetText() {
 	case "+":
-		l.push(operations.Add(left, right))
+		i.push(operations.Add(left, right))
 	case "-":
-		l.push(operations.Subtract(left, right))
+		i.push(operations.Subtract(left, right))
 	}
 }
 
 // ExitComparison is called when production Comparison is exited.
-func (l *Interpreter) ExitComparison(ctx *parser.ComparisonContext) {
-	right, left := l.pop(), l.pop()
+func (i *Interpreter) ExitComparison(ctx *parser.ComparisonContext) {
+	right, left := i.pop(), i.pop()
 
 	op := ctx.GetOp().GetText()
 
 	if op == "==" {
-		l.push(operations.Equal(left, right))
+		i.push(operations.Equal(left, right))
 	} else if op == "<=" {
+		i.push(operations.LessEq(left, right))
 	} else if op == ">=" {
+		i.push(operations.GreaterEq(left, right))
 	} else if op == "<" {
+		i.push(operations.Less(left, right))
 	} else if op == ">" {
+		i.push(operations.Greater(left, right))
 	}
 }
 
 // ExitMDM is called when production MDM is exited.
-func (l *Interpreter) ExitMDM(ctx *parser.MDMContext) {
-	right, left := l.pop(), l.pop()
+func (i *Interpreter) ExitMDM(ctx *parser.MDMContext) {
+	right, left := i.pop(), i.pop()
 
 	op := ctx.GetOp().GetText()
 
 	if op == "*" {
-		l.push(operations.Multiply(left, right))
+		i.push(operations.Multiply(left, right))
 	} else if op == "/" {
-		l.push(operations.Divide(left, right))
+		i.push(operations.Divide(left, right))
 	} else if op == "%" {
-		l.push(operations.Modulus(left, right))
-	} else {
-		panic(fmt.Sprintf("Unexpected operator %s", op))
+		i.push(operations.Modulus(left, right))
 	}
 }
 
 // ExitNotExpr is called when production NotExpr is exited.
-func (l *Interpreter) ExitNotExpr(ctx *parser.NotExprContext) {
+func (i *Interpreter) ExitNotExpr(ctx *parser.NotExprContext) {
 }
 
 // EnterString is called when production String is entered.
-func (l *Interpreter) EnterString(ctx *parser.StringContext) {
-	l.stack = append(l.stack, value.NewString(ctx.GetText()))
+func (i *Interpreter) EnterString(ctx *parser.StringContext) {
+	i.stack = append(i.stack, value.NewString(ctx.GetText()))
 }
 
 // EnterIdentifier is called when production Identifier is entered.
-func (l *Interpreter) EnterIdentifier(ctx *parser.IdentifierContext) {
-	l.stack = append(l.stack, value.NewIdentifier(ctx.GetText()))
+func (i *Interpreter) EnterIdentifier(ctx *parser.IdentifierContext) {
+	i.stack = append(i.stack, value.NewIdentifier(ctx.GetText()))
 }
 
 // EnterInt is called when production Int is entered.
-func (l *Interpreter) EnterInt(ctx *parser.IntContext) {
+func (i *Interpreter) EnterInt(ctx *parser.IntContext) {
 	val, err := strconv.ParseFloat(ctx.GetText(), 64)
-	util.Assert(err != nil, "Error while converting number to string")
-	l.stack = append(l.stack, value.NewNumber(val))
+	util.Assert(err == nil, "Error while converting number to string")
+	i.stack = append(i.stack, value.NewNumber(val))
 }
 
 // EnterBool is called when production Bool is entered.
-func (l *Interpreter) EnterBool(ctx *parser.BoolContext) {
+func (i *Interpreter) EnterBool(ctx *parser.BoolContext) {
 	val, err := strconv.ParseBool(ctx.GetText())
-	util.Assert(err != nil, "Error while converting boolean to string")
-	l.stack = append(l.stack, value.NewBoolean(val))
+	util.Assert(err == nil, "Error while converting boolean to string")
+	i.stack = append(i.stack, value.NewBoolean(val))
 }
 
-/*
-// EnterNoClue is called when production NoClue is entered.
-func (l *Listener) EnterNoClue(ctx *parser.NoClueContext) {}
-
-// ExitNoClue is called when production NoClue is exited.
-func (l *Listener) ExitNoClue(ctx *parser.NoClueContext) {}
-
-above is for ( expr )
-*/
+func (i Interpreter) Print() {
+	fmt.Println(i.stack)
+}

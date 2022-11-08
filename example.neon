@@ -1,14 +1,3 @@
-def bool isLarge(number x) {
-    return x > 10;
-}
-
 def number main {
-    print("Hello World!");
-
     number n = 0;
-
-    while (isLarge(n)) {
-        print(n + " is large");
-        n = n + 1;
-    }
 }

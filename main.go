@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/narutopig/neon-lang/listener"
 	"github.com/narutopig/neon-lang/parser"
 )
 
@@ -29,5 +31,8 @@ func main() {
 	lexer := parser.NewNeonLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	p := parser.NewNeonParser(stream) // Create the Parser
-	p.Program()
+	i := listener.NewInterpreter()
+	antlr.ParseTreeWalkerDefault.Walk(i, p.Program())
+	i.Print()
+	fmt.Println(i.Memory)
 }
