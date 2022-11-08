@@ -7,7 +7,6 @@ import (
 	"github.com/narutopig/neon-lang/listener/operations"
 	"github.com/narutopig/neon-lang/listener/runtime"
 	"github.com/narutopig/neon-lang/parser"
-	"github.com/narutopig/neon-lang/util"
 	"github.com/narutopig/neon-lang/value"
 )
 
@@ -16,11 +15,16 @@ type Interpreter struct {
 	*parser.BaseNeonListener
 	Memory runtime.Memory
 	stack  []value.Value
+	errors []runtime.Error
 }
 
 // NewInterpreter returns a new interpreter instance
 func NewInterpreter() *Interpreter {
-	return &Interpreter{Memory: *runtime.NewMemory()}
+	return &Interpreter{Memory: runtime.M()}
+}
+
+func (i *Interpreter) panic(message string, line int) {
+	i.errors = append(i.errors, runtime.E(message))
 }
 
 func (i *Interpreter) push(val value.Value) {
@@ -29,7 +33,7 @@ func (i *Interpreter) push(val value.Value) {
 
 func (i *Interpreter) pop() value.Value {
 	if len(i.stack) < 1 {
-		panic("stack is empty unable to pop")
+		i.panic("stack empty, unable to pop", -1)
 	}
 
 	// Get the last value from the stack.
@@ -47,7 +51,7 @@ func (i *Interpreter) EnterNumVar(ctx *parser.NumVarContext) {
 	_, exists := i.Memory.Get(varname)
 
 	if exists {
-		panic(fmt.Sprintf("Variable %s already exists", varname))
+		i.panic(fmt.Sprintf("Variable %s already exists", varname), ctx.GetStart().GetLine())
 	}
 }
 
@@ -64,7 +68,7 @@ func (i *Interpreter) EnterStrVar(ctx *parser.StrVarContext) {
 	_, exists := i.Memory.Get(varname)
 
 	if exists {
-		panic(fmt.Sprintf("Variable %s already exists", varname))
+		i.panic(fmt.Sprintf("Variable %s already exists", varname), ctx.GetStart().GetLine())
 	}
 }
 
@@ -81,7 +85,7 @@ func (i *Interpreter) EnterBoolVar(ctx *parser.BoolVarContext) {
 	_, exists := i.Memory.Get(varname)
 
 	if exists {
-		panic(fmt.Sprintf("Variable %s already exists", varname))
+		i.panic(fmt.Sprintf("Variable %s already exists", varname), ctx.GetStart().GetLine())
 	}
 }
 
@@ -98,9 +102,19 @@ func (i *Interpreter) ExitAddSub(ctx *parser.AddSubContext) {
 
 	switch ctx.GetOp().GetText() {
 	case "+":
-		i.push(operations.Add(left, right))
+		val, err := operations.Add(left, right)
+		if err != "" {
+			i.panic(err, ctx.GetStart().GetLine())
+		} else {
+			i.push(val)
+		}
 	case "-":
-		i.push(operations.Subtract(left, right))
+		val, err := operations.Subtract(left, right)
+		if err != "" {
+			i.panic(err, ctx.GetStart().GetLine())
+		} else {
+			i.push(val)
+		}
 	}
 }
 
@@ -130,11 +144,26 @@ func (i *Interpreter) ExitMDM(ctx *parser.MDMContext) {
 	op := ctx.GetOp().GetText()
 
 	if op == "*" {
-		i.push(operations.Multiply(left, right))
+		val, err := operations.Multiply(left, right)
+		if err != "" {
+			i.panic(err, ctx.GetStart().GetLine())
+		} else {
+			i.push(val)
+		}
 	} else if op == "/" {
-		i.push(operations.Divide(left, right))
+		val, err := operations.Divide(left, right)
+		if err != "" {
+			i.panic(err, ctx.GetStart().GetLine())
+		} else {
+			i.push(val)
+		}
 	} else if op == "%" {
-		i.push(operations.Modulus(left, right))
+		val, err := operations.Modulus(left, right)
+		if err != "" {
+			i.panic(err, ctx.GetStart().GetLine())
+		} else {
+			i.push(val)
+		}
 	}
 }
 
@@ -155,17 +184,27 @@ func (i *Interpreter) EnterIdentifier(ctx *parser.IdentifierContext) {
 // EnterInt is called when production Int is entered.
 func (i *Interpreter) EnterInt(ctx *parser.IntContext) {
 	val, err := strconv.ParseFloat(ctx.GetText(), 64)
-	util.Assert(err == nil, "Error while converting number to string")
+	if err != nil {
+		i.panic("Error while converting number to string", ctx.GetStart().GetLine())
+	}
 	i.stack = append(i.stack, value.NewNumber(val))
 }
 
 // EnterBool is called when production Bool is entered.
 func (i *Interpreter) EnterBool(ctx *parser.BoolContext) {
 	val, err := strconv.ParseBool(ctx.GetText())
-	util.Assert(err == nil, "Error while converting boolean to string")
+	if err != nil {
+		i.panic("Error while converting boolean to string", ctx.GetStart().GetLine())
+	}
 	i.stack = append(i.stack, value.NewBoolean(val))
 }
 
+// Print should only be used for debug and prints out the current stack
 func (i Interpreter) Print() {
 	fmt.Println(i.stack)
+}
+
+// Errors returns the list of compile/runtime errors
+func (i Interpreter) Errors() []runtime.Error {
+	return i.errors
 }

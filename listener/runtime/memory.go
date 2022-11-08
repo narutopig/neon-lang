@@ -16,6 +16,6 @@ func (m *Memory) Put(key string, val value.Value) {
 	m.state[key] = val
 }
 
-func NewMemory() *Memory {
-	return &Memory{state: make(map[string]value.Value)}
+func M() Memory {
+	return Memory{state: make(map[string]value.Value)}
 }

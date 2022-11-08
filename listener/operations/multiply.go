@@ -4,14 +4,14 @@ import (
 	"github.com/narutopig/neon-lang/value"
 )
 
-func Multiply(left value.Value, right value.Value) value.Value {
+func Multiply(left value.Value, right value.Value) (value.Value, string) {
 	if left.Type == value.Number {
 		lval := floatFromBytes(left.Data)
 
 		if right.Type == value.Number {
 			rval := floatFromBytes(right.Data)
 
-			return value.NewNumber(lval * rval)
+			return value.NewNumber(lval * rval), ""
 		}
 	} else if left.Type == value.String {
 		lval := string(left.Data)
@@ -24,11 +24,9 @@ func Multiply(left value.Value, right value.Value) value.Value {
 				temp += lval
 			}
 
-			return value.NewString(temp)
+			return value.NewString(temp), ""
 		}
 	}
 
-	invalidOp(left.Type, right.Type, "*")
-
-	return value.Value{}
+	return value.Value{}, invalidOp(left.Type, right.Type, "*")
 }

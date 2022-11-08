@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/binary"
 	"fmt"
 	"log"
+	"math"
 	"os"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
@@ -33,6 +35,6 @@ func main() {
 	p := parser.NewNeonParser(stream) // Create the Parser
 	i := listener.NewInterpreter()
 	antlr.ParseTreeWalkerDefault.Walk(i, p.Program())
-	i.Print()
-	fmt.Println(i.Memory)
+	val, _ := i.Memory.Get("n")
+	fmt.Println(math.Float64frombits(binary.BigEndian.Uint64(val.Data)))
 }

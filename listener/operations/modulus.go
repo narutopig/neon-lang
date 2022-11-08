@@ -6,7 +6,7 @@ import (
 	"github.com/narutopig/neon-lang/value"
 )
 
-func Modulus(left value.Value, right value.Value) value.Value {
+func Modulus(left value.Value, right value.Value) (value.Value, string) {
 	if left.Type == value.Number {
 		lval := floatFromBytes(left.Data)
 
@@ -14,11 +14,9 @@ func Modulus(left value.Value, right value.Value) value.Value {
 			rval := floatFromBytes(right.Data)
 
 			res := math.Mod(lval, rval)
-			return value.NewNumber(res)
+			return value.NewNumber(res), ""
 		}
 	}
 
-	invalidOp(left.Type, right.Type, "%")
-
-	return value.Value{}
+	return value.Value{}, invalidOp(left.Type, right.Type, "%")
 }
