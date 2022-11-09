@@ -33,3 +33,21 @@ func print(args []value.Value) value.Value {
 	fmt.Println(args[0])
 	return value.Value{}
 }
+
+var std map[string]Function = map[string]Function{
+	"print": Print,
+}
+
+func GetFunction(name string) Function {
+	return std[name]
+}
+
+func HasFunction(name string) bool {
+	_, exists := std[name]
+
+	return exists
+}
+
+func AddFunction(name string, function Function) {
+	std[name] = function
+}
