@@ -33,6 +33,16 @@ func print(args []value.Value) value.Value {
 	switch args[0].Type {
 	case value.String:
 		fmt.Println(string(args[0].Data))
+	case value.Number:
+		fmt.Println(value.FloatFromBytes(args[0].Data))
+	case value.Boolean:
+		{
+			if args[0].Data[0] == 1 {
+				fmt.Println("True")
+			} else {
+				fmt.Println("False")
+			}
+		}
 	}
 	return value.Value{}
 }

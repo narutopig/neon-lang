@@ -21,7 +21,7 @@ func NewNumber(num float64) Value {
 }
 
 func NewBoolean(b bool) Value {
-	return Value{Type: Boolean, Data: boolToBytes(b)}
+	return Value{Type: Boolean, Data: BoolToBytes(b)}
 }
 
 func NewIdentifier(id string) Value {
@@ -34,7 +34,7 @@ func (v Value) String() string {
 	case String:
 		data = string(v.Data)
 	case Number:
-		data = floatFromBytes(v.Data)
+		data = FloatFromBytes(v.Data)
 	case Boolean:
 		if v.Data[0] == 0 {
 			data = False
@@ -74,7 +74,7 @@ func floatToBytes(num float64) []byte {
 	return buf.Bytes()
 }
 
-func boolToBytes(b bool) []byte {
+func BoolToBytes(b bool) []byte {
 	if b {
 		return []byte{1}
 	}
@@ -82,6 +82,6 @@ func boolToBytes(b bool) []byte {
 	return []byte{0}
 }
 
-func floatFromBytes(bytes []byte) float64 {
+func FloatFromBytes(bytes []byte) float64 {
 	return math.Float64frombits(binary.BigEndian.Uint64(bytes))
 }
