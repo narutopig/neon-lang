@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -33,6 +32,4 @@ func main() {
 	p := parser.NewNeonParser(stream) // Create the Parser
 	i := listener.NewInterpreter()
 	antlr.ParseTreeWalkerDefault.Walk(i, p.Program())
-	val, _ := i.Memory.Get("final")
-	fmt.Println(string(val.Data))
 }

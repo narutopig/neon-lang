@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/narutopig/neon-lang/listener/runtime"
+	"github.com/narutopig/neon-lang/listener/runtime/function"
 	"github.com/narutopig/neon-lang/parser"
 	"github.com/narutopig/neon-lang/value"
 )
@@ -14,11 +15,12 @@ type Interpreter struct {
 	Memory runtime.Memory
 	stack  []value.Value
 	errors []runtime.Error
+	funcs  map[string]function.Function
 }
 
 // NewInterpreter returns a new interpreter instance
 func NewInterpreter() *Interpreter {
-	return &Interpreter{Memory: runtime.M()}
+	return &Interpreter{Memory: runtime.M(), funcs: function.Std}
 }
 
 func (i *Interpreter) panic(message string, line int) {
@@ -51,4 +53,18 @@ func (i Interpreter) Print() {
 // Errors returns the list of compile/runtime errors
 func (i Interpreter) Errors() []runtime.Error {
 	return i.errors
+}
+
+func (i Interpreter) GetFunction(name string) function.Function {
+	return i.funcs[name]
+}
+
+func (i Interpreter) HasFunction(name string) bool {
+	_, exists := i.funcs[name]
+
+	return exists
+}
+
+func (i *Interpreter) AddFunction(name string, function function.Function) {
+	i.funcs[name] = function
 }

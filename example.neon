@@ -3,4 +3,5 @@ def number main {
     string myname = "My name is ";
     string name = "Joe";
     string final = myname + name;
+    print(final);
 }

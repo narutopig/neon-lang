@@ -30,24 +30,13 @@ func print(args []value.Value) value.Value {
 	if len(args) == 0 {
 		fmt.Println()
 	}
-	fmt.Println(args[0])
+	switch args[0].Type {
+	case value.String:
+		fmt.Println(string(args[0].Data))
+	}
 	return value.Value{}
 }
 
-var std map[string]Function = map[string]Function{
+var Std map[string]Function = map[string]Function{
 	"print": Print,
-}
-
-func GetFunction(name string) Function {
-	return std[name]
-}
-
-func HasFunction(name string) bool {
-	_, exists := std[name]
-
-	return exists
-}
-
-func AddFunction(name string, function Function) {
-	std[name] = function
 }
