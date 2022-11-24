@@ -1,8 +1,1 @@
-def number main {
-    number n = 9 + 10;
-    string myname = "My name is ";
-    string name = "Joe";
-    string final = myname + name;
-    print(final);
-    print(n);
-}
+println("Hello World!");

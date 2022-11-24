@@ -1,8 +1,6 @@
 package function
 
 import (
-	"fmt"
-
 	"github.com/narutopig/neon-lang/value"
 )
 
@@ -24,29 +22,7 @@ const (
 	Void
 )
 
-var Print Function = Function{Void, []value.ValueType{value.String}, print}
-
-func print(args []value.Value) value.Value {
-	if len(args) == 0 {
-		fmt.Println()
-	}
-	switch args[0].Type {
-	case value.String:
-		fmt.Println(string(args[0].Data))
-	case value.Number:
-		fmt.Println(value.FloatFromBytes(args[0].Data))
-	case value.Boolean:
-		{
-			if args[0].Data[0] == 1 {
-				fmt.Println("True")
-			} else {
-				fmt.Println("False")
-			}
-		}
-	}
-	return value.Value{}
-}
-
 var Std map[string]Function = map[string]Function{
-	"print": Print,
+	"print":   Print,
+	"println": Println,
 }
